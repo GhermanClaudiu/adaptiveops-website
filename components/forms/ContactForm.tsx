@@ -4,7 +4,6 @@ import { useState, FormEvent } from "react";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -14,10 +13,15 @@ export default function ContactForm() {
     const data = new FormData(form);
 
     try {
-      const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          phone: data.get("phone"),
+          message: data.get("message"),
+        }),
       });
 
       if (res.ok) {
@@ -37,8 +41,8 @@ export default function ContactForm() {
         <svg className="w-12 h-12 text-secondary mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
         </svg>
-        <h3 className="text-xl font-semibold text-primary mb-2">Message sent</h3>
-        <p className="text-mid">Thank you for reaching out. We&apos;ll get back to you shortly.</p>
+        <h3 className="text-xl font-semibold text-primary mb-2">Mesajul a fost trimis</h3>
+        <p className="text-mid">Vă vom contacta în 24 de ore.</p>
       </div>
     );
   }
@@ -73,6 +77,16 @@ export default function ContactForm() {
           type="text"
           id="company"
           name="company"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="phone" className="block text-sm font-medium text-dark mb-1">Phone</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-colors"
         />
       </div>
@@ -119,7 +133,7 @@ export default function ContactForm() {
       </div>
 
       {status === "error" && (
-        <p className="text-sm text-red-600">Something went wrong. Please try again.</p>
+        <p className="text-sm text-red-600">A apărut o eroare. Vă rugăm să ne contactați direct.</p>
       )}
 
       <button
