@@ -80,9 +80,9 @@ const systems: System[] = [
     ],
   },
   {
-    id: "HMS",
-    name: "Human Management",
-    abbr: "HMS",
+    id: "PMS",
+    name: "People Management",
+    abbr: "PMS",
     color: "#2E7D32",
     icon: "\uD83D\uDC65",
     standard: "ISO 45001",

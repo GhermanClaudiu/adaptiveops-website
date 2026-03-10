@@ -1,3 +1,5 @@
+import FadeUp from "@/components/shared/FadeUp";
+
 const benefits = [
   {
     title: "Standardized Processes",
@@ -45,28 +47,32 @@ export default function Benefits() {
   return (
     <section className="bg-light py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
-            Results you can measure. Changes that last.
-          </h2>
-          <p className="mt-4 text-mid text-base md:text-lg">
-            We don&apos;t just advise. We implement.
-          </p>
-        </div>
+        <FadeUp>
+          <div className="text-center mb-14">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
+              Results you can measure. Changes that last.
+            </h2>
+            <p className="mt-4 text-mid text-base md:text-lg">
+              We don&apos;t just advise. We implement.
+            </p>
+          </div>
+        </FadeUp>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {benefits.map((benefit) => (
-            <div key={benefit.title} className="text-center">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent/10 text-accent mb-5">
-                {benefit.icon}
+          {benefits.map((benefit, i) => (
+            <FadeUp key={benefit.title} delay={i * 100}>
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent/10 text-accent mb-5">
+                  {benefit.icon}
+                </div>
+                <h3 className="text-lg font-semibold text-primary mb-2">
+                  {benefit.title}
+                </h3>
+                <p className="text-sm text-mid leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-primary mb-2">
-                {benefit.title}
-              </h3>
-              <p className="text-sm text-mid leading-relaxed">
-                {benefit.description}
-              </p>
-            </div>
+            </FadeUp>
           ))}
         </div>
       </div>

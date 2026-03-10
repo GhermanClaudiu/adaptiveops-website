@@ -35,7 +35,7 @@ export default function Header() {
             <span className="text-xl font-bold text-white" style={{ letterSpacing: "-0.5px" }}>Adaptive</span>
             <span className="text-xl font-light text-accent" style={{ letterSpacing: "-0.5px" }}>Ops</span>
           </div>
-          <span className="hidden md:block text-[8px] font-medium uppercase text-accent/50" style={{ letterSpacing: "3.5px" }}>
+          <span className="hidden md:block text-[9px] font-semibold uppercase text-accent" style={{ letterSpacing: "3px" }}>
             Operational Excellence
           </span>
         </Link>

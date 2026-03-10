@@ -8,9 +8,9 @@ const footerLinks = {
     { href: "/contact", label: "Contact" },
   ],
   services: [
+    { href: "/solutions", label: "Digital Solutions" },
     { href: "/services", label: "Training Programs" },
     { href: "/services", label: "Operational Coaching" },
-    { href: "/solutions", label: "ECO Platform" },
   ],
 };
 
