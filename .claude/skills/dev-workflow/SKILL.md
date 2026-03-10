@@ -218,6 +218,63 @@ When matching colors from a logo or existing asset:
 3. **Use exact tokens** — don't invent hex values from visual inspection
 4. **Opacity matters**: `text-accent/70` (70% opacity) looks different from `text-accent` (100%)
 
+## Pre-Push Checklist
+
+**ALWAYS run `npx next build` before pushing to remote.** Dev server (`next dev`) does NOT run ESLint or full TypeScript checks.
+
+```bash
+cd adaptiveops-website && npx next build 2>&1 | grep -E "(Error|error|✓|✗|Compiled)"
+```
+
+Common build-time errors that `next dev` misses:
+- `no-unused-vars` — variables/params defined but never used (ESLint treats as ERROR)
+- `function` declarations in block scope — use arrow functions (`const fn = () => {}`) instead
+- Missing env variables — API routes fail if `RESEND_API_KEY` etc. are not set
+
+After refactoring, always check for leftover unused variables/imports before committing.
+
+## Mobile Responsive Patterns
+
+### Never use `hidden lg:block` on important content
+`hidden lg:block` completely removes an element below 1024px. If the content matters on mobile, use responsive sizing instead:
+
+```jsx
+// WRONG — element disappears on mobile
+<div className="hidden lg:block">Important dashboard</div>
+
+// CORRECT — scales down for mobile
+<div className="w-full max-w-sm mx-auto lg:max-w-none">Important dashboard</div>
+```
+
+### Content order: text first on mobile
+In two-column layouts (text + visual), text should appear first on mobile. Use CSS `order` to reorder without changing DOM:
+
+```jsx
+<div className="grid grid-cols-1 lg:grid-cols-2">
+  <div>Text content (naturally first in HTML)</div>
+  <div className="order-first lg:order-none">Visual that should be first on desktop only</div>
+</div>
+```
+
+Or if visual is first in HTML but text should be first on mobile:
+```jsx
+<div className="order-last lg:order-first">Visual element</div>
+```
+
+### Absolute-positioned elements need safe mobile boundaries
+Negative offsets (`-left-4`, `-right-3`) cause overflow on small screens:
+
+```jsx
+// WRONG — overflows on mobile
+<div className="absolute -left-4 -bottom-4">floating card</div>
+
+// CORRECT — safe on mobile, offset on desktop
+<div className="absolute left-0 lg:-left-4 -bottom-4">floating card</div>
+```
+
+### Always test both viewports
+After any layout change, take screenshots at both 1440px (desktop) and 390px (mobile) to catch responsive issues.
+
 ## Communication
 
 - Communicate in Romanian (per CLAUDE.md: "Limbă comunicare cu mine: Română")

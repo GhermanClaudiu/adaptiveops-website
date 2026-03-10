@@ -71,7 +71,7 @@ export default function Hero() {
           </div>
 
           {/* Right: Dashboard mockup */}
-          <FadeUp delay={300} className="hidden lg:block">
+          <FadeUp delay={300}>
             <div className="relative">
               {/* Main dashboard card */}
               <div className="bg-white/[0.07] backdrop-blur-sm border border-white/10 rounded-2xl p-6 shadow-2xl">
@@ -149,7 +149,7 @@ export default function Hero() {
               </div>
 
               {/* Floating notification card */}
-              <div className="absolute -bottom-4 -left-4 bg-white/[0.1] backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3 shadow-xl">
+              <div className="absolute -bottom-4 left-0 lg:-left-4 bg-white/[0.1] backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3 shadow-xl">
                 <div className="flex items-center gap-2.5">
                   <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
                     <svg className="w-4 h-4 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -164,7 +164,7 @@ export default function Hero() {
               </div>
 
               {/* Floating user avatars */}
-              <div className="absolute -top-3 -right-3 bg-white/[0.1] backdrop-blur-sm border border-white/10 rounded-xl px-3 py-2 shadow-xl">
+              <div className="absolute -top-3 right-0 lg:-right-3 bg-white/[0.1] backdrop-blur-sm border border-white/10 rounded-xl px-3 py-2 shadow-xl">
                 <div className="flex items-center gap-1.5">
                   <div className="flex -space-x-2">
                     <div className="w-6 h-6 rounded-full bg-accent/30 border border-white/20 flex items-center justify-center text-[8px] font-bold text-white">CG</div>

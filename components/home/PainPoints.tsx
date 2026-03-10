@@ -38,8 +38,8 @@ export default function PainPoints() {
     <section className="bg-light py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
-          {/* Left: Visual — broken system diagram */}
-          <FadeUp className="h-full">
+          {/* Left: Visual — broken system diagram (on mobile appears after text) */}
+          <FadeUp className="h-full order-last lg:order-first">
             <div className="relative h-full flex flex-col">
               {/* The "broken" system visualization */}
               <div className="bg-white rounded-2xl border border-gray-100 p-6 sm:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.04)] flex-1 flex flex-col justify-between">
