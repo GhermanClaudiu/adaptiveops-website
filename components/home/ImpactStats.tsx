@@ -22,16 +22,8 @@ function StatItem({ prefix, value, suffix, label }: {
   );
 }
 
-const stats = [
-  { prefix: "EUR ", value: 3.2, suffix: "M", label: "Annual savings generated through structured improvement programs", decimals: true },
-  { prefix: "", value: 51, suffix: "%", label: "Efficiency increase achieved in production operations", decimals: false },
-  { prefix: "", value: 30, suffix: "%", label: "Scrap rate reduction through continuous improvement tools", decimals: false },
-  { prefix: "", value: 20, suffix: "+", label: "Years of hands-on industrial experience", decimals: false },
-];
-
-function StatItemDecimal({ prefix, value, suffix, label }: {
+function StatItemDecimal({ prefix, suffix, label }: {
   prefix?: string;
-  value: number;
   suffix?: string;
   label: string;
 }) {
@@ -56,7 +48,6 @@ export default function ImpactStats() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           <StatItemDecimal
             prefix="EUR "
-            value={3.2}
             suffix="M"
             label="Annual savings generated through structured improvement programs"
           />

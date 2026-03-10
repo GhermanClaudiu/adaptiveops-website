@@ -17,14 +17,13 @@ export function useCountUp(end: number, duration = 2000) {
           hasAnimated.current = true;
           const start = performance.now();
 
-          function tick(now: number) {
+          const tick = (now: number) => {
             const elapsed = now - start;
             const progress = Math.min(elapsed / duration, 1);
-            // ease-out cubic
             const eased = 1 - Math.pow(1 - progress, 3);
             setCount(Math.round(eased * end));
             if (progress < 1) requestAnimationFrame(tick);
-          }
+          };
 
           requestAnimationFrame(tick);
         }
