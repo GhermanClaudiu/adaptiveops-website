@@ -3,9 +3,19 @@
 import { useEffect, useRef, useState } from "react";
 
 export function useCountUp(end: number, duration = 2000) {
-  const [count, setCount] = useState(0);
+  // Start with end value so SSR/static HTML shows real numbers (SEO)
+  const [count, setCount] = useState(end);
   const ref = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
+  const hasMounted = useRef(false);
+
+  // On mount, reset to 0 so we can animate up
+  useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+      setCount(0);
+    }
+  }, []);
 
   useEffect(() => {
     const el = ref.current;

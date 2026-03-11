@@ -1,24 +1,26 @@
 # AdaptiveOps
 
-> AdaptiveOps helps industrial organizations improve operational performance through practical training, operational coaching, and integrated digital management systems. Built from 20+ years of hands-on experience in automotive manufacturing.
+> AdaptiveOps helps industrial organizations achieve operational excellence through digital management systems, practical training and hands-on operational coaching. Built from the shop floor up.
 
-## What is ECO?
+## What we do
 
-ECO stands for Execution & Control of Operations. It is an integrated digital platform that connects six management systems into one unified operational core:
+AdaptiveOps offers three integrated services:
+- **Digital Solutions**: The ECO Platform — a modular industrial management system with 6 modules (EMS, QMS, MMS, PMS, OMS, CIS)
+- **Training**: Professional programs in Lean Manufacturing, OEE, problem-solving, continuous improvement and leadership development
+- **Coaching**: Hands-on shop-floor coaching for process optimization, management systems and team development
+
+## Who we serve
+
+Manufacturing and automotive organizations across Europe looking to reduce scrap, improve OEE, implement management systems and build cultures of continuous improvement.
+
+## ECO Platform Modules
 
 - **QMS** — Quality Management System (ISO 9001): Document control, CAPA, audit management, nonconformance, supplier quality, risk & FMEA
 - **EMS** — Equipment Management System (ISO 55000): Asset registry, work orders, preventive maintenance, calibration, spare parts, condition monitoring
 - **MMS** — Material Management System (DDMRP): Material master, Kanban, traceability, BOM management, WIP & flow control
 - **PMS** — People Management System (ISO 45001): Training & competence, performance evaluation, org structure, workplace safety
-- **OMS** — Operations Management System (TPS/Lean): Daily management, KPI cascading, production planning, OEE tracking (coming soon)
-- **CIS** — Continuous Improvement System (Toyota Kata): Kaizen management, A3 problem solving, improvement projects (coming soon)
-
-## Who is it for?
-
-- Manufacturing companies (automotive, industrial, discrete manufacturing)
-- Organizations implementing lean, ISO, or operational excellence programs
-- Companies with 50–5000 employees seeking integrated management systems
-- European market focus, with plans for global expansion
+- **OMS** — Operations Management System (TPS/Lean): Daily management, KPI cascading, production planning, OEE tracking
+- **CIS** — Continuous Improvement System (Toyota Kata): Kaizen management, A3 problem solving, improvement projects
 
 ## Key Differentiators
 
@@ -27,24 +29,17 @@ ECO stands for Execution & Control of Operations. It is an integrated digital pl
 - Modular: start with one system, add more as you grow
 - Tier 1 (core) and Tier 2 (advanced) modules in each system
 - Shared infrastructure: workflow engine, audit trail, reporting, API integration
-- On-premise and cloud deployment options
 
 ## Services
 
 - **Training Programs** (T1–T8): Lean Manufacturing, Problem Solving, Daily Management, OEE, Quality, Leadership, Toyota Kata, Train the Trainer
 - **Coaching Programs** (C1–C5): Kata Coaching, Leadership Coaching, Operational Excellence Coaching, Team Coaching, Executive Coaching
 
-## Target Market
+## Key pages
 
-- Primary: Europe (Romania, Germany, Central & Eastern Europe)
-- Industries: Automotive, Manufacturing, Industrial
-- Company size: SME to Fortune 500
-
-## Links
-
-- Homepage: https://adaptiveops.eu
-- Solutions (ECO Platform): https://adaptiveops.eu/solutions
-- Services (Training & Coaching): https://adaptiveops.eu/services
+- Homepage: https://adaptiveops.eu/
+- Services: https://adaptiveops.eu/services
+- Solutions / ECO Platform: https://adaptiveops.eu/solutions
 - About: https://adaptiveops.eu/about
 - Blog: https://adaptiveops.eu/blog
 - Contact: https://adaptiveops.eu/contact

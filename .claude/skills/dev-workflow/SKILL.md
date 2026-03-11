@@ -328,6 +328,107 @@ A page with only Hero → Cards → CTA feels like a feature list. Add narrative
 ### Cross-page linking
 Pages for related offerings (Services, Solutions) must link to each other with bridge sections. Without this, they appear as separate products instead of an integrated system.
 
+## Image Handling
+
+### Transparent PNG backgrounds
+When displaying a PNG with transparent background, the page background bleeds through. Fix by adding a solid background to the container:
+
+```jsx
+// WRONG — transparent areas show page background
+<Image src="/photo.png" ... className="rounded-full" />
+
+// CORRECT — solid background behind the image
+<div className="bg-[#E5E7EB] rounded-full">
+  <Image src="/photo.png" ... className="rounded-full" />
+</div>
+```
+
+### Native size for low-res images
+Never scale up a small image (e.g., 200x200) to fill a larger container — it loses quality. Render at native size:
+
+```jsx
+// WRONG — 200x200 image stretched to ~400px, blurry
+<Image src="/photo.png" fill className="object-cover" />
+
+// CORRECT — renders at native 200x200, crisp
+<Image src="/photo.png" width={200} height={200} className="rounded-full" />
+```
+
+## Package Version Compatibility
+
+### @next/third-parties must match Next.js major version
+`@next/third-parties` v16 requires Next.js 15+. If using Next.js 14, install v14:
+
+```bash
+# WRONG — installs latest (v16), breaks with Next.js 14
+npm install @next/third-parties
+
+# CORRECT — match the major version
+npm install @next/third-parties@14
+```
+
+**General rule**: When a `Module not found` error appears after installing a Next.js companion package, check version compatibility first.
+
+## Build vs Dev Server
+
+### `next dev` hides errors that `next build` catches
+Dev server does NOT run ESLint or full TypeScript checks. Always build before push:
+
+- `no-unused-vars` — silent in dev, ERROR in build
+- Missing module resolution — dev may lazy-load and skip, build fails
+- Type errors in unused code paths — dev skips, build catches
+
+**Rule**: `npx next build` is the source of truth, not `next dev`.
+
+## Form Data End-to-End
+
+### Collect → Send → Display must all match
+When adding new form fields, verify the complete chain:
+
+1. **UI collects** the data (state, inputs)
+2. **fetch() sends** all fields in the request body
+3. **API route destructures** and includes them in the email HTML
+
+Missing any step = data collected but never delivered. Always trace the full path when adding/changing form fields.
+
+## UI Language Consistency
+
+### Match all user-facing strings to site language
+Forms, success messages, error messages, validation text — everything the user sees must be in the site's language (English for this project). Don't mix languages:
+
+```jsx
+// WRONG — Romanian message on English site
+"Mesajul a fost trimis cu succes!"
+
+// CORRECT
+"Message sent successfully!"
+```
+
+## Multi-Select UX Pattern
+
+### Toggle buttons > multi-select dropdown
+For "choose multiple" scenarios with <10 options, toggle buttons are more intuitive than a `<select multiple>`:
+
+```jsx
+const [selected, setSelected] = useState<string[]>([]);
+
+const toggle = (item: string) =>
+  setSelected(prev =>
+    prev.includes(item) ? prev.filter(i => i !== item) : [...prev, item]
+  );
+
+// Render as pills with selected/unselected states
+<button
+  className={selected.includes(item)
+    ? "bg-accent text-white border-accent"
+    : "bg-white text-mid border-gray-200 hover:border-accent/50"
+  }
+  onClick={() => toggle(item)}
+>
+  {item}
+</button>
+```
+
 ## Communication
 
 - Communicate in Romanian (per CLAUDE.md: "Limbă comunicare cu mine: Română")

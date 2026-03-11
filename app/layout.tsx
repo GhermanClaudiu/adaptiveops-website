@@ -89,57 +89,37 @@ export default function RootLayout({
     url: "https://adaptiveops.eu",
     logo: "https://adaptiveops.eu/logo.png",
     description:
-      "AdaptiveOps helps industrial organizations improve performance through practical training, operational coaching and digital management systems.",
+      "AdaptiveOps provides operational excellence consulting, industrial management systems, training and coaching for manufacturing organizations across Europe.",
     foundingDate: "2024",
     founder: {
       "@type": "Person",
       name: "Gherman Claudiu Cristian",
       jobTitle: "Founder & Principal Consultant",
     },
-    areaServed: "Europe",
+    areaServed: {
+      "@type": "Continent",
+      name: "Europe",
+    },
     knowsAbout: [
       "Operational Excellence",
+      "OEE Improvement",
       "Lean Manufacturing",
       "Quality Management Systems",
       "Equipment Management",
+      "Continuous Improvement",
+      "Industrial Coaching",
+      "Manufacturing Performance",
       "Toyota Kata",
       "Digital Transformation in Manufacturing",
     ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      url: "https://adaptiveops.eu/contact",
+    },
     sameAs: [
       "https://www.linkedin.com/company/adaptiveops",
     ],
-  };
-
-  const softwareSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "ECO Platform",
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web, Windows",
-    description:
-      "ECO (Execution & Control of Operations) is an integrated digital platform with 6 management systems — QMS, EMS, MMS, PMS, OMS, CIS — covering quality, equipment, materials, people, operations, and continuous improvement.",
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "EUR",
-      priceSpecification: {
-        "@type": "PriceSpecification",
-        priceCurrency: "EUR",
-        description: "Custom pricing based on modules and deployment scope. Contact for a tailored proposal.",
-      },
-    },
-    featureList: [
-      "Quality Management (ISO 9001)",
-      "Equipment Management (ISO 55000)",
-      "Material Management (DDMRP / Kanban)",
-      "People Management (ISO 45001)",
-      "Operations Management (TPS / Lean)",
-      "Continuous Improvement (Toyota Kata)",
-      "Shared Kernel: Workflow Engine, Audit Trail, Reporting & Analytics, API Integration",
-    ],
-    author: {
-      "@type": "Organization",
-      name: "AdaptiveOps",
-    },
   };
 
   const faqSchema = {
@@ -148,26 +128,34 @@ export default function RootLayout({
     mainEntity: [
       {
         "@type": "Question",
+        name: "What is AdaptiveOps?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "AdaptiveOps is a consultancy that helps industrial organizations achieve operational excellence through digital management systems, practical training and hands-on coaching.",
+        },
+      },
+      {
+        "@type": "Question",
         name: "What is the ECO Platform?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "ECO stands for Execution & Control of Operations. It is an integrated digital platform with 6 management systems (QMS, EMS, MMS, PMS, OMS, CIS) that connects quality, equipment, materials, people, operations, and continuous improvement into a single unified system.",
+          text: "ECO is an integrated operational management platform with 6 modules covering equipment, quality, materials, people, operations and continuous improvement — designed for manufacturing environments.",
         },
       },
       {
         "@type": "Question",
-        name: "Who is AdaptiveOps for?",
+        name: "What industries does AdaptiveOps serve?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "AdaptiveOps serves manufacturing and automotive companies in Europe that need practical training, operational coaching, and digital management systems. We work with organizations from small suppliers to Fortune 500 operations.",
+          text: "AdaptiveOps primarily serves automotive and manufacturing organizations across Europe, helping them reduce scrap, improve OEE and build sustainable operational systems.",
         },
       },
       {
         "@type": "Question",
-        name: "How is ECO different from a traditional ERP?",
+        name: "What services does AdaptiveOps offer?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Unlike ERP systems that focus on transactional data, ECO focuses on operational execution — daily management, problem solving, performance monitoring, and continuous improvement. It bridges the gap between strategy and shop-floor reality.",
+          text: "AdaptiveOps offers three main services: digital solutions (ECO Platform software), operational training programs (Lean, problem-solving, continuous improvement) and shop-floor coaching.",
         },
       },
       {
@@ -180,10 +168,10 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "Does AdaptiveOps provide training alongside digital solutions?",
+        name: "How is ECO different from a traditional ERP?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. AdaptiveOps integrates training, coaching, and digital systems into one framework. We believe tools without trained people fail, and training without digital systems loses momentum. The ECO approach combines all three.",
+          text: "Unlike ERP systems that focus on transactional data, ECO focuses on operational execution — daily management, problem solving, performance monitoring, and continuous improvement. It bridges the gap between strategy and shop-floor reality.",
         },
       },
     ],
@@ -196,7 +184,6 @@ export default function RootLayout({
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
         <JsonLd data={organizationSchema} />
-        <JsonLd data={softwareSchema} />
         <JsonLd data={faqSchema} />
         <Header />
         <div className="pt-16">{children}</div>

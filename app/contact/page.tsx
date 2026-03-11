@@ -6,13 +6,20 @@ import FadeUp from "@/components/shared/FadeUp";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with AdaptiveOps. Request a consultation for training, coaching or digital solutions.",
+    "Get in touch with AdaptiveOps to discuss your operational challenges and explore how we can help improve performance across your organization.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact — AdaptiveOps",
     description:
       "Request a consultation for training, coaching or digital solutions.",
     url: "/contact",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact — AdaptiveOps",
+    description:
+      "Discuss your operational challenges and explore how AdaptiveOps can help improve performance.",
+    images: ["/og-image.png"],
   },
 };
 

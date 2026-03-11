@@ -8,13 +8,20 @@ import JsonLd from "@/components/shared/JsonLd";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Professional training and operational coaching for industrial organizations. Lean, problem solving, leadership and continuous improvement.",
+    "Discover AdaptiveOps training, coaching and audit services for lean manufacturing, OEE improvement and operational excellence in industrial environments.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Services — Training & Coaching — AdaptiveOps",
     description:
       "Professional training and operational coaching for industrial organizations.",
     url: "/services",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services — Training & Coaching — AdaptiveOps",
+    description:
+      "Training, coaching and audit services for lean manufacturing, OEE improvement and operational excellence.",
+    images: ["/og-image.png"],
   },
 };
 
@@ -43,13 +50,49 @@ export default function ServicesPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "Training & Coaching Services",
-          description: "Professional training and operational coaching for industrial organizations.",
-          url: "https://adaptiveops.eu/services",
-          datePublished: "2026-03-06",
-          dateModified: "2026-03-11",
-          isPartOf: { "@type": "WebSite", name: "AdaptiveOps", url: "https://adaptiveops.eu" },
+          "@type": "Service",
+          name: "Operational Excellence Training",
+          provider: { "@type": "Organization", name: "AdaptiveOps" },
+          description:
+            "Professional training programs for industrial teams covering Lean fundamentals, problem-solving, continuous improvement and leadership development.",
+          areaServed: "Europe",
+          serviceType: "Training",
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "Operational Coaching",
+          provider: { "@type": "Organization", name: "AdaptiveOps" },
+          description:
+            "Hands-on shop-floor coaching for process optimization, management systems implementation and team development in manufacturing environments.",
+          areaServed: "Europe",
+          serviceType: "Coaching",
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "Digital Solutions — ECO Platform",
+          provider: { "@type": "Organization", name: "AdaptiveOps" },
+          description:
+            "Integrated digital management platform with 6 modules covering equipment, quality, materials, people, operations and continuous improvement.",
+          areaServed: "Europe",
+          serviceType: "Digital Solutions",
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "Audit Services",
+          provider: { "@type": "Organization", name: "AdaptiveOps" },
+          description:
+            "Operational audits for manufacturing organizations covering lean maturity, management systems, OEE and process capability assessments.",
+          areaServed: "Europe",
+          serviceType: "Audit",
         }}
       />
       {/* Page Hero */}

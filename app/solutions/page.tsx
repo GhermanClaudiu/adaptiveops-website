@@ -7,13 +7,20 @@ import JsonLd from "@/components/shared/JsonLd";
 export const metadata: Metadata = {
   title: "Solutions",
   description:
-    "ECO Platform — six integrated management systems for full operational control. Quality, equipment, materials, people, operations and continuous improvement.",
+    "ECO Platform — 6 integrated management systems for equipment, quality, materials and people. Built for European manufacturing organizations.",
   alternates: { canonical: "/solutions" },
   openGraph: {
     title: "Solutions — ECO Platform — AdaptiveOps",
     description:
       "ECO Platform: one platform, six systems, full operational control for industrial organizations.",
     url: "/solutions",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Solutions — ECO Platform — AdaptiveOps",
+    description:
+      "6 integrated management systems for equipment, quality, materials and people. Built for manufacturing.",
+    images: ["/og-image.png"],
   },
 };
 
@@ -23,13 +30,28 @@ export default function SolutionsPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "ECO Platform — Digital Solutions",
-          description: "Six integrated management systems for full operational control.",
-          url: "https://adaptiveops.eu/solutions",
-          datePublished: "2026-03-06",
-          dateModified: "2026-03-11",
-          isPartOf: { "@type": "WebSite", name: "AdaptiveOps", url: "https://adaptiveops.eu" },
+          "@type": "SoftwareApplication",
+          name: "ECO Platform",
+          applicationCategory: "BusinessApplication",
+          operatingSystem: "Web",
+          description:
+            "ECO is an integrated operational management platform combining 6 modules: Equipment Management (EMS), Quality Management (QMS), Materials Management (MMS), People Management (PMS), Operations Management (OMS) and Continuous Improvement System (CIS).",
+          offers: {
+            "@type": "Offer",
+            url: "https://adaptiveops.eu/solutions",
+          },
+          provider: {
+            "@type": "Organization",
+            name: "AdaptiveOps",
+          },
+          featureList: [
+            "Quality Management (ISO 9001)",
+            "Equipment Management (ISO 55000)",
+            "Material Management (DDMRP / Kanban)",
+            "People Management (ISO 45001)",
+            "Operations Management (TPS / Lean)",
+            "Continuous Improvement (Toyota Kata)",
+          ],
         }}
       />
       {/* Enhanced Hero */}

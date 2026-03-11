@@ -7,13 +7,20 @@ import JsonLd from "@/components/shared/JsonLd";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "20+ years of hands-on experience in automotive manufacturing. From the shop floor to Fortune 500 operations. Built from experience, not theory.",
+    "AdaptiveOps is a consultancy built from the shop floor up, helping manufacturers in Europe improve performance through people, processes and technology.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About — AdaptiveOps",
     description:
       "20+ years of hands-on experience in automotive manufacturing. Built from the shop floor up.",
     url: "/about",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About — AdaptiveOps",
+    description:
+      "A consultancy built from the shop floor up, helping manufacturers improve performance through people, processes and technology.",
+    images: ["/og-image.png"],
   },
 };
 

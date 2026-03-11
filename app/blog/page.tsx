@@ -9,13 +9,20 @@ import FadeUp from "@/components/shared/FadeUp";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Insights on operational excellence, manufacturing management, quality systems and digital transformation.",
+    "Insights and practical guides on operational excellence, lean manufacturing, OEE, quality management and continuous improvement for industrial teams.",
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "Blog — AdaptiveOps",
     description:
       "Practical insights on operational excellence, manufacturing management and digital transformation.",
     url: "/blog",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog — AdaptiveOps",
+    description:
+      "Practical guides on operational excellence, lean manufacturing, OEE and continuous improvement.",
+    images: ["/og-image.png"],
   },
 };
 
