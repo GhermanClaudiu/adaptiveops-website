@@ -275,6 +275,59 @@ Negative offsets (`-left-4`, `-right-3`) cause overflow on small screens:
 ### Always test both viewports
 After any layout change, take screenshots at both 1440px (desktop) and 390px (mobile) to catch responsive issues.
 
+## Interactive UI Patterns
+
+### Scroll-to-detail on expand
+When a click opens a detail panel below the trigger (accordion, expandable card), always scroll to it:
+
+```jsx
+const detailRef = useRef<HTMLDivElement>(null);
+
+useEffect(() => {
+  if (active && detailRef.current) {
+    detailRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+}, [active]);
+
+// On the detail panel:
+<div ref={detailRef}>...</div>
+```
+
+`block: "nearest"` is ideal — scrolls only if needed, no jarring jumps on desktop.
+
+### Hover with React state, not DOM manipulation
+Don't use `onMouseEnter` with `e.currentTarget.style.X` — it's fragile, unsyncable with React, and breaks SSR.
+
+```jsx
+// WRONG
+onMouseEnter={(e) => { e.currentTarget.style.background = color; }}
+onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+
+// CORRECT
+const [hovered, setHovered] = useState<string | null>(null);
+// ...
+onMouseEnter={() => setHovered(id)}
+onMouseLeave={() => setHovered(null)}
+style={{ background: hovered === id ? color : 'transparent' }}
+```
+
+### Emoji icons vs. professional design
+Emojis as UI icons look inconsistent across OS/browsers and can't match brand colors. Use:
+- **Styled letter badges** (first letter in colored circle) for system identifiers
+- **SVG icons** (Heroicons) for action/category indicators
+- **Colored dots** for list item markers
+
+## Page Content Strategy
+
+### Thin pages lose context
+A page with only Hero → Cards → CTA feels like a feature list. Add narrative sections:
+- **"Why?"** — the problem this page solves
+- **"What is X?"** — define acronyms/concepts visitors may not know
+- **Bridge sections** — connect this page to related pages (Services ↔ Solutions)
+
+### Cross-page linking
+Pages for related offerings (Services, Solutions) must link to each other with bridge sections. Without this, they appear as separate products instead of an integrated system.
+
 ## Communication
 
 - Communicate in Romanian (per CLAUDE.md: "Limbă comunicare cu mine: Română")

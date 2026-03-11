@@ -3,15 +3,18 @@ import Link from "next/link";
 import { trainingPrograms } from "@/lib/content/training";
 import { coachingPrograms } from "@/lib/content/coaching";
 import FadeUp from "@/components/shared/FadeUp";
+import JsonLd from "@/components/shared/JsonLd";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
     "Professional training and operational coaching for industrial organizations. Lean, problem solving, leadership and continuous improvement.",
+  alternates: { canonical: "/services" },
   openGraph: {
-    title: "Services — AdaptiveOps",
+    title: "Services — Training & Coaching — AdaptiveOps",
     description:
       "Professional training and operational coaching for industrial organizations.",
+    url: "/services",
   },
 };
 
@@ -37,6 +40,18 @@ const coachingSystemMap: Record<string, { abbr: string; color: string }[]> = {
 export default function ServicesPage() {
   return (
     <main>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Training & Coaching Services",
+          description: "Professional training and operational coaching for industrial organizations.",
+          url: "https://adaptiveops.eu/services",
+          datePublished: "2026-03-06",
+          dateModified: "2026-03-11",
+          isPartOf: { "@type": "WebSite", name: "AdaptiveOps", url: "https://adaptiveops.eu" },
+        }}
+      />
       {/* Page Hero */}
       <section className="relative overflow-hidden bg-primary py-20">
         {/* Geometric grid pattern */}

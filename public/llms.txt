@@ -1,0 +1,56 @@
+# AdaptiveOps
+
+> AdaptiveOps helps industrial organizations improve operational performance through practical training, operational coaching, and integrated digital management systems. Built from 20+ years of hands-on experience in automotive manufacturing.
+
+## What is ECO?
+
+ECO stands for Execution & Control of Operations. It is an integrated digital platform that connects six management systems into one unified operational core:
+
+- **QMS** — Quality Management System (ISO 9001): Document control, CAPA, audit management, nonconformance, supplier quality, risk & FMEA
+- **EMS** — Equipment Management System (ISO 55000): Asset registry, work orders, preventive maintenance, calibration, spare parts, condition monitoring
+- **MMS** — Material Management System (DDMRP): Material master, Kanban, traceability, BOM management, WIP & flow control
+- **PMS** — People Management System (ISO 45001): Training & competence, performance evaluation, org structure, workplace safety
+- **OMS** — Operations Management System (TPS/Lean): Daily management, KPI cascading, production planning, OEE tracking (coming soon)
+- **CIS** — Continuous Improvement System (Toyota Kata): Kaizen management, A3 problem solving, improvement projects (coming soon)
+
+## Who is it for?
+
+- Manufacturing companies (automotive, industrial, discrete manufacturing)
+- Organizations implementing lean, ISO, or operational excellence programs
+- Companies with 50–5000 employees seeking integrated management systems
+- European market focus, with plans for global expansion
+
+## Key Differentiators
+
+- Built from real factory experience, not theory
+- Integrates training + coaching + digital tools (most vendors offer only one)
+- Modular: start with one system, add more as you grow
+- Tier 1 (core) and Tier 2 (advanced) modules in each system
+- Shared infrastructure: workflow engine, audit trail, reporting, API integration
+- On-premise and cloud deployment options
+
+## Services
+
+- **Training Programs** (T1–T8): Lean Manufacturing, Problem Solving, Daily Management, OEE, Quality, Leadership, Toyota Kata, Train the Trainer
+- **Coaching Programs** (C1–C5): Kata Coaching, Leadership Coaching, Operational Excellence Coaching, Team Coaching, Executive Coaching
+
+## Target Market
+
+- Primary: Europe (Romania, Germany, Central & Eastern Europe)
+- Industries: Automotive, Manufacturing, Industrial
+- Company size: SME to Fortune 500
+
+## Links
+
+- Homepage: https://adaptiveops.eu
+- Solutions (ECO Platform): https://adaptiveops.eu/solutions
+- Services (Training & Coaching): https://adaptiveops.eu/services
+- About: https://adaptiveops.eu/about
+- Blog: https://adaptiveops.eu/blog
+- Contact: https://adaptiveops.eu/contact
+
+## Contact
+
+- Website: https://adaptiveops.eu/contact
+- Founder: Gherman Claudiu Cristian — Founder & Principal Consultant
+- Certifications: CPIM (APICS), NLP Practitioner, Toyota Kata
