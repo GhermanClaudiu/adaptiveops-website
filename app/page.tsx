@@ -7,6 +7,7 @@ import ImpactStats from "@/components/home/ImpactStats";
 // import SocialProof from "@/components/home/SocialProof"; // TODO: re-enable when client logos are available
 import Benefits from "@/components/home/Benefits";
 import FounderBadge from "@/components/home/FounderBadge";
+import NewsletterSignup from "@/components/shared/NewsletterSignup";
 import UrgencyCTA from "@/components/home/UrgencyCTA";
 
 export const metadata: Metadata = {
@@ -38,6 +39,7 @@ export default function Home() {
       <Pillars />
       <ImpactStats />
       {/* <SocialProof /> */}{/* TODO: re-enable when client logos are available */}
+      <NewsletterSignup variant="dark" />
       <Benefits />
       <FounderBadge />
       <UrgencyCTA />

@@ -8,6 +8,7 @@ import { urlFor } from "@/lib/sanity/image";
 import PortableTextRenderer from "@/components/blog/PortableTextRenderer";
 import FadeUp from "@/components/shared/FadeUp";
 import JsonLd from "@/components/shared/JsonLd";
+import NewsletterSignup from "@/components/shared/NewsletterSignup";
 
 interface BlogPostPageProps {
   params: { slug: string };
@@ -161,6 +162,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </article>
           </FadeUp>
         </section>
+
+        {/* Newsletter */}
+        <NewsletterSignup variant="light" />
 
         {/* CTA */}
         <section className="bg-accent py-16">
@@ -326,6 +330,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </article>
         </FadeUp>
       </section>
+
+      {/* Newsletter */}
+      <NewsletterSignup variant="light" />
 
       {/* CTA */}
       <section className="bg-accent py-16">

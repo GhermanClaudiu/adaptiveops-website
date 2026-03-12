@@ -5,6 +5,7 @@ import { getAllPosts, SanityPost } from "@/lib/sanity/queries";
 import { blogPosts, blogCategories } from "@/lib/content/blog";
 import { urlFor } from "@/lib/sanity/image";
 import FadeUp from "@/components/shared/FadeUp";
+import NewsletterSignup from "@/components/shared/NewsletterSignup";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -230,6 +231,9 @@ export default async function BlogPage() {
           </div>
         </div>
       </section>
+
+      {/* Newsletter */}
+      <NewsletterSignup variant="light" />
 
       {/* CTA */}
       <section className="bg-accent py-16">
