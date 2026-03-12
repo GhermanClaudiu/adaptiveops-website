@@ -5,12 +5,11 @@ import FadeUp from "@/components/shared/FadeUp";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-primary">
-      {/* Animated gradient orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/4 -left-1/4 w-[60%] h-[60%] rounded-full bg-accent/[0.07] blur-[100px] animate-drift-slow" />
-        <div className="absolute -bottom-1/4 -right-1/4 w-[50%] h-[50%] rounded-full bg-[#8B5CF6]/[0.05] blur-[100px] animate-drift-slow-reverse" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] rounded-full bg-secondary/[0.04] blur-[80px] animate-drift-diagonal" />
+    <section className="relative overflow-hidden animate-hero-gradient bg-[length:200%_200%]" style={{ backgroundImage: "linear-gradient(135deg, #0B1F3B 0%, #0D2B4E 25%, #0B1F3B 50%, #112240 75%, #0B1F3B 100%)" }}>
+      {/* Accent glow orbs — visible */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-accent/[0.12] blur-[120px] animate-drift-slow" />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[45%] h-[45%] rounded-full bg-[#8B5CF6]/[0.08] blur-[120px] animate-drift-slow-reverse" />
       </div>
 
       {/* Geometric grid pattern */}
@@ -46,7 +45,7 @@ export default function Hero() {
               <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-6">
                 <Link
                   href="/contact"
-                  className="inline-block bg-accent text-white font-semibold px-10 py-4 rounded-full text-lg transition-transform hover:shadow-[0_0_20px_rgba(47,128,237,0.45)] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                  className="inline-block bg-accent text-white font-semibold px-8 py-4 rounded-full text-base lg:text-lg whitespace-nowrap transition-shadow hover:shadow-[0_0_24px_rgba(47,128,237,0.5)] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
                 >
                   Book Your Free 30-Min Diagnostic Call
                 </Link>

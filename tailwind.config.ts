@@ -19,23 +19,24 @@ const config: Config = {
         sans: ["Inter", "system-ui", "sans-serif"],
       },
       keyframes: {
+        "hero-gradient": {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
         "drift-slow": {
           "0%, 100%": { transform: "translate(0, 0)" },
-          "50%": { transform: "translate(30px, 20px)" },
+          "50%": { transform: "translate(40px, 25px)" },
         },
         "drift-slow-reverse": {
           "0%, 100%": { transform: "translate(0, 0)" },
-          "50%": { transform: "translate(-25px, -15px)" },
-        },
-        "drift-diagonal": {
-          "0%, 100%": { transform: "translate(-50%, -50%) scale(1)" },
-          "50%": { transform: "translate(-50%, -50%) scale(1.15)" },
+          "50%": { transform: "translate(-35px, -20px)" },
         },
       },
       animation: {
+        "hero-gradient": "hero-gradient 8s ease-in-out infinite",
         "drift-slow": "drift-slow 20s ease-in-out infinite",
         "drift-slow-reverse": "drift-slow-reverse 25s ease-in-out infinite",
-        "drift-diagonal": "drift-diagonal 18s ease-in-out infinite",
       },
     },
   },

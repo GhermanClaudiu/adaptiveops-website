@@ -1,20 +1,38 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export function useCountUp(end: number, duration = 2000) {
-  // Start with end value so SSR/static HTML shows real numbers (SEO)
+  // SSR: render the final value so crawlers see real numbers
   const [count, setCount] = useState(end);
   const ref = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
-  const hasMounted = useRef(false);
+  const isMounted = useRef(false);
 
-  // On mount, reset to 0 so we can animate up
+  const animate = useCallback(() => {
+    if (hasAnimated.current) return;
+    hasAnimated.current = true;
+    setCount(0);
+
+    // Wait one frame so the browser paints 0, then animate up
+    requestAnimationFrame(() => {
+      const start = performance.now();
+      const tick = (now: number) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease-out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setCount(Math.round(eased * end));
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }, [end, duration]);
+
   useEffect(() => {
-    if (!hasMounted.current) {
-      hasMounted.current = true;
-      setCount(0);
-    }
+    isMounted.current = true;
+    // Reset to 0 on client — will animate up when visible
+    setCount(0);
   }, []);
 
   useEffect(() => {
@@ -23,27 +41,17 @@ export function useCountUp(end: number, duration = 2000) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          const start = performance.now();
-
-          const tick = (now: number) => {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.round(eased * end));
-            if (progress < 1) requestAnimationFrame(tick);
-          };
-
-          requestAnimationFrame(tick);
+        if (entry.isIntersecting && isMounted.current && !hasAnimated.current) {
+          observer.disconnect();
+          animate();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [end, duration]);
+  }, [animate]);
 
   return { count, ref };
 }
