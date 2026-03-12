@@ -63,6 +63,10 @@ export default function ImpactStats() {
           These aren&apos;t projections. They&apos;re results from real
           production environments.
         </p>
+        <p className="mt-4 text-center text-gray-400/70 text-sm italic max-w-2xl mx-auto leading-relaxed">
+          Results delivered across 8 manufacturing plants as Regional Operational Excellence Manager
+          — through structured Annual Improvement Plans, hands-on training and operational coaching.
+        </p>
         </FadeUp>
       </div>
     </section>
