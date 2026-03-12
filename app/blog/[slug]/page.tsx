@@ -9,6 +9,7 @@ import PortableTextRenderer from "@/components/blog/PortableTextRenderer";
 import FadeUp from "@/components/shared/FadeUp";
 import JsonLd from "@/components/shared/JsonLd";
 import NewsletterSignup from "@/components/shared/NewsletterSignup";
+import BlogImagePlaceholder from "@/components/blog/BlogImagePlaceholder";
 
 interface BlogPostPageProps {
   params: { slug: string };
@@ -122,8 +123,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </section>
 
-        {sanityPost.mainImage?.asset && (
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+          {sanityPost.mainImage?.asset ? (
             <Image
               src={urlFor(sanityPost.mainImage).width(800).height(450).url()}
               alt={sanityPost.mainImage.alt || sanityPost.title}
@@ -132,8 +133,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               className="w-full rounded-xl shadow-lg"
               priority
             />
-          </div>
-        )}
+          ) : (
+            <BlogImagePlaceholder
+              category={sanityPost.category}
+              className="w-full aspect-video rounded-xl shadow-lg"
+            />
+          )}
+        </div>
 
         <section className="py-16">
           <FadeUp>
@@ -264,6 +270,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </FadeUp>
         </div>
       </section>
+
+      {/* Article image placeholder */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+        <BlogImagePlaceholder
+          category={post.category}
+          className="w-full aspect-video rounded-xl shadow-lg"
+        />
+      </div>
 
       {/* Article content */}
       <section className="py-16">
