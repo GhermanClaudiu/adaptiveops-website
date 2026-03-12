@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   }
 
   const apiKey = process.env.MAILERLITE_API_KEY;
-  const groupId = process.env.MAILERLITE_GROUP_ID;
+  const groupId = process.env.MAILERLITE_GROUP_ID?.trim();
 
   if (!apiKey) {
     return NextResponse.json(
@@ -20,30 +20,44 @@ export async function POST(req: Request) {
     );
   }
 
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${apiKey}`,
+  };
+
   try {
-    const body: Record<string, unknown> = {
-      email,
-      fields: { name: name || "" },
-    };
+    // Step 1: Create or update subscriber
+    const subscriberRes = await fetch(
+      "https://connect.mailerlite.com/api/subscribers",
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          email,
+          fields: { name: name || "" },
+        }),
+      }
+    );
 
-    if (groupId) {
-      body.groups = [groupId];
-    }
-
-    const res = await fetch("https://connect.mailerlite.com/api/subscribers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify(body),
-    });
-
-    if (!res.ok) {
-      const data = await res.json().catch(() => ({}));
+    if (!subscriberRes.ok) {
+      const data = await subscriberRes.json().catch(() => ({}));
       const message =
         (data as Record<string, string>).message || "Subscription failed";
-      return NextResponse.json({ error: message }, { status: res.status });
+      return NextResponse.json({ error: message }, { status: subscriberRes.status });
+    }
+
+    const subscriber = (await subscriberRes.json()) as { data?: { id?: string } };
+    const subscriberId = subscriber?.data?.id;
+
+    // Step 2: Add subscriber to group (separate API call)
+    if (groupId && subscriberId) {
+      await fetch(
+        `https://connect.mailerlite.com/api/subscribers/${subscriberId}/groups/${groupId}`,
+        {
+          method: "POST",
+          headers,
+        }
+      );
     }
 
     return NextResponse.json({ success: true });
