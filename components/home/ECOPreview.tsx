@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import FadeUp from "@/components/shared/FadeUp";
 
@@ -13,6 +14,27 @@ const systems = [
 ];
 
 export default function ECOPreview() {
+  const diagramRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = diagramRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="bg-primary py-20 lg:py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,12 +59,18 @@ export default function ECOPreview() {
                 From equipment and quality to materials and people — ECO integrates
                 everything your operations need into a single digital core.
               </p>
+              {/* Module badges — staggered fade-in */}
               <div className="flex flex-wrap gap-2 mb-8">
-                {systems.map((sys) => (
+                {systems.map((sys, i) => (
                   <span
                     key={sys.abbr}
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-white/90 border border-white/10"
-                    style={{ backgroundColor: `${sys.color}30` }}
+                    style={{
+                      backgroundColor: `${sys.color}30`,
+                      opacity: inView ? 1 : 0,
+                      transform: inView ? "translateX(0)" : "translateX(-12px)",
+                      transition: `opacity 0.4s ease-out ${i * 100}ms, transform 0.4s ease-out ${i * 100}ms`,
+                    }}
                   >
                     <span
                       className="w-2 h-2 rounded-full"
@@ -66,7 +94,7 @@ export default function ECOPreview() {
 
           {/* Right: Visual diagram */}
           <FadeUp delay={200}>
-            <div className="flex flex-col items-center gap-4">
+            <div ref={diagramRef} className="flex flex-col items-center gap-4">
               <div className="relative w-[320px] h-[320px] sm:w-[420px] sm:h-[420px]">
                 {/* SVG layer: outer ring text + connecting lines */}
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
@@ -142,20 +170,28 @@ export default function ECOPreview() {
                   })}
                 </svg>
 
-                {/* Center — ECO Core */}
+                {/* Center — ECO Core (appears last with pulse) */}
                 <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#0B1F3B] border-2 border-accent/40 flex flex-col items-center justify-center shadow-[0_0_40px_rgba(47,128,237,0.15)]">
+                  <div
+                    className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#0B1F3B] border-2 border-accent/40 flex flex-col items-center justify-center shadow-[0_0_40px_rgba(47,128,237,0.15)]"
+                    style={{
+                      opacity: inView ? 1 : 0,
+                      transform: inView ? "scale(1)" : "scale(0.8)",
+                      transition: "opacity 0.6s ease-out 1050ms, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1050ms",
+                    }}
+                  >
                     <span className="text-2xl sm:text-3xl font-black text-white tracking-tight">ECO</span>
                     <span className="text-[8px] sm:text-[9px] font-medium uppercase text-accent/60 tracking-widest">Platform</span>
                   </div>
                 </div>
 
-                {/* System nodes positioned in a circle */}
+                {/* System nodes positioned in a circle — staggered entrance */}
                 {systems.map((sys, i) => {
                   const angle = (i * 60 - 90) * (Math.PI / 180);
                   const radius = 32;
                   const x = 50 + radius * Math.cos(angle);
                   const y = 50 + radius * Math.sin(angle);
+                  const nodeDelay = i * 150; // 0.15s stagger clockwise
 
                   return (
                     <div
@@ -164,7 +200,11 @@ export default function ECOPreview() {
                       style={{
                         left: `${x}%`,
                         top: `${y}%`,
-                        transform: "translate(-50%, -50%)",
+                        transform: inView
+                          ? "translate(-50%, -50%) scale(1)"
+                          : "translate(-50%, -50%) scale(0.5)",
+                        opacity: inView ? 1 : 0,
+                        transition: `opacity 0.4s ease-out ${nodeDelay}ms, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) ${nodeDelay}ms`,
                       }}
                     >
                       <div

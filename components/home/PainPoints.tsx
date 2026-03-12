@@ -1,4 +1,5 @@
 import FadeUp from "@/components/shared/FadeUp";
+import AnimatedBars from "@/components/home/AnimatedBars";
 
 const symptoms = [
   {
@@ -105,43 +106,8 @@ export default function PainPoints() {
                   </div>
                 </div>
 
-                {/* KPI rows showing problems */}
-                <div className="space-y-2.5">
-                  <div className="flex items-center justify-between bg-gray-50/80 rounded-xl px-4 py-3 border border-gray-100">
-                    <span className="text-sm font-medium text-gray-700">Scrap Rate</span>
-                    <div className="flex items-center gap-3">
-                      <div className="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                        <div className="h-full bg-red-400 rounded-full" style={{ width: "68%" }} />
-                      </div>
-                      <span className="text-sm font-semibold text-red-500 w-10 text-right">6.8%</span>
-                      <svg className="w-3.5 h-3.5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between bg-gray-50/80 rounded-xl px-4 py-3 border border-gray-100">
-                    <span className="text-sm font-medium text-gray-700">OEE</span>
-                    <div className="flex items-center gap-3">
-                      <div className="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                        <div className="h-full bg-amber-400 rounded-full" style={{ width: "52%" }} />
-                      </div>
-                      <span className="text-sm font-semibold text-amber-600 w-10 text-right">52%</span>
-                      <svg className="w-3.5 h-3.5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between bg-gray-50/80 rounded-xl px-4 py-3 border border-gray-100">
-                    <span className="text-sm font-medium text-gray-700">CAPA Closure</span>
-                    <div className="flex items-center gap-3">
-                      <div className="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                        <div className="h-full bg-purple-400 rounded-full" style={{ width: "35%" }} />
-                      </div>
-                      <span className="text-sm font-semibold text-purple-500 w-10 text-right">35%</span>
-                      <span className="text-[11px] text-purple-400 font-medium">overdue</span>
-                    </div>
-                  </div>
-                </div>
+                {/* KPI rows — animated progress bars */}
+                <AnimatedBars />
               </div>
             </div>
           </FadeUp>
