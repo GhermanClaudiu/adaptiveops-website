@@ -75,7 +75,7 @@ export default function AboutPage() {
           "@type": "AboutPage",
           name: "About AdaptiveOps",
           description: "20+ years of hands-on experience in automotive manufacturing.",
-          url: "https://adaptiveops.eu/about",
+          url: "https://www.adaptiveops.eu/about",
           datePublished: "2026-03-06",
           dateModified: "2026-03-11",
           mainEntity: {

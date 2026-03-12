@@ -38,7 +38,7 @@ export default function SolutionsPage() {
             "ECO is an integrated operational management platform combining 6 modules: Equipment Management (EMS), Quality Management (QMS), Materials Management (MMS), People Management (PMS), Operations Management (OMS) and Continuous Improvement System (CIS).",
           offers: {
             "@type": "Offer",
-            url: "https://adaptiveops.eu/solutions",
+            url: "https://www.adaptiveops.eu/solutions",
           },
           provider: {
             "@type": "Organization",

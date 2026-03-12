@@ -125,7 +125,7 @@ export default function OGImage() {
             color: "rgba(255,255,255,0.3)",
           }}
         >
-          adaptiveops.eu
+          www.adaptiveops.eu
         </div>
       </div>
     ),

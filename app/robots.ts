@@ -25,6 +25,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://adaptiveops.eu/sitemap.xml",
+    sitemap: "https://www.adaptiveops.eu/sitemap.xml",
   };
 }

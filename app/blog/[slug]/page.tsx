@@ -213,9 +213,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           description: post.excerpt,
           datePublished: post.date,
           dateModified: post.date,
-          author: { "@type": "Organization", name: "AdaptiveOps", url: "https://adaptiveops.eu" },
-          publisher: { "@type": "Organization", name: "AdaptiveOps", logo: { "@type": "ImageObject", url: "https://adaptiveops.eu/logo.png" } },
-          mainEntityOfPage: { "@type": "WebPage", "@id": `https://adaptiveops.eu/blog/${post.slug}` },
+          author: { "@type": "Organization", name: "AdaptiveOps", url: "https://www.adaptiveops.eu" },
+          publisher: { "@type": "Organization", name: "AdaptiveOps", logo: { "@type": "ImageObject", url: "https://www.adaptiveops.eu/logo.png" } },
+          mainEntityOfPage: { "@type": "WebPage", "@id": `https://www.adaptiveops.eu/blog/${post.slug}` },
         }}
       />
       {/* Hero */}

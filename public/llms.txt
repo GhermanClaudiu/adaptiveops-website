@@ -37,15 +37,15 @@ Manufacturing and automotive organizations across Europe looking to reduce scrap
 
 ## Key pages
 
-- Homepage: https://adaptiveops.eu/
-- Services: https://adaptiveops.eu/services
-- Solutions / ECO Platform: https://adaptiveops.eu/solutions
-- About: https://adaptiveops.eu/about
-- Blog: https://adaptiveops.eu/blog
-- Contact: https://adaptiveops.eu/contact
+- Homepage: https://www.adaptiveops.eu/
+- Services: https://www.adaptiveops.eu/services
+- Solutions / ECO Platform: https://www.adaptiveops.eu/solutions
+- About: https://www.adaptiveops.eu/about
+- Blog: https://www.adaptiveops.eu/blog
+- Contact: https://www.adaptiveops.eu/contact
 
 ## Contact
 
-- Website: https://adaptiveops.eu/contact
+- Website: https://www.adaptiveops.eu/contact
 - Founder: Gherman Claudiu Cristian — Founder & Principal Consultant
 - Certifications: CPIM (APICS), NLP Practitioner, Toyota Kata

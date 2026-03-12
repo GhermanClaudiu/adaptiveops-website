@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/content/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://adaptiveops.eu";
+  const baseUrl = "https://www.adaptiveops.eu";
   const now = new Date().toISOString();
 
   const staticPages: MetadataRoute.Sitemap = [

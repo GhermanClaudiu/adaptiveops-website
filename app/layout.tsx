@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://adaptiveops.eu"),
+  metadataBase: new URL("https://www.adaptiveops.eu"),
   title: {
     default: "AdaptiveOps — Operational Excellence through Training, Coaching and Digital Solutions",
     template: "%s — AdaptiveOps",
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     "Toyota Kata coaching",
     "daily management system",
   ],
-  authors: [{ name: "AdaptiveOps", url: "https://adaptiveops.eu" }],
+  authors: [{ name: "AdaptiveOps", url: "https://www.adaptiveops.eu" }],
   creator: "AdaptiveOps",
   publisher: "AdaptiveOps",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://adaptiveops.eu",
+    url: "https://www.adaptiveops.eu",
     siteName: "AdaptiveOps",
     title: "AdaptiveOps — Operational Excellence through Training, Coaching and Digital Solutions",
     description:
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://adaptiveops.eu",
+    canonical: "https://www.adaptiveops.eu",
   },
 };
 
@@ -86,8 +86,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "AdaptiveOps",
-    url: "https://adaptiveops.eu",
-    logo: "https://adaptiveops.eu/logo.png",
+    url: "https://www.adaptiveops.eu",
+    logo: "https://www.adaptiveops.eu/logo.png",
     description:
       "AdaptiveOps provides operational excellence consulting, industrial management systems, training and coaching for manufacturing organizations across Europe.",
     foundingDate: "2024",
@@ -115,7 +115,7 @@ export default function RootLayout({
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      url: "https://adaptiveops.eu/contact",
+      url: "https://www.adaptiveops.eu/contact",
     },
     sameAs: [
       "https://www.linkedin.com/company/adaptiveops",
