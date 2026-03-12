@@ -20,9 +20,8 @@ const config: Config = {
       },
       keyframes: {
         "hero-gradient": {
-          "0%": { backgroundPosition: "0% 50%" },
+          "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
-          "100%": { backgroundPosition: "0% 50%" },
         },
         "drift-slow": {
           "0%, 100%": { transform: "translate(0, 0)" },

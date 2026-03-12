@@ -11,29 +11,30 @@ interface FadeUpProps {
 export default function FadeUp({ children, delay = 0, className = "" }: FadeUpProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    // Small timeout ensures the browser has painted the initial hidden state
-    // before we start observing — prevents flash of visible content
+    // Small delay ensures browser paints the hidden state first
     const timer = setTimeout(() => {
-      const observer = new IntersectionObserver(
+      observerRef.current = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
             setVisible(true);
-            observer.disconnect();
+            observerRef.current?.disconnect();
           }
         },
-        { threshold: 0.1 }
+        { threshold: 0.05, rootMargin: "0px 0px -30px 0px" }
       );
+      observerRef.current.observe(el);
+    }, 30);
 
-      observer.observe(el);
-      return () => observer.disconnect();
-    }, 50);
-
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      observerRef.current?.disconnect();
+    };
   }, []);
 
   return (

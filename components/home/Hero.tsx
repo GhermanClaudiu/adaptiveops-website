@@ -1,12 +1,49 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import FadeUp from "@/components/shared/FadeUp";
 
+function useHeroCountUp(end: number, decimals: number, duration = 1500) {
+  const [value, setValue] = useState(0);
+  const animated = useRef(false);
+
+  useEffect(() => {
+    if (animated.current) return;
+    animated.current = true;
+
+    // Delay start to sync with FadeUp (300ms delay on dashboard)
+    const delay = setTimeout(() => {
+      const start = performance.now();
+      const tick = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setValue(parseFloat((eased * end).toFixed(decimals)));
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }, 400);
+
+    return () => clearTimeout(delay);
+  }, [end, decimals, duration]);
+
+  return value;
+}
+
 export default function Hero() {
+  const oee = useHeroCountUp(87.2, 1);
+  const quality = useHeroCountUp(99.1, 1);
+  const mtbf = useHeroCountUp(142, 0);
+
   return (
-    <section className="relative overflow-hidden animate-hero-gradient bg-[length:200%_200%]" style={{ backgroundImage: "linear-gradient(135deg, #0B1F3B 0%, #0D2B4E 25%, #0B1F3B 50%, #112240 75%, #0B1F3B 100%)" }}>
-      {/* Accent glow orbs — visible */}
+    <section
+      className="relative overflow-hidden animate-hero-gradient bg-[length:200%_200%]"
+      style={{
+        backgroundImage:
+          "linear-gradient(135deg, #0B1F3B 0%, #162D50 20%, #0B1F3B 40%, #1A3455 60%, #0F2744 80%, #0B1F3B 100%)",
+      }}
+    >
+      {/* Accent glow orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-accent/[0.12] blur-[120px] animate-drift-slow" />
         <div className="absolute -bottom-[10%] -right-[10%] w-[45%] h-[45%] rounded-full bg-[#8B5CF6]/[0.08] blur-[120px] animate-drift-slow-reverse" />
@@ -80,27 +117,27 @@ export default function Hero() {
                   <span className="text-[10px] font-semibold tracking-widest uppercase text-white/30">ECO Platform</span>
                 </div>
 
-                {/* KPI Row */}
+                {/* KPI Row — animated count-up */}
                 <div className="grid grid-cols-3 gap-3 mb-5">
                   <div className="bg-white/[0.05] rounded-xl p-3 border border-white/[0.06]">
                     <p className="text-[10px] text-white/40 uppercase tracking-wider mb-1">OEE</p>
-                    <p className="text-2xl font-bold text-white">87.2<span className="text-sm text-white/40">%</span></p>
+                    <p className="text-2xl font-bold text-white">{oee.toFixed(1)}<span className="text-sm text-white/40">%</span></p>
                     <div className="mt-2 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                      <div className="h-full bg-accent rounded-full" style={{ width: "87%" }} />
+                      <div className="h-full bg-accent rounded-full transition-all duration-300" style={{ width: `${(oee / 100) * 100}%` }} />
                     </div>
                   </div>
                   <div className="bg-white/[0.05] rounded-xl p-3 border border-white/[0.06]">
                     <p className="text-[10px] text-white/40 uppercase tracking-wider mb-1">Quality</p>
-                    <p className="text-2xl font-bold text-white">99.1<span className="text-sm text-white/40">%</span></p>
+                    <p className="text-2xl font-bold text-white">{quality.toFixed(1)}<span className="text-sm text-white/40">%</span></p>
                     <div className="mt-2 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                      <div className="h-full bg-secondary rounded-full" style={{ width: "99%" }} />
+                      <div className="h-full bg-secondary rounded-full transition-all duration-300" style={{ width: `${quality}%` }} />
                     </div>
                   </div>
                   <div className="bg-white/[0.05] rounded-xl p-3 border border-white/[0.06]">
                     <p className="text-[10px] text-white/40 uppercase tracking-wider mb-1">MTBF</p>
-                    <p className="text-2xl font-bold text-white">142<span className="text-sm text-white/40">h</span></p>
+                    <p className="text-2xl font-bold text-white">{mtbf}<span className="text-sm text-white/40">h</span></p>
                     <div className="mt-2 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                      <div className="h-full bg-[#E65100] rounded-full" style={{ width: "71%" }} />
+                      <div className="h-full bg-[#E65100] rounded-full transition-all duration-300" style={{ width: `${(mtbf / 200) * 100}%` }} />
                     </div>
                   </div>
                 </div>
