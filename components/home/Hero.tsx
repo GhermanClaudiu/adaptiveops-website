@@ -1,18 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import FadeUp from "@/components/shared/FadeUp";
 
-// TODO: replace with real industrial photo
-// Add hero-bg.jpg to /public and uncomment the Image import + element below
-
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-[#0D2B4E]">
-      {/* Background image overlay — uncomment when hero-bg.jpg is added */}
-      {/* <Image src="/hero-bg.jpg" alt="" fill className="object-cover" priority /> */}
-      {/* <div className="absolute inset-0 bg-primary/85" /> */}
+    <section className="relative overflow-hidden bg-primary">
+      {/* Animated gradient orbs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-1/4 -left-1/4 w-[60%] h-[60%] rounded-full bg-accent/[0.07] blur-[100px] animate-drift-slow" />
+        <div className="absolute -bottom-1/4 -right-1/4 w-[50%] h-[50%] rounded-full bg-[#8B5CF6]/[0.05] blur-[100px] animate-drift-slow-reverse" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] rounded-full bg-secondary/[0.04] blur-[80px] animate-drift-diagonal" />
+      </div>
 
       {/* Geometric grid pattern */}
-      <div className="absolute inset-0 opacity-[0.05]">
+      <div className="absolute inset-0 opacity-[0.04]">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -23,26 +25,20 @@ export default function Hero() {
         </svg>
       </div>
 
-      {/* Accent glow */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 lg:py-40">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Text */}
           <div>
             <FadeUp>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1]">
                 Operational{" "}
                 <span className="text-accent">Excellence</span>
-                <br className="hidden sm:block" /> through Digital Solutions,
-                <br className="hidden sm:block" /> Training and Coaching
+                <br className="hidden sm:block" /> Built from the Shop Floor
               </h1>
             </FadeUp>
             <FadeUp delay={150}>
-              <p className="mt-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl">
-                AdaptiveOps helps industrial organizations improve performance
-                through digital management systems, practical training and
-                operational coaching.
+              <p className="mt-6 text-lg md:text-xl text-white/55 leading-relaxed max-w-xl">
+                Digital systems, training and coaching — integrated to deliver measurable results in manufacturing.
               </p>
             </FadeUp>
 
@@ -50,9 +46,9 @@ export default function Hero() {
               <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-6">
                 <Link
                   href="/contact"
-                  className="inline-block bg-accent hover:bg-blue-600 active:scale-[0.98] text-white font-semibold px-10 py-4 rounded-full transition-colors text-lg focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                  className="inline-block bg-accent text-white font-semibold px-10 py-4 rounded-full text-lg transition-transform hover:shadow-[0_0_20px_rgba(47,128,237,0.45)] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
                 >
-                  Request a consultation
+                  Book Your Free 30-Min Diagnostic Call
                 </Link>
                 <Link
                   href="/solutions"

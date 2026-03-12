@@ -57,7 +57,7 @@ export default function ECOPreview() {
               </div>
               <Link
                 href="/solutions"
-                className="inline-block bg-accent hover:bg-blue-600 active:scale-[0.98] text-white font-semibold px-8 py-3.5 rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                className="inline-block bg-accent text-white font-semibold px-8 py-3.5 rounded-full transition-shadow hover:shadow-[0_0_20px_rgba(47,128,237,0.45)] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
               >
                 Explore the platform &rarr;
               </Link>

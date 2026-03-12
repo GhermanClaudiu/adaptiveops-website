@@ -12,9 +12,9 @@ export default function CTABanner() {
         </p>
         <Link
           href="/contact"
-          className="mt-8 inline-block bg-white text-accent font-semibold px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors"
+          className="mt-8 inline-block bg-white text-accent font-semibold px-8 py-4 rounded-lg hover:bg-gray-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-shadow"
         >
-          Schedule a discovery call
+          Book Your Free 30-Min Diagnostic Call
         </Link>
       </div>
     </section>
