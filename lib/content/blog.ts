@@ -5,6 +5,7 @@ export interface BlogPost {
   category: string;
   excerpt: string;
   content: string;
+  coverImage?: string;
 }
 
 export const blogPosts: BlogPost[] = [

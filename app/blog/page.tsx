@@ -90,7 +90,9 @@ export default async function BlogPage() {
       category: p.category,
       date: p.date,
       readingTime: getReadingTime(p.content),
-      image: null,
+      image: p.coverImage
+        ? { src: p.coverImage, alt: p.title }
+        : null,
     }));
   }
 

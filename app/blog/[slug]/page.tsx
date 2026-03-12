@@ -271,12 +271,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </section>
 
-      {/* Article image placeholder */}
+      {/* Article image */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
-        <BlogImagePlaceholder
-          category={post.category}
-          className="w-full aspect-video rounded-xl shadow-lg"
-        />
+        {post.coverImage ? (
+          <Image
+            src={post.coverImage}
+            alt={post.title}
+            width={800}
+            height={450}
+            className="w-full rounded-xl shadow-lg"
+            priority
+          />
+        ) : (
+          <BlogImagePlaceholder
+            category={post.category}
+            className="w-full aspect-video rounded-xl shadow-lg"
+          />
+        )}
       </div>
 
       {/* Article content */}
