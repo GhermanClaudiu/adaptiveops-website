@@ -147,6 +147,47 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Why AdaptiveOps Exists — Founder Story */}
+      <section className="py-20 bg-light border-b border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <div>
+              <span className="inline-block text-xs font-bold tracking-widest uppercase text-accent mb-4">
+                The founder&apos;s story
+              </span>
+              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6">
+                Why AdaptiveOps Exists
+              </h2>
+              <div className="space-y-4 text-mid leading-relaxed text-base">
+                <p>
+                  I spent 20 years implementing operational excellence systems in factories across
+                  Romania and Europe — at Lear Corporation, Leoni, and Valeo.
+                </p>
+                <p>
+                  In that time, I worked in 8 manufacturing plants. I&apos;ve seen what works and what
+                  doesn&apos;t. I&apos;ve seen EUR 3.2M in savings generated from structured systems. I&apos;ve seen
+                  51% scrap reductions from disciplined problem-solving. And I&apos;ve seen
+                  well-intentioned improvement programs collapse because the coaching capability
+                  wasn&apos;t built alongside the tools.
+                </p>
+                <p>
+                  AdaptiveOps exists because most consultancies give you the methodology.
+                  We give you the methodology, the coaching, and a digital platform to make
+                  it stick.
+                </p>
+                <p className="text-primary font-medium">
+                  Every service we offer is something I&apos;ve personally implemented in a real plant.
+                  Not designed in a conference room. Built on a shop floor.
+                </p>
+                <p className="text-primary font-semibold mt-6">
+                  — Claudiu Gherman, Founder
+                </p>
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
       {/* The Origin Story */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -158,7 +199,7 @@ export default function AboutPage() {
                   The origin of ECO
                 </span>
                 <h2 className="text-2xl md:text-3xl font-bold text-primary mb-5">
-                  Why AdaptiveOps exists
+                  From Problem to Framework
                 </h2>
                 <div className="space-y-4 text-mid leading-relaxed">
                   <p>

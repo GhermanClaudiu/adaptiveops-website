@@ -97,7 +97,7 @@ export default function Hero() {
 
             <FadeUp delay={450}>
               <p className="mt-12 text-sm text-white/30 tracking-wide">
-                Trusted by automotive and manufacturing organizations
+                Built from 20 years of real factory work — not theory.
               </p>
             </FadeUp>
           </div>

@@ -9,6 +9,7 @@ import PortableTextRenderer from "@/components/blog/PortableTextRenderer";
 import FadeUp from "@/components/shared/FadeUp";
 import JsonLd from "@/components/shared/JsonLd";
 import NewsletterSignup from "@/components/shared/NewsletterSignup";
+import LinkedInBanner from "@/components/shared/LinkedInBanner";
 import BlogImagePlaceholder from "@/components/blog/BlogImagePlaceholder";
 
 interface BlogPostPageProps {
@@ -169,6 +170,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </FadeUp>
         </section>
 
+        {/* LinkedIn */}
+        <section className="py-12 bg-light">
+          <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <LinkedInBanner />
+          </div>
+        </section>
+
         {/* Newsletter */}
         <NewsletterSignup variant="light" />
 
@@ -185,9 +193,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="inline-block bg-white text-accent font-semibold px-10 py-4 rounded-full hover:bg-gray-100 transition-colors"
+                  className="inline-block bg-white text-accent font-semibold px-10 py-4 rounded-full hover:bg-gray-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-shadow"
                 >
-                  Start a conversation
+                  Book Your Free 30-Min Diagnostic Call
                 </Link>
                 <Link
                   href="/services"

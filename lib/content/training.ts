@@ -1,6 +1,7 @@
 export interface TrainingProgram {
   id: string;
   title: string;
+  hook: string;
   level: string;
   duration: string;
   audience: string;
@@ -12,6 +13,7 @@ export const trainingPrograms: TrainingProgram[] = [
   {
     id: "T1",
     title: "Lean Manufacturing Fundamentals",
+    hook: "Most plants have improvement initiatives running in parallel that never connect. This program gives your leadership team a shared system — not more initiatives.",
     level: "Introductory",
     duration: "1–2 days",
     audience: "Operators, team leaders, process engineers",
@@ -27,6 +29,7 @@ export const trainingPrograms: TrainingProgram[] = [
   {
     id: "T2",
     title: "5S — The Order That Drives Performance",
+    hook: "Every factory has waste. Most can\u2019t see it because it\u2019s been there so long it looks normal. This program changes what your team sees when they walk the floor.",
     level: "Practical",
     duration: "1 day workshop + on-site follow-up",
     audience: "Production teams, area supervisors",
@@ -42,6 +45,7 @@ export const trainingPrograms: TrainingProgram[] = [
   {
     id: "T3",
     title: "OEE — Overall Equipment Effectiveness",
+    hook: "Most OEE numbers are calculated after the shift ends. By then, the losses are already locked in. This program makes performance visible in real time, while there\u2019s still time to act.",
     level: "Intermediate",
     duration: "1–2 days",
     audience: "Production engineers, maintenance managers, line managers",
@@ -58,6 +62,7 @@ export const trainingPrograms: TrainingProgram[] = [
   {
     id: "T4",
     title: "SMED — Single-Minute Exchange of Die",
+    hook: "If your morning meetings run long, cover everything, and solve nothing — the problem isn\u2019t the people. It\u2019s the format. This program fixes that.",
     level: "Intermediate",
     duration: "1–2 days",
     audience: "Process engineers, advanced operators, team leaders",
@@ -73,6 +78,7 @@ export const trainingPrograms: TrainingProgram[] = [
   {
     id: "T5",
     title: "Problem Solving — A3 Thinking & Root Cause Analysis",
+    hook: "The same problem appearing on the weekly report for the third time is not bad luck. It means root cause was never reached. This program teaches your team to stop there.",
     level: "Intermediate",
     duration: "1–2 days",
     audience: "Engineers, quality managers, team leaders, production managers",
@@ -89,6 +95,7 @@ export const trainingPrograms: TrainingProgram[] = [
   {
     id: "T6",
     title: "Toyota Kata — Coaching for Continuous Improvement",
+    hook: "Customer complaints that arrive as surprises are always problems that existed for weeks on the shop floor. This program builds the systems that catch them before they ship.",
     level: "Advanced",
     duration: "2–3 days",
     audience: "Production managers, supervisors, internal coaches",
@@ -105,6 +112,7 @@ export const trainingPrograms: TrainingProgram[] = [
   {
     id: "T7",
     title: "Leadership for Production Teams",
+    hook: "If your Q1 is still spent deciding what to improve, you\u2019ve already lost 25% of your improvement year. This program moves that planning to Q4, where it belongs.",
     level: "Intermediate–Advanced",
     duration: "2–3 days (modular program)",
     audience: "Team leaders, supervisors, newly promoted line managers",
@@ -122,6 +130,7 @@ export const trainingPrograms: TrainingProgram[] = [
   {
     id: "T8",
     title: "Operational Performance Management",
+    hook: "A manager who gives orders gets compliance. A manager who asks the right questions gets improvement. This program is about the second kind.",
     level: "Advanced",
     duration: "2 days",
     audience: "Production Managers, Operations Managers, Plant Managers",

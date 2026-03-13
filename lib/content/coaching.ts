@@ -1,6 +1,7 @@
 export interface CoachingProgram {
   id: string;
   title: string;
+  hook: string;
   format: string;
   duration: string;
   audience: string;
@@ -12,6 +13,7 @@ export const coachingPrograms: CoachingProgram[] = [
   {
     id: "C1",
     title: "Coaching for Production Managers",
+    hook: "Running a plant means being pulled in 12 directions at once. This coaching program helps you build the systems that let the plant run — so you can lead instead of react.",
     format: "Individual",
     duration: "3–6 months",
     audience:
@@ -28,6 +30,7 @@ export const coachingPrograms: CoachingProgram[] = [
   {
     id: "C2",
     title: "Production Team Coaching — Lean Implementation",
+    hook: "When your plants aren\u2019t performing consistently, the gap is rarely technical. It\u2019s in how performance is managed and escalated. This program works on that layer.",
     format: "Team",
     duration: "1–3 months on-site",
     audience: "Production teams implementing Lean for the first time",
@@ -42,6 +45,7 @@ export const coachingPrograms: CoachingProgram[] = [
   {
     id: "C3",
     title: "Operational Management System Implementation",
+    hook: "Team leaders are where strategy meets the shop floor. If they\u2019re not equipped to coach and problem-solve, nothing above them matters. This program develops that capability.",
     format: "Project-based",
     duration: "3–6 months",
     audience:
@@ -57,6 +61,7 @@ export const coachingPrograms: CoachingProgram[] = [
   {
     id: "C4",
     title: "OEE & Equipment Performance Implementation",
+    hook: "Being the OpEx Manager means selling improvement to people who think the current way works fine. This program gives you the tools — and the language — to change that.",
     format: "Project-based",
     duration: "2–3 months",
     audience:
@@ -74,6 +79,7 @@ export const coachingPrograms: CoachingProgram[] = [
   {
     id: "C5",
     title: "Mentoring for Lean / CI Managers",
+    hook: "When department heads optimize for their own KPIs, the plant loses. This program aligns the leadership team around a shared system and shared priorities.",
     format: "Individual mentoring",
     duration: "6–12 months",
     audience:

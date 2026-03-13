@@ -8,6 +8,7 @@ import ImpactStats from "@/components/home/ImpactStats";
 import Benefits from "@/components/home/Benefits";
 import FounderBadge from "@/components/home/FounderBadge";
 import NewsletterSignup from "@/components/shared/NewsletterSignup";
+import LinkedInBanner from "@/components/shared/LinkedInBanner";
 import UrgencyCTA from "@/components/home/UrgencyCTA";
 
 export const metadata: Metadata = {
@@ -42,6 +43,11 @@ export default function Home() {
       <NewsletterSignup variant="dark" />
       <Benefits />
       <FounderBadge />
+      <section className="py-12 bg-light">
+        <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <LinkedInBanner />
+        </div>
+      </section>
       <UrgencyCTA />
     </main>
   );

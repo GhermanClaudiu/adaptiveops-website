@@ -238,16 +238,20 @@ export default function SolutionsPage() {
                   What is ECO?
                 </h2>
                 <p className="text-white/70 text-base md:text-lg leading-relaxed mb-4">
-                  ECO stands for <strong className="text-white">Execution &amp; Control of Operations</strong> —
-                  the practice of turning operational plans into measurable results. It bridges the gap between
-                  strategy and shop-floor reality by connecting people, materials, equipment, and processes
-                  into one structured digital framework.
+                  Most factories run their operational systems across spreadsheets, whiteboards,
+                  and email threads. Performance data exists, but it&apos;s scattered. Problems get
+                  logged, but never tracked to resolution. Improvement projects start, stall,
+                  and disappear.
+                </p>
+                <p className="text-white/70 text-base md:text-lg leading-relaxed mb-4">
+                  <strong className="text-white">ECO Platform</strong> is AdaptiveOps&apos; own digital solution — built specifically for
+                  automotive and manufacturing operations. Six integrated systems in one place:
+                  daily management, KPI tracking, problem solving, improvement planning, audit
+                  management, and training records.
                 </p>
                 <p className="text-white/50 leading-relaxed mb-6">
-                  Where traditional tools stop at planning, ECO focuses on what happens next: prioritizing tasks,
-                  allocating resources, monitoring performance in real time, and managing deviations before they
-                  become losses. Quality control, continuous improvement, and daily management are not separate
-                  initiatives — they are built into the way work gets done.
+                  Everything your plant needs to manage operational excellence — visible,
+                  traceable, and connected. Currently in development. Early access available for selected partners.
                 </p>
 
                 {/* Three pillars of ECO */}

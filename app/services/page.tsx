@@ -331,6 +331,7 @@ export default function ServicesPage() {
                     <span className="text-xs text-mid">{program.level} &middot; {program.duration}</span>
                   </div>
                   <h3 className="text-xl font-semibold text-primary mb-2">{program.title}</h3>
+                  <p className="text-sm italic text-primary/70 mb-3 leading-relaxed">{program.hook}</p>
                   <p className="text-sm text-mid mb-3">{program.audience}</p>
                   <ul className="space-y-1.5 mb-4">
                     {program.topics.map((topic) => (
@@ -346,21 +347,29 @@ export default function ServicesPage() {
                     </svg>
                     {program.outcome}
                   </div>
-                  {trainingSystemMap[program.id] && (
-                    <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-gray-100">
-                      <span className="text-[10px] text-mid uppercase tracking-wider mr-1">Supports</span>
-                      {trainingSystemMap[program.id].map((sys) => (
-                        <span
-                          key={sys.abbr}
-                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
-                          style={{ backgroundColor: `${sys.color}15`, color: sys.color }}
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: sys.color }} />
-                          {sys.abbr}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+                    {trainingSystemMap[program.id] && (
+                      <div className="flex flex-wrap gap-1.5">
+                        <span className="text-[10px] text-mid uppercase tracking-wider mr-1">Supports</span>
+                        {trainingSystemMap[program.id].map((sys) => (
+                          <span
+                            key={sys.abbr}
+                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
+                            style={{ backgroundColor: `${sys.color}15`, color: sys.color }}
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: sys.color }} />
+                            {sys.abbr}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <Link
+                      href={`/contact?service=${program.id}`}
+                      className="text-xs font-semibold text-accent hover:text-blue-600 transition-colors whitespace-nowrap ml-auto"
+                    >
+                      Inquire About This Program &rarr;
+                    </Link>
+                  </div>
                 </div>
               </FadeUp>
             ))}
@@ -427,6 +436,7 @@ export default function ServicesPage() {
                     <span className="text-xs text-mid">{program.format} &middot; {program.duration}</span>
                   </div>
                   <h3 className="text-xl font-semibold text-primary mb-2">{program.title}</h3>
+                  <p className="text-sm italic text-primary/70 mb-3 leading-relaxed">{program.hook}</p>
                   <p className="text-sm text-mid mb-4">{program.description}</p>
                   <ul className="space-y-1.5">
                     {program.deliverables.map((item) => (
@@ -436,21 +446,29 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-                  {coachingSystemMap[program.id] && (
-                    <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-gray-100">
-                      <span className="text-[10px] text-mid uppercase tracking-wider mr-1">Supports</span>
-                      {coachingSystemMap[program.id].map((sys) => (
-                        <span
-                          key={sys.abbr}
-                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
-                          style={{ backgroundColor: `${sys.color}15`, color: sys.color }}
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: sys.color }} />
-                          {sys.abbr}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+                    {coachingSystemMap[program.id] && (
+                      <div className="flex flex-wrap gap-1.5">
+                        <span className="text-[10px] text-mid uppercase tracking-wider mr-1">Supports</span>
+                        {coachingSystemMap[program.id].map((sys) => (
+                          <span
+                            key={sys.abbr}
+                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
+                            style={{ backgroundColor: `${sys.color}15`, color: sys.color }}
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: sys.color }} />
+                            {sys.abbr}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <Link
+                      href={`/contact?service=${program.id}`}
+                      className="text-xs font-semibold text-accent hover:text-blue-600 transition-colors whitespace-nowrap ml-auto"
+                    >
+                      Inquire About This Program &rarr;
+                    </Link>
+                  </div>
                 </div>
               </FadeUp>
             ))}

@@ -64,8 +64,8 @@ export default function ImpactStats() {
           production environments.
         </p>
         <p className="mt-4 text-center text-gray-400/70 text-sm italic max-w-2xl mx-auto leading-relaxed">
-          Results delivered across 8 manufacturing plants as Regional Operational Excellence Manager
-          — through structured Annual Improvement Plans, hands-on training and operational coaching.
+          Achieved across 8 Tier-1 and Tier-2 automotive manufacturing plants,
+          Romania and Western Europe, 2010–2024.
         </p>
         </FadeUp>
       </div>
