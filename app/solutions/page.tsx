@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ECOPlatform from "@/components/solutions/ECOPlatform";
+import ECOInAction from "@/components/solutions/ECOInAction";
 import FadeUp from "@/components/shared/FadeUp";
 import JsonLd from "@/components/shared/JsonLd";
 
@@ -307,6 +308,9 @@ export default function SolutionsPage() {
       <div id="systems">
         <ECOPlatform />
       </div>
+
+      {/* See ECO Platform in Action */}
+      <ECOInAction />
 
       {/* Management Layer Bridge */}
       <section className="py-20 bg-light">
