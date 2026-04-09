@@ -28,7 +28,7 @@ const sections = [
       },
       {
         q: "Do we need to stop production for training?",
-        a: "No. There are several practical options depending on your shift structure:\n\n• Sessions during the third shift or weekend when production volume is lower\n• Rotating small groups of 4 to 5 people so the line is never empty\n• Scheduling sessions during planned downtime and maintenance stops\n\nImplementation workshops are designed to happen on the shop floor, not in a conference room — they integrate into the workday rather than interrupting it. We design the schedule around your production reality.",
+        a: "No. Training at AdaptiveOps is designed for engineers, quality technicians and shift supervisors — not for operators on the line. This means production does not stop.\n\nInstead of compressing everything into full 8-hour days, sessions are typically structured over 4 to 5 days at 4 to 5 hours per day. This keeps the content digestible, gives participants time to apply what they learned between sessions, and fits naturally into a working week without disrupting the production schedule.\n\nImplementation workshops happen on the shop floor, not in a conference room — the work gets done where the problems actually exist.",
       },
       {
         q: "What happens if we have high turnover — does the training investment disappear with the people?",
