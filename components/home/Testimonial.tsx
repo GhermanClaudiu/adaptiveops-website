@@ -24,15 +24,15 @@ export default function Testimonial() {
               {/* Pull quote */}
               <div className="mb-8 pl-4 border-l-4 border-accent">
                 <p className="text-primary font-bold text-lg md:text-xl leading-snug">
-                  "His dedication, professional approach, and ability to deliver tangible,
-                  measurable results have far exceeded our expectations."
+                  &ldquo;His dedication, professional approach, and ability to deliver tangible,
+                  measurable results have far exceeded our expectations.&rdquo;
                 </p>
               </div>
 
               {/* Full text */}
               <p className="text-mid leading-relaxed text-[15px] mb-10">
                 Claudiu became in charge of Lear Romania Production at a time the plant was facing
-                significant and challenging issues. Claudiu's energy, knowledge, capability and
+                significant and challenging issues. Claudiu&apos;s energy, knowledge, capability and
                 teamwork ability was a contributing factor in turning around the operations and
                 addressing critical issues. As the Director of Europe Operations at that time I
                 appreciated his constructive approach and dedication to corporate goals, procedures
