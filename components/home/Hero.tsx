@@ -74,7 +74,7 @@ export default function Hero() {
             </FadeUp>
             <FadeUp delay={150}>
               <p className="mt-6 text-lg md:text-xl text-white/55 leading-relaxed max-w-xl">
-                Digital systems, training and coaching — integrated to deliver measurable results in manufacturing.
+                Manufacturing plants don&apos;t lack knowledge. They lack a system that makes improvement stick. That&apos;s what we build.
               </p>
             </FadeUp>
 

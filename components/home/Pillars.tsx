@@ -3,9 +3,9 @@ import FadeUp from "@/components/shared/FadeUp";
 
 const pillars = [
   {
-    title: "Digital Solutions",
+    title: "We make results visible",
     description:
-      "Software solutions designed for industrial operations. Equipment management, quality systems and operational performance dashboards.",
+      "ECO Platform gives you real-time visibility into what's working and what isn't — so progress is measured, not assumed. Built specifically for automotive and manufacturing operations.",
     topics: [
       "EMS \u2014 Equipment Management",
       "QMS \u2014 Quality Management",
@@ -20,9 +20,9 @@ const pillars = [
     ),
   },
   {
-    title: "Training",
+    title: "We build capability",
     description:
-      "Professional training programs for operational excellence and industrial management. From Lean fundamentals to advanced performance management.",
+      "Your engineers and managers learn by solving real problems in your plant — not theory, not slides. Applied operational excellence that stays when we leave.",
     topics: [
       "Operational Excellence",
       "Problem Solving",
@@ -38,9 +38,9 @@ const pillars = [
     ),
   },
   {
-    title: "Coaching",
+    title: "We drive implementation",
     description:
-      "Hands-on operational coaching designed to support organizations during change. We work directly on the shop floor, not from a conference room.",
+      "We work alongside your team on the shop floor until the new standard becomes the normal way of working. Not remote advice — direct presence until change sticks.",
     topics: [
       "Process Optimization",
       "Management Systems",
@@ -64,11 +64,11 @@ export default function Pillars() {
         <FadeUp>
           <div className="text-center mb-14">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
-              Training. Coaching. Digital.
+              Three levers. One system. Permanent results.
             </h2>
             <p className="mt-4 text-base md:text-lg text-mid max-w-2xl mx-auto">
-              One integrated approach to operational performance — combining
-              people development, process improvement and technology.
+              We don&apos;t sell training separately from coaching separately from software.
+              We design the right combination for your situation — and stay until the result is permanent.
             </p>
           </div>
         </FadeUp>
