@@ -109,12 +109,13 @@ export default function AboutPage() {
           </FadeUp>
           <FadeUp delay={100}>
             <p className="mt-5 text-lg text-white/60 max-w-2xl leading-relaxed">
-              20+ years of hands-on experience in automotive manufacturing turned into a framework
-              that integrates training, coaching, and digital systems. This is the story behind AdaptiveOps.
+              20+ years in automotive manufacturing — 8 plants, EUR 3.2M in savings, 51% scrap reduction.
+              This is the story of what we learned, and why we built AdaptiveOps to make those results
+              available to other organizations.
             </p>
           </FadeUp>
           <FadeUp delay={200}>
-            <p className="mt-6 text-sm text-white/30 tracking-wide">
+            <p className="mt-6 text-sm text-white/50 tracking-wide">
               20+ Years &nbsp;&middot;&nbsp; Fortune 500 &nbsp;&middot;&nbsp; Automotive &amp; Manufacturing
             </p>
           </FadeUp>
@@ -170,11 +171,12 @@ export default function AboutPage() {
                   well-intentioned improvement programs collapse because the coaching capability
                   wasn&apos;t built alongside the tools.
                 </p>
-                <p>
-                  AdaptiveOps exists because most consultancies give you the methodology.
-                  We give you the methodology, the coaching, and a digital platform to make
-                  it stick.
-                </p>
+                <div className="border-l-4 border-accent pl-4 py-1 my-2">
+                  <p className="text-primary font-semibold text-lg leading-snug">
+                    Most consultancies give you the methodology. We give you the methodology,
+                    the coaching, and a digital platform to make it stick.
+                  </p>
+                </div>
                 <p className="text-primary font-medium">
                   Every service we offer is something I&apos;ve personally implemented in a real plant.
                   Not designed in a conference room. Built on a shop floor.
