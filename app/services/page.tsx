@@ -4,6 +4,7 @@ import { trainingPrograms } from "@/lib/content/training";
 import { coachingPrograms } from "@/lib/content/coaching";
 import FadeUp from "@/components/shared/FadeUp";
 import JsonLd from "@/components/shared/JsonLd";
+import ServicesPricing from "@/components/services/ServicesPricing";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -475,6 +476,9 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* Pricing */}
+      <ServicesPricing />
 
       {/* CTA */}
       <section className="bg-accent py-16">
