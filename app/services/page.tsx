@@ -114,17 +114,19 @@ export default function ServicesPage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
-            <h1 className="text-3xl md:text-5xl font-bold text-white">Our Services</h1>
+            <h1 className="text-3xl md:text-5xl font-bold text-white">How we deliver lasting results</h1>
           </FadeUp>
           <FadeUp delay={100}>
             <p className="mt-4 text-lg text-white/70 max-w-2xl">
-              Training programs and operational coaching designed for industrial organizations.
-              Not theory — systems that work.
+              Most plants have already tried training. Results faded because knowledge alone
+              doesn&apos;t change how a plant operates. We combine three levers — capability building,
+              hands-on coaching, and digital visibility — so each reinforces the other until
+              improvement becomes permanent.
             </p>
           </FadeUp>
           <FadeUp delay={200}>
-            <p className="mt-6 text-sm text-white/30 tracking-wide">
-              8 Training Programs &nbsp;&middot;&nbsp; 5 Coaching Programs &nbsp;&middot;&nbsp; All delivered on-site in Romanian
+            <p className="mt-6 text-sm text-white/50 tracking-wide">
+              Training builds the why &nbsp;&middot;&nbsp; Coaching ensures the how &nbsp;&middot;&nbsp; Digital makes it visible &nbsp;&middot;&nbsp; Together — not separately.
             </p>
           </FadeUp>
           <FadeUp delay={300}>
@@ -158,11 +160,12 @@ export default function ServicesPage() {
                   ECO Framework
                 </span>
                 <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">
-                  Part of the ECO Framework
+                  Why the three work together
                 </h2>
                 <p className="text-mid text-lg leading-relaxed mb-6">
-                  Training and coaching form the Management Layer — the human foundation that enables
-                  your team to effectively use and sustain digital management systems.
+                  Training builds knowledge. Coaching turns that knowledge into new habits on the shop
+                  floor. The digital layer makes progress visible and keeps it from sliding back.
+                  Each lever amplifies the others — which is why we never sell them in isolation.
                 </p>
                 <Link
                   href="/solutions"
@@ -262,11 +265,12 @@ export default function ServicesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342" />
                   </svg>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-primary">Training Programs</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-primary">We build capability</h2>
               </div>
               <p className="text-mid text-lg max-w-3xl">
-                From Lean fundamentals to advanced performance management. All programs are delivered
-                on-site or online, tailored to your organization&apos;s reality.
+                Your engineers and managers learn by working on real problems in your plant — not slides,
+                not theory. Each program is designed to connect directly with the coaching and digital layer
+                that follows.
               </p>
             </div>
           </FadeUp>
@@ -400,8 +404,8 @@ export default function ServicesPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
               </svg>
             </div>
-            <p className="text-sm text-white/40">
-              Training provides knowledge. Coaching ensures implementation. Together, they form the Management Layer of the ECO framework.
+            <p className="text-sm text-white/60">
+              Training provides knowledge. Coaching ensures implementation. The digital layer keeps results visible. Together — not separately.
             </p>
           </div>
         </FadeUp>
@@ -418,10 +422,11 @@ export default function ServicesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                   </svg>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-primary">Operational Coaching</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-primary">We drive implementation</h2>
               </div>
               <p className="text-mid text-lg max-w-3xl">
-                Hands-on support for implementing improvements. We work directly on the shop floor — not from a conference room.
+                Coaching is what turns training into reality. We work on your shop floor alongside your
+                team — not from a conference room — until the new standard becomes the normal way of working.
               </p>
             </div>
           </FadeUp>
@@ -485,10 +490,11 @@ export default function ServicesPage() {
         <FadeUp>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Training, coaching and digital — one integrated system.
+              Ready to stop the cycle of improvements that don&apos;t stick?
             </h2>
             <p className="mt-4 text-lg text-white/80 max-w-xl mx-auto">
-              Let&apos;s discuss how the Management Layer can accelerate your operational performance.
+              Let&apos;s look at your situation and design the right combination —
+              training, coaching, digital, or all three working together.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
