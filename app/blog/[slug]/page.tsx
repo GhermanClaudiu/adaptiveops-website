@@ -159,7 +159,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </section>
 
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
           {sanityPost.mainImage?.asset ? (
             <Image
               src={urlFor(sanityPost.mainImage).width(800).height(450).url()}
