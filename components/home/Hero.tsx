@@ -87,10 +87,10 @@ export default function Hero() {
                   Book Your Free 30-Min Diagnostic Call
                 </Link>
                 <Link
-                  href="/solutions"
+                  href="/before-you-call"
                   className="inline-flex items-center gap-1.5 text-white/50 hover:text-white font-medium transition-colors"
                 >
-                  Explore solutions &rarr;
+                  Read before you call &rarr;
                 </Link>
               </div>
             </FadeUp>

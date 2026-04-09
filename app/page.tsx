@@ -5,6 +5,7 @@ import ECOPreview from "@/components/home/ECOPreview";
 import Pillars from "@/components/home/Pillars";
 import ImpactStats from "@/components/home/ImpactStats";
 // import SocialProof from "@/components/home/SocialProof"; // TODO: re-enable when client logos are available
+import TransparencyStrip from "@/components/home/TransparencyStrip";
 import Benefits from "@/components/home/Benefits";
 import FounderBadge from "@/components/home/FounderBadge";
 import NewsletterSignup from "@/components/shared/NewsletterSignup";
@@ -40,6 +41,7 @@ export default function Home() {
       <Pillars />
       <ImpactStats />
       {/* <SocialProof /> */}{/* TODO: re-enable when client logos are available */}
+      <TransparencyStrip />
       <NewsletterSignup variant="dark" />
       <Benefits />
       <FounderBadge />
