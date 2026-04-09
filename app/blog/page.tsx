@@ -122,17 +122,17 @@ export default async function BlogPage() {
               Insights &amp; Articles
             </span>
             <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-              Blog
+              Field Notes from the Shop Floor
             </h1>
           </FadeUp>
           <FadeUp delay={100}>
             <p className="mt-5 text-lg text-white/60 max-w-2xl leading-relaxed">
-              Practical insights on operational excellence, manufacturing management
-              and digital transformation — from people who&apos;ve done the work.
+              No theory, no jargon. Practical answers to the problems manufacturing
+              managers face every week — written by someone who has lived them.
             </p>
           </FadeUp>
           <FadeUp delay={200}>
-            <p className="mt-6 text-sm text-white/30 tracking-wide">
+            <p className="mt-6 text-sm text-white/50 tracking-wide">
               {blogCategories.join("  ·  ")}
             </p>
           </FadeUp>
