@@ -72,6 +72,15 @@ export default function ECOInAction() {
 
   const currentImage =
     activeSystem === "oms" ? omsViews[omsView] : qmsViews[qmsView];
+
+  // aspect ratio matched to each image's real dimensions to eliminate empty space
+  const containerAspect =
+    activeSystem === "qms" && qmsView === "scrap"
+      ? "aspect-[246/100]"   // 1885×767
+      : activeSystem === "qms"
+      ? "aspect-[211/100]"   // 1907×900
+      : "aspect-[221/100]";  // 1920×869 (OMS)
+
   const currentDescription =
     activeSystem === "oms"
       ? systems.oms.description
@@ -178,7 +187,7 @@ export default function ECOInAction() {
 
         {/* Image frame */}
         <FadeUp delay={200}>
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-gray-200 shadow-xl bg-light">
+          <div className={`relative w-full ${containerAspect} rounded-xl overflow-hidden border border-gray-200 shadow-xl bg-light`}>
             {/* Browser chrome */}
             <div className="absolute top-0 left-0 right-0 h-8 bg-gray-100 border-b border-gray-200 flex items-center px-3 gap-1.5 z-10">
               <div className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
