@@ -8,25 +8,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: "2026-03-11",
+      lastModified: "2026-04-09",
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/services`,
-      lastModified: "2026-03-06",
+      lastModified: "2026-04-09",
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/solutions`,
-      lastModified: "2026-03-11",
+      lastModified: "2026-04-09",
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: "2026-03-11",
+      lastModified: "2026-04-09",
       changeFrequency: "monthly",
       priority: 0.7,
     },
@@ -38,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: "2026-03-11",
+      lastModified: "2026-04-09",
       changeFrequency: "monthly",
       priority: 0.8,
     },

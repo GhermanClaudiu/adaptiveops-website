@@ -57,6 +57,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: post.title,
     description: post.excerpt,
+    authors: [{ name: "Gherman Claudiu", url: "https://www.adaptiveops.eu/about" }],
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title: post.title,
@@ -64,6 +65,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       type: "article",
       url: `/blog/${post.slug}`,
       publishedTime: post.date,
+      authors: ["Gherman Claudiu"],
     },
   };
 }
@@ -80,6 +82,39 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   if (sanityPost) {
     return (
       <main>
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: sanityPost.title,
+            description: sanityPost.excerpt,
+            datePublished: sanityPost.publishedAt,
+            dateModified: sanityPost.publishedAt,
+            author: {
+              "@type": "Person",
+              name: "Gherman Claudiu",
+              url: "https://www.adaptiveops.eu/about",
+              sameAs: "https://www.linkedin.com/in/gherman-claudiu",
+              jobTitle: "Founder & Principal Consultant — Regional Operational Excellence Manager",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "AdaptiveOps",
+              url: "https://www.adaptiveops.eu",
+              logo: { "@type": "ImageObject", url: "https://www.adaptiveops.eu/logo.png" },
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `https://www.adaptiveops.eu/blog/${sanityPost.slug.current}`,
+            },
+            inLanguage: "en",
+            isPartOf: {
+              "@type": "Blog",
+              name: "AdaptiveOps Blog — Operational Excellence Insights",
+              url: "https://www.adaptiveops.eu/blog",
+            },
+          }}
+        />
         {/* Hero */}
         <section className="relative overflow-hidden bg-primary py-20">
           <div className="absolute inset-0 opacity-[0.05]">
@@ -227,9 +262,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           description: post.excerpt,
           datePublished: post.date,
           dateModified: post.date,
-          author: { "@type": "Organization", name: "AdaptiveOps", url: "https://www.adaptiveops.eu" },
-          publisher: { "@type": "Organization", name: "AdaptiveOps", logo: { "@type": "ImageObject", url: "https://www.adaptiveops.eu/logo.png" } },
-          mainEntityOfPage: { "@type": "WebPage", "@id": `https://www.adaptiveops.eu/blog/${post.slug}` },
+          inLanguage: "en",
+          author: {
+            "@type": "Person",
+            name: "Gherman Claudiu",
+            url: "https://www.adaptiveops.eu/about",
+            sameAs: "https://www.linkedin.com/in/gherman-claudiu",
+            jobTitle: "Founder & Principal Consultant — Regional Operational Excellence Manager",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "AdaptiveOps",
+            url: "https://www.adaptiveops.eu",
+            logo: { "@type": "ImageObject", url: "https://www.adaptiveops.eu/logo.png" },
+          },
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://www.adaptiveops.eu/blog/${post.slug}`,
+          },
+          isPartOf: {
+            "@type": "Blog",
+            name: "AdaptiveOps Blog — Operational Excellence Insights",
+            url: "https://www.adaptiveops.eu/blog",
+          },
         }}
       />
       {/* Hero */}
