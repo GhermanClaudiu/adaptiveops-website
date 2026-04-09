@@ -30,14 +30,14 @@ export default function FoundingPartners() {
           </div>
         </FadeUp>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {/* Pricing card */}
-          <FadeUp>
-            <div className="bg-primary rounded-2xl p-8 relative overflow-hidden">
+          <FadeUp className="h-full">
+            <div className="bg-primary rounded-2xl p-8 relative overflow-hidden h-full flex flex-col">
               {/* Background glow */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
-              <div className="relative">
+              <div className="relative flex flex-col flex-1">
                 <span className="inline-block bg-white/15 border border-white/25 text-white text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full mb-6">
                   Founding Partner Price
                 </span>
@@ -66,7 +66,7 @@ export default function FoundingPartners() {
                 <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-4">
                   What&apos;s included
                 </p>
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-3 mb-8 flex-1">
                   {included.map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <span className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
