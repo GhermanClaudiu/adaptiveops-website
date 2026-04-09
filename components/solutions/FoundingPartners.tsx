@@ -13,7 +13,7 @@ const included = [
 export default function FoundingPartners() {
   return (
     <section className="py-20 bg-light border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-12">
         <FadeUp>
           <div className="text-center mb-12">
             <span className="inline-block text-xs font-bold tracking-widest uppercase text-accent mb-4">
@@ -38,7 +38,7 @@ export default function FoundingPartners() {
               <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
               <div className="relative">
-                <span className="inline-block bg-accent/20 text-accent text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full mb-6">
+                <span className="inline-block bg-white/15 border border-white/25 text-white text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full mb-6">
                   Founding Partner Price
                 </span>
 
@@ -50,7 +50,7 @@ export default function FoundingPartners() {
                   </div>
                   <div className="flex items-center gap-3 mt-3">
                     <span className="text-white/30 line-through text-lg">€15,000</span>
-                    <span className="bg-accent/20 text-accent text-xs font-bold px-2.5 py-1 rounded-full">
+                    <span className="bg-accent text-white text-xs font-bold px-2.5 py-1 rounded-full">
                       Save €8,500 / module
                     </span>
                   </div>
