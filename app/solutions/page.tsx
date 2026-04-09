@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ECOPlatform from "@/components/solutions/ECOPlatform";
 import ECOInAction from "@/components/solutions/ECOInAction";
+import FoundingPartners from "@/components/solutions/FoundingPartners";
 import FadeUp from "@/components/shared/FadeUp";
 import JsonLd from "@/components/shared/JsonLd";
 
@@ -252,7 +253,10 @@ export default function SolutionsPage() {
                 </p>
                 <p className="text-white/50 leading-relaxed mb-6">
                   Everything your plant needs to manage operational excellence — visible,
-                  traceable, and connected. Currently in development. Early access available for selected partners.
+                  traceable, and connected.{" "}
+                  <span className="text-accent font-semibold">EMS is live</span> — deployed
+                  and running at our first client. Additional modules in active development.
+                  Founding Partner access available for selected organizations.
                 </p>
 
                 {/* Three pillars of ECO */}
@@ -311,6 +315,9 @@ export default function SolutionsPage() {
 
       {/* See ECO Platform in Action */}
       <ECOInAction />
+
+      {/* Founding Partners Programme */}
+      <FoundingPartners />
 
       {/* Management Layer Bridge */}
       <section className="py-20 bg-light">
