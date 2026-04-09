@@ -82,13 +82,14 @@ export default function SolutionsPage() {
           </FadeUp>
           <FadeUp delay={100}>
             <p className="mt-5 text-lg text-white/60 max-w-2xl leading-relaxed">
-              ECO Platform integrates quality, equipment, materials, people,
-              operations and continuous improvement into a single digital core.
+              Most factories run operations on spreadsheets, whiteboards, and tribal knowledge.
+              ECO replaces the chaos with a single digital system — so results are visible,
+              traceable, and don&apos;t depend on one person&apos;s memory.
             </p>
           </FadeUp>
           <FadeUp delay={200}>
-            <p className="mt-6 text-sm text-white/30 tracking-wide">
-              6 Management Systems &nbsp;&middot;&nbsp; 40+ Modules &nbsp;&middot;&nbsp; 7 Industry Standards
+            <p className="mt-6 text-sm text-white/50 tracking-wide">
+              The digital layer of the AdaptiveOps system &nbsp;&middot;&nbsp; Always combined with training &amp; coaching
             </p>
           </FadeUp>
           <FadeUp delay={300}>
