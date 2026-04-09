@@ -6,6 +6,7 @@ import FadeUp from "@/components/shared/FadeUp";
 
 type SystemId = "oms" | "qms";
 type OmsView = "plant" | "weekly" | "monthly";
+type QmsView = "spc" | "scrap";
 
 const systems: Record<SystemId, {
   name: string;
@@ -29,6 +30,23 @@ const systems: Record<SystemId, {
   },
 };
 
+const qmsViews: Record<QmsView, { label: string; image: string; alt: string; description: string }> = {
+  spc: {
+    label: "SPC Dashboard",
+    image: "/images/systems/qms/dashboard-spc.png",
+    alt: "ECO Platform — QMS SPC Dashboard with control charts for Insulation Height and Crimp Height",
+    description:
+      "Statistical Process Control on the parameters that matter. Catch process drift on critical dimensions before it becomes scrap or a customer complaint.",
+  },
+  scrap: {
+    label: "Scrap Overview",
+    image: "/images/systems/qms/dashboard-scrap.png",
+    alt: "ECO Platform — QMS Scrap Overview with scrap rate trend, NOK pieces by equipment and material scrap Pareto",
+    description:
+      "Scrap rate live — per equipment, per circuit, per material. Monday morning, the Quality Manager opens this and knows exactly where to focus before the daily meeting starts.",
+  },
+};
+
 const omsViews: Record<OmsView, { label: string; image: string; alt: string }> = {
   plant: {
     label: "Plant Performance",
@@ -47,17 +65,17 @@ const omsViews: Record<OmsView, { label: string; image: string; alt: string }> =
   },
 };
 
-const qmsImage = {
-  image: "/images/systems/qms/dashboard-spc.png",
-  alt: "ECO Platform — QMS SPC Dashboard with control charts for Insulation Height and Crimp Height",
-};
-
 export default function ECOInAction() {
   const [activeSystem, setActiveSystem] = useState<SystemId>("oms");
   const [omsView, setOmsView] = useState<OmsView>("plant");
+  const [qmsView, setQmsView] = useState<QmsView>("spc");
 
   const currentImage =
-    activeSystem === "oms" ? omsViews[omsView] : qmsImage;
+    activeSystem === "oms" ? omsViews[omsView] : qmsViews[qmsView];
+  const currentDescription =
+    activeSystem === "oms"
+      ? systems.oms.description
+      : qmsViews[qmsView].description;
 
   return (
     <section className="py-20 bg-white border-t border-gray-100">
@@ -132,6 +150,32 @@ export default function ECOInAction() {
           </FadeUp>
         )}
 
+        {/* QMS sub-tabs */}
+        {activeSystem === "qms" && (
+          <FadeUp delay={150}>
+            <div className="flex flex-wrap justify-center gap-2 mb-6">
+              {(Object.keys(qmsViews) as QmsView[]).map((id) => {
+                const view = qmsViews[id];
+                const isActive = qmsView === id;
+                return (
+                  <button
+                    key={id}
+                    onClick={() => setQmsView(id)}
+                    className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
+                      isActive
+                        ? "text-white"
+                        : "bg-light text-mid border border-gray-200 hover:bg-gray-100"
+                    }`}
+                    style={isActive ? { backgroundColor: systems.qms.color } : undefined}
+                  >
+                    {view.label}
+                  </button>
+                );
+              })}
+            </div>
+          </FadeUp>
+        )}
+
         {/* Image frame */}
         <FadeUp delay={200}>
           <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-gray-200 shadow-xl bg-light">
@@ -158,7 +202,7 @@ export default function ECOInAction() {
         {/* Description */}
         <FadeUp delay={250}>
           <p className="mt-8 text-center text-mid leading-relaxed max-w-2xl mx-auto">
-            {systems[activeSystem].description}
+            {currentDescription}
           </p>
         </FadeUp>
 
