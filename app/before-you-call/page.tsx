@@ -20,7 +20,11 @@ const sections = [
       },
       {
         q: "Where should we start — there are 8 training and 5 coaching programs?",
-        a: "Start with your biggest operational pain, not with what sounds most interesting.\n\n• Scrap is the main problem → T2 (Quality Fundamentals) + T3 (Problem Solving), supported by C4 coaching\n• OEE below 60% → T1 (Equipment Management) + T4 (Maintenance Planning), with C2 coaching\n• Building a Daily Management System → T5 (DMS) + C3 (Leadership Coaching)\n• Preparing for an ISO audit → T2 + T6 (ISO Standards)\n\nNot sure? The free 30-minute diagnostic call exists exactly for this — we map your situation and recommend the right starting point with no obligation.",
+        a: "Start with your biggest operational pain, not with what sounds most interesting.\n\n• Scrap is the main problem → T2 (Quality Fundamentals) + T3 (Problem Solving), supported by C4 coaching\n• OEE below 60% → T1 (Equipment Management) + T4 (Maintenance Planning), with C2 coaching\n• Building a Daily Management System → T5 (DMS) + C3 (Leadership Coaching)\n• Preparing for an ISO audit → T2 + T6 (ISO Standards)\n• Indirect teams (planning, logistics, HR, finance) running without structure → start with the Process Excellence diagnostic for indirect operations\n\nNot sure? The free 30-minute diagnostic call exists exactly for this — we map your situation and recommend the right starting point with no obligation.",
+      },
+      {
+        q: "We are not in production — our team is in planning, logistics or HR. Can you still help us?",
+        a: "Yes — and this is one of the most common misconceptions about operational excellence.\n\nThe same waste that slows down a production line exists in every indirect team: undocumented processes, results that depend on who is working today, workload imbalances nobody sees, problems discussed in every meeting but never resolved.\n\nAdaptiveOps applies a dedicated 6-module Process Excellence framework specifically designed for indirect operations — planning, logistics, HR, finance, customer service. It uses different tools than the shop floor methodology (Makigami instead of VSM, Resource Planning instead of line balancing) but the same logic: define, standardise, measure, improve.\n\nImportant: indirect inefficiency does not stay in the back office. Planning gaps, undocumented procedures and unbalanced workloads show up as delays, defects and extra cost on the production floor — in Speed, Quality and Delivery. Structuring indirect operations is not a support function project. It is an operational cost reduction project.",
       },
       {
         q: "How long before we see real results?",
@@ -94,7 +98,7 @@ const sections = [
       },
       {
         q: "What industries and countries do you work in?",
-        a: "Primary focus: automotive Tier-1 and Tier-2 suppliers in Romania and Central/Eastern Europe. This includes wire harness, stamping, injection, assembly, and electronics manufacturing plants.\n\nWe also work with manufacturing organisations outside automotive — any plant where operational excellence, OEE improvement, quality management, or equipment reliability is a priority.\n\nTraining and coaching are delivered in Romanian or English. ECO Platform is available in both languages.",
+        a: "Primary focus: automotive Tier-1 and Tier-2 suppliers in Romania and Central/Eastern Europe. This includes wire harness, stamping, injection, assembly, and electronics manufacturing plants.\n\nWe also work with manufacturing organisations outside automotive — any plant where operational excellence, OEE improvement, quality management, or equipment reliability is a priority.\n\nBeyond the factory floor: the Process Excellence framework for indirect operations applies to any organisation where planning, logistics, HR, finance or customer service teams run without documented standards. This is not limited to manufacturing — any organisation where indirect inefficiency adds cost to operations qualifies.\n\nTraining and coaching are delivered in Romanian or English. ECO Platform is available in both languages.",
       },
       {
         q: "How do we take the first step without committing to anything?",
@@ -274,6 +278,12 @@ export default function BeforeYouCallPage() {
                 className="inline-flex items-center gap-1.5 text-white/60 hover:text-white font-medium transition-colors"
               >
                 Explore services &rarr;
+              </Link>
+              <Link
+                href="/lean-office"
+                className="inline-flex items-center gap-1.5 text-white/60 hover:text-white font-medium transition-colors"
+              >
+                Lean in the Office &rarr;
               </Link>
             </div>
           </div>
