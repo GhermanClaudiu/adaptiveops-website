@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import OmsHowItWorks from "./OmsHowItWorks";
 
 interface Module {
   name: string;
@@ -315,6 +316,8 @@ export default function ECOPlatform() {
                 </div>
               </div>
             </div>
+
+            {selected.id === "OMS" && <OmsHowItWorks />}
 
             <div className="mt-5 pt-4 border-t border-white/[0.08] flex justify-end">
               <Link
