@@ -7,6 +7,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/solutions", label: "Solutions" },
+  { href: "/lean-office", label: "Lean in the Office" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
   { href: "/before-you-call", label: "Before You Call" },
