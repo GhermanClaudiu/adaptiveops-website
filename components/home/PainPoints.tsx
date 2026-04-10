@@ -1,7 +1,18 @@
+import React from "react";
+import Link from "next/link";
 import FadeUp from "@/components/shared/FadeUp";
 import AnimatedBars from "@/components/home/AnimatedBars";
 
-const symptoms = [
+type Symptom = {
+  title: string;
+  description: string;
+  color: string;
+  icon: React.ReactNode;
+  link?: string;
+  linkLabel?: string;
+};
+
+const symptoms: Symptom[] = [
   {
     title: "Recurring quality problems",
     description: "Defects and rework keep appearing despite corrective actions.",
@@ -31,6 +42,18 @@ const symptoms = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182" />
       </svg>
     ),
+  },
+  {
+    title: "Indirect teams adding cost upstream",
+    description: "Planning gaps, undocumented procedures and unbalanced workloads in HR, logistics or finance don\u2019t stay in the back office \u2014 they show up as delays, defects and extra cost on the production floor.",
+    color: "#0891B2",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
+      </svg>
+    ),
+    link: "/lean-office",
+    linkLabel: "See how we fix it \u2192",
   },
 ];
 
@@ -144,6 +167,15 @@ export default function PainPoints() {
                       <p className="text-sm text-mid leading-relaxed mt-0.5">
                         {item.description}
                       </p>
+                      {"link" in item && item.link && (
+                        <Link
+                          href={item.link}
+                          className="inline-flex items-center gap-1 text-xs font-semibold mt-2 transition-colors"
+                          style={{ color: item.color }}
+                        >
+                          {item.linkLabel}
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </FadeUp>

@@ -211,12 +211,32 @@ export default function LeanOfficePage() {
           </FadeUp>
           <FadeUp delay={100}>
             <p className="mt-5 text-lg text-white/60 max-w-2xl leading-relaxed">
-              Operations do not stop at the production line. Planning, logistics, HR, finance and
-              customer service all have processes — and all of them generate waste, rework and
-              unpredictable results when left unstructured.
+              Every planning gap, every undocumented procedure, every capacity guess in your
+              indirect teams becomes a delay, a defect, or an extra cost on the production floor.
+              Indirect inefficiency doesn&apos;t stay in the back office — it shows up in your
+              Speed, Quality, and Delivery numbers.
             </p>
           </FadeUp>
           <FadeUp delay={200}>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {[
+                { label: "Speed", desc: "Delays start upstream", color: "#E65100" },
+                { label: "Quality", desc: "Defects have indirect roots", color: "#1565C0" },
+                { label: "Delivery", desc: "Missed dates begin in planning", color: "#2E7D32" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10"
+                  style={{ backgroundColor: `${item.color}25` }}
+                >
+                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: item.color }} />
+                  <span className="text-xs font-bold text-white/80">{item.label}</span>
+                  <span className="text-xs text-white/40">{item.desc}</span>
+                </div>
+              ))}
+            </div>
+          </FadeUp>
+          <FadeUp delay={280}>
             <p className="mt-4 text-sm text-white/40 tracking-wide">
               A 6-module methodology &nbsp;·&nbsp; Applied to any operational area &nbsp;·&nbsp; The same framework that works on the shop floor
             </p>
@@ -253,6 +273,35 @@ export default function LeanOfficePage() {
                 The indirect areas — Planning, HR, Finance, Logistics — are still running on
                 habits and spreadsheets.
               </p>
+            </div>
+          </FadeUp>
+
+          {/* SQD impact strip */}
+          <FadeUp delay={80}>
+            <div className="mb-10 rounded-2xl border border-accent/20 bg-accent/[0.04] px-6 py-5 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+              <p className="text-sm font-semibold text-primary md:max-w-xs leading-snug flex-shrink-0">
+                Unstructured indirect processes don&apos;t stay in the back office — they add cost to your operations through:
+              </p>
+              <div className="flex flex-wrap gap-4 flex-1">
+                {[
+                  { label: "Speed", detail: "Late inputs from planning and logistics delay production start and response time.", color: "#E65100" },
+                  { label: "Quality", detail: "Undocumented procedures in HR and supply chain create variation that ends up as defects.", color: "#1565C0" },
+                  { label: "Delivery", detail: "Capacity planned by gut feeling means missed dates begin long before the shop floor.", color: "#2E7D32" },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-start gap-2.5 min-w-[160px] flex-1">
+                    <span
+                      className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-white text-[10px] font-black"
+                      style={{ backgroundColor: item.color }}
+                    >
+                      {item.label[0]}
+                    </span>
+                    <div>
+                      <p className="text-xs font-bold text-primary" style={{ color: item.color }}>{item.label}</p>
+                      <p className="text-xs text-mid leading-snug">{item.detail}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </FadeUp>
 

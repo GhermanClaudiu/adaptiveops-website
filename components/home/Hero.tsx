@@ -69,12 +69,16 @@ export default function Hero() {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1]">
                 Operational{" "}
                 <span className="text-accent">Excellence</span>
-                <br className="hidden sm:block" /> Built from the Shop Floor
+                <br className="hidden sm:block" /> Built from the Shop Floor.
+                <br />
+                <span className="text-white/60 text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem]">
+                  Applied Across the Entire Organisation.
+                </span>
               </h1>
             </FadeUp>
             <FadeUp delay={150}>
               <p className="mt-6 text-lg md:text-xl text-white/55 leading-relaxed max-w-xl">
-                Manufacturing plants don&apos;t lack knowledge. They lack a system that makes improvement stick. That&apos;s what we build.
+                From the factory floor to planning, logistics, finance and HR — we build the systems that make improvement stick across every operation.
               </p>
             </FadeUp>
 
