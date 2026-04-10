@@ -61,6 +61,11 @@ const modules = [
       "Performance measured against customer requirements",
       "Key inputs identified — the ones with the largest impact on outputs",
     ],
+    without: [
+      "Improvement efforts target the wrong activities — nobody agreed on what matters",
+      "No baseline exists, so nobody knows if things are getting better or worse",
+      "Each manager has a different definition of 'good performance'",
+    ],
     detail:
       "Before optimising anything, you need to know what you are optimising for. This module maps the process at a high level, defines the customer and their requirements, and establishes the baseline metrics that will measure all future improvement.",
   },
@@ -74,6 +79,11 @@ const modules = [
       "Every activity documented — who does what and how",
       "Work performed consistently to deliver predictable outcomes",
       "Integrated Management Operating System (MOS) in place",
+    ],
+    without: [
+      "Performance depends entirely on who is in today — the best person carries the team",
+      "Onboarding new people takes months; knowledge is tribal, not documented",
+      "When someone leaves, their expertise walks out with them",
     ],
     detail:
       "Standardisation is not bureaucracy — it is the foundation of improvement. You cannot improve a process that is not defined. This module creates the standard work that makes performance predictable and independent of any single person.",
@@ -89,6 +99,11 @@ const modules = [
       "Resources matched to demand — no guesswork on capacity",
       "Peaks and troughs managed proactively, not reactively",
     ],
+    without: [
+      "Overtime spikes every peak period because nobody saw it coming",
+      "Capacity decisions are made by gut feeling, not measurement",
+      "Managers react to overload after it happens — instead of planning ahead",
+    ],
     detail:
       "Most indirect teams do not know how much work they actually have. This module quantifies the workload, maps available capacity, and creates the tools to balance the two — so managers plan instead of react.",
   },
@@ -102,6 +117,11 @@ const modules = [
       "Teams structured around the process flow, not the org chart",
       "Workspaces organised so everything needed is accessible",
       "Waste from searching, waiting and unnecessary movement eliminated",
+    ],
+    without: [
+      "People spend hours searching for documents, tools, or the right person to ask",
+      "Ownership is unclear — tasks fall between teams because the structure follows the org chart, not the flow",
+      "The same questions get asked repeatedly because nothing is where it should be",
     ],
     detail:
       "5S is not just for the shop floor. An office or admin environment has the same inefficiencies — time spent searching for information, unclear ownership, poor visual organisation. This module applies the same discipline to indirect workspaces.",
@@ -117,6 +137,11 @@ const modules = [
       "Visual controls in place to catch problems before they escalate",
       "Trends identified early and acted on, not discovered in retrospect",
     ],
+    without: [
+      "Problems are discovered in the monthly review — already a month old by the time they are discussed",
+      "Managers present slides instead of managing live operations",
+      "Teams only know something went wrong after the customer complains",
+    ],
     detail:
       "If performance is only visible in a monthly PowerPoint, problems are already a month old when they are discussed. This module makes the operational heartbeat visible daily — so teams manage the present, not the past.",
   },
@@ -130,6 +155,11 @@ const modules = [
       "Teams drive improvement — not just comply with standards",
       "Root cause identified and addressed, not just symptoms",
       "First Pass Yield used as a key measure to expose rework",
+    ],
+    without: [
+      "The same problems appear in every monthly meeting — discussed, never resolved",
+      "Root causes are never addressed because nobody has a structured way to investigate them",
+      "Improvement depends on consultants or the one person who 'knows how to fix things'",
     ],
     detail:
       "Makigami is the process mapping tool designed specifically for indirect flows — it makes waste visible in administrative processes the way Value Stream Mapping does for production. Combined with KATA coaching, it builds teams that solve their own problems.",
@@ -148,7 +178,9 @@ const areas = [
 // ── Page ─────────────────────────────────────────────────────────────────────
 
 export default function LeanOfficePage() {
-  const [activeModule, setActiveModule] = useState<string | null>(null);
+  const [activeModule, setActiveModule] = useState<string>("01");
+
+  const selected = modules.find((m) => m.number === activeModule)!;
 
   return (
     <main>
@@ -253,106 +285,211 @@ export default function LeanOfficePage() {
               </h2>
               <p className="text-mid text-lg max-w-2xl mx-auto">
                 The same structured approach used in production — adapted and validated
-                for indirect operations. Click any module for details.
+                for indirect operations. Select any module to see what it delivers.
               </p>
             </div>
           </FadeUp>
 
-          <div className="space-y-3 max-w-4xl mx-auto">
-            {modules.map((mod, i) => {
-              const isOpen = activeModule === mod.number;
-              return (
-                <FadeUp key={mod.number} delay={i * 60}>
-                  <div
-                    className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-                      isOpen
-                        ? "border-accent/30 shadow-sm"
-                        : "border-gray-200 bg-white hover:border-gray-300"
+          {/* Module selector grid */}
+          <FadeUp delay={80}>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+              {modules.map((mod) => {
+                const isActive = activeModule === mod.number;
+                return (
+                  <button
+                    key={mod.number}
+                    onClick={() => setActiveModule(mod.number)}
+                    className={`relative text-left rounded-2xl p-5 border-2 transition-all duration-200 group ${
+                      isActive
+                        ? "shadow-md"
+                        : "bg-white border-gray-200 hover:border-gray-300 hover:shadow-sm"
                     }`}
-                    style={isOpen ? { borderColor: `${mod.color}40`, backgroundColor: `${mod.color}06` } : {}}
+                    style={
+                      isActive
+                        ? {
+                            backgroundColor: `${mod.color}10`,
+                            borderColor: mod.color,
+                          }
+                        : {}
+                    }
                   >
-                    <button
-                      className="w-full flex items-center gap-4 px-6 py-5 text-left"
-                      onClick={() => setActiveModule(isOpen ? null : mod.number)}
+                    {/* Number */}
+                    <span
+                      className="block text-3xl font-black leading-none mb-2 transition-colors"
+                      style={{ color: isActive ? mod.color : "#cbd5e1" }}
                     >
-                      {/* Number */}
+                      {mod.number}
+                    </span>
+                    {/* Title */}
+                    <p
+                      className="font-bold text-sm leading-snug mb-1"
+                      style={{ color: isActive ? mod.color : undefined }}
+                    >
+                      {isActive ? mod.title : <span className="text-primary">{mod.title}</span>}
+                    </p>
+                    {/* Objective — hidden on mobile */}
+                    <p className="hidden sm:block text-xs text-mid leading-snug">
+                      {mod.objective}
+                    </p>
+                    {/* Active dot */}
+                    {isActive && (
                       <span
-                        className="text-2xl font-black flex-shrink-0 w-10 text-center"
-                        style={{ color: mod.color }}
-                      >
-                        {mod.number}
-                      </span>
-                      {/* Title + objective */}
-                      <div className="flex-1 min-w-0">
-                        <p className="font-bold text-primary text-base">{mod.title}</p>
-                        <p className="text-mid text-sm mt-0.5">{mod.objective}</p>
-                      </div>
-                      {/* Methods preview */}
-                      <div className="hidden md:flex flex-wrap gap-1.5 max-w-xs justify-end">
-                        {mod.methods.slice(0, 2).map((m) => (
-                          <span
-                            key={m}
-                            className="text-[10px] font-semibold px-2 py-0.5 rounded-full border"
-                            style={{ color: mod.color, borderColor: `${mod.color}40`, backgroundColor: `${mod.color}10` }}
-                          >
-                            {m}
-                          </span>
-                        ))}
-                        {mod.methods.length > 2 && (
-                          <span className="text-[10px] text-white/40 px-2 py-0.5">
-                            +{mod.methods.length - 2}
-                          </span>
-                        )}
-                      </div>
-                      {/* Arrow */}
-                      <svg
-                        className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 text-mid ${isOpen ? "rotate-180" : ""}`}
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-
-                    {isOpen && (
-                      <div className="px-6 pb-6 grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-white/50"
-                        style={{ borderColor: `${mod.color}20` }}>
-                        {/* Detail */}
-                        <div className="md:col-span-2 pt-5">
-                          <p className="text-dark text-sm leading-relaxed mb-4">{mod.detail}</p>
-                          <div>
-                            <p className="text-xs font-bold uppercase tracking-widest text-mid mb-2">Expected outcomes</p>
-                            <ul className="space-y-1.5">
-                              {mod.outcomes.map((o) => (
-                                <li key={o} className="flex items-start gap-2 text-sm text-dark">
-                                  <span className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ backgroundColor: mod.color }} />
-                                  {o}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                        {/* Methods */}
-                        <div className="pt-5">
-                          <p className="text-xs font-bold uppercase tracking-widest text-mid mb-3">Methods &amp; tools</p>
-                          <div className="flex flex-wrap gap-2">
-                            {mod.methods.map((m) => (
-                              <span
-                                key={m}
-                                className="text-xs font-semibold px-3 py-1 rounded-full border"
-                                style={{ color: mod.color, borderColor: `${mod.color}40`, backgroundColor: `${mod.color}10` }}
-                              >
-                                {m}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
+                        className="absolute top-4 right-4 w-2 h-2 rounded-full"
+                        style={{ backgroundColor: mod.color }}
+                      />
                     )}
+                  </button>
+                );
+              })}
+            </div>
+          </FadeUp>
+
+          {/* Detail panel */}
+          <FadeUp delay={120}>
+            <div
+              key={selected.number}
+              className="rounded-2xl border-2 overflow-hidden transition-all duration-300"
+              style={{ borderColor: `${selected.color}30`, backgroundColor: `${selected.color}06` }}
+            >
+              {/* Panel header */}
+              <div
+                className="px-6 py-4 flex items-center gap-4 border-b"
+                style={{ borderColor: `${selected.color}20`, backgroundColor: `${selected.color}12` }}
+              >
+                <span
+                  className="text-4xl font-black leading-none flex-shrink-0"
+                  style={{ color: selected.color }}
+                >
+                  {selected.number}
+                </span>
+                <div>
+                  <p className="font-bold text-primary text-lg leading-tight">{selected.title}</p>
+                  <p className="text-mid text-sm mt-0.5">{selected.objective}</p>
+                </div>
+              </div>
+
+              {/* Panel body — 3 columns */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x"
+                style={{ borderColor: `${selected.color}15` }}>
+
+                {/* Col 1: What & How */}
+                <div className="p-6">
+                  <p className="text-xs font-bold uppercase tracking-widest mb-3"
+                    style={{ color: selected.color }}>
+                    What we do
+                  </p>
+                  <p className="text-dark text-sm leading-relaxed mb-5">{selected.detail}</p>
+                  <p className="text-xs font-bold uppercase tracking-widest text-mid mb-2">
+                    Methods &amp; tools
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {selected.methods.map((m) => (
+                      <span
+                        key={m}
+                        className="text-xs font-semibold px-3 py-1 rounded-full border"
+                        style={{
+                          color: selected.color,
+                          borderColor: `${selected.color}40`,
+                          backgroundColor: `${selected.color}10`,
+                        }}
+                      >
+                        {m}
+                      </span>
+                    ))}
                   </div>
-                </FadeUp>
-              );
-            })}
-          </div>
+                </div>
+
+                {/* Col 2: Outcomes */}
+                <div className="p-6">
+                  <p className="text-xs font-bold uppercase tracking-widest mb-3"
+                    style={{ color: selected.color }}>
+                    What changes
+                  </p>
+                  <ul className="space-y-3">
+                    {selected.outcomes.map((o) => (
+                      <li key={o} className="flex items-start gap-2.5 text-sm text-dark">
+                        <span
+                          className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                          style={{ backgroundColor: `${selected.color}20` }}
+                        >
+                          <svg className="w-3 h-3" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 6l3 3 5-5" stroke={selected.color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </span>
+                        {o}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Col 3: Without this module */}
+                <div className="p-6 bg-white/40">
+                  <p className="text-xs font-bold uppercase tracking-widest text-red-400 mb-3">
+                    Without this module
+                  </p>
+                  <ul className="space-y-3">
+                    {selected.without.map((w) => (
+                      <li key={w} className="flex items-start gap-2.5 text-sm text-dark/70">
+                        <span className="w-5 h-5 rounded-full bg-red-50 border border-red-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <svg className="w-3 h-3 text-red-400" viewBox="0 0 12 12" fill="none">
+                            <path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                          </svg>
+                        </span>
+                        {w}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Navigation row */}
+              <div
+                className="px-6 py-3 flex items-center justify-between border-t"
+                style={{ borderColor: `${selected.color}15` }}
+              >
+                <button
+                  onClick={() => {
+                    const idx = modules.findIndex((m) => m.number === selected.number);
+                    if (idx > 0) setActiveModule(modules[idx - 1].number);
+                  }}
+                  disabled={selected.number === "01"}
+                  className="text-xs font-semibold text-mid hover:text-primary disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1 transition-colors"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                  Previous module
+                </button>
+                <div className="flex gap-1.5">
+                  {modules.map((m) => (
+                    <button
+                      key={m.number}
+                      onClick={() => setActiveModule(m.number)}
+                      className="w-1.5 h-1.5 rounded-full transition-all"
+                      style={{
+                        backgroundColor:
+                          m.number === selected.number ? selected.color : "#d1d5db",
+                        transform: m.number === selected.number ? "scale(1.4)" : "scale(1)",
+                      }}
+                    />
+                  ))}
+                </div>
+                <button
+                  onClick={() => {
+                    const idx = modules.findIndex((m) => m.number === selected.number);
+                    if (idx < modules.length - 1) setActiveModule(modules[idx + 1].number);
+                  }}
+                  disabled={selected.number === "06"}
+                  className="text-xs font-semibold text-mid hover:text-primary disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1 transition-colors"
+                >
+                  Next module
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </FadeUp>
         </div>
       </section>
 
