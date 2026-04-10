@@ -111,12 +111,12 @@ export default function AboutPage() {
             <p className="mt-5 text-lg text-white/60 max-w-2xl leading-relaxed">
               20+ years in automotive manufacturing — 8 plants, EUR 3.2M in savings, 51% scrap reduction.
               This is the story of what we learned, and why we built AdaptiveOps to make those results
-              available to other organizations.
+              available across every operation — from the factory floor to the teams that feed it.
             </p>
           </FadeUp>
           <FadeUp delay={200}>
             <p className="mt-6 text-sm text-white/50 tracking-wide">
-              20+ Years &nbsp;&middot;&nbsp; Fortune 500 &nbsp;&middot;&nbsp; Automotive &amp; Manufacturing
+              20+ Years &nbsp;&middot;&nbsp; Fortune 500 &nbsp;&middot;&nbsp; Automotive &amp; Manufacturing &nbsp;&middot;&nbsp; Indirect Operations
             </p>
           </FadeUp>
         </div>
@@ -238,6 +238,7 @@ export default function AboutPage() {
                       "Digital tools collecting dust — no adoption, no ROI",
                       "Improvement projects that fade when the consultant leaves",
                       "Disconnected systems: quality in one app, maintenance in another, people in spreadsheets",
+                      "Indirect teams — planning, logistics, HR — running on habits instead of standards, adding cost before production even starts",
                     ].map((item) => (
                       <div key={item} className="flex items-start gap-2.5 text-sm text-red-700/70">
                         <svg className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -267,6 +268,7 @@ export default function AboutPage() {
                       "Management Layer ensures people can use the tools",
                       "Digital Solutions Layer gives structure to daily operations",
                       "Everything connects: quality, equipment, materials, people",
+                      "The same framework applied to indirect operations — planning, logistics, HR, finance — not just the shop floor",
                     ].map((item) => (
                       <div key={item} className="flex items-start gap-2.5 text-sm text-primary/70">
                         <svg className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -480,6 +482,12 @@ export default function AboutPage() {
                 className="inline-flex items-center gap-1.5 text-white/60 hover:text-white font-medium transition-colors"
               >
                 Explore the ECO platform &rarr;
+              </Link>
+              <Link
+                href="/lean-office"
+                className="inline-flex items-center gap-1.5 text-white/60 hover:text-white font-medium transition-colors"
+              >
+                Lean in the Office &rarr;
               </Link>
             </div>
           </div>
