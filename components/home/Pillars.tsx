@@ -114,6 +114,31 @@ export default function Pillars() {
             </FadeUp>
           ))}
         </div>
+
+        {/* Extension banner — indirect operations */}
+        <FadeUp delay={400}>
+          <div className="mt-8 rounded-2xl border border-accent/15 bg-accent/[0.03] px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
+                <svg className="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
+              </div>
+              <p className="text-xs font-bold uppercase tracking-widest text-accent">Beyond the shop floor</p>
+            </div>
+            <p className="text-sm text-mid leading-relaxed flex-1">
+              The same three levers — visibility, capability, implementation — apply to every indirect operation:
+              planning, logistics, HR, finance. Unstructured indirect teams add cost through Speed, Quality and Delivery
+              long before the problem reaches the factory floor.
+            </p>
+            <Link
+              href="/lean-office"
+              className="flex-shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-accent border border-accent/30 hover:bg-accent hover:text-white px-4 py-2 rounded-full transition-colors whitespace-nowrap"
+            >
+              Lean in the Office &rarr;
+            </Link>
+          </div>
+        </FadeUp>
       </div>
     </section>
   );
