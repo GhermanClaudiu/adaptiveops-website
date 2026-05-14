@@ -154,7 +154,7 @@ export default async function BlogPage() {
                         alt={featuredPost.image.alt}
                         width={800}
                         height={450}
-                        className="w-full h-64 lg:h-full object-cover"
+                        className="w-full h-64 lg:h-full object-cover object-top"
                         priority
                       />
                     ) : (
@@ -225,7 +225,7 @@ export default async function BlogPage() {
                           alt={post.image.alt}
                           width={800}
                           height={450}
-                          className="w-full aspect-video object-cover"
+                          className="w-full aspect-video object-cover object-top"
                         />
                       ) : (
                         <BlogImagePlaceholder
