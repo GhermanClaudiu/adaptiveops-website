@@ -278,10 +278,10 @@ export default function ServicesPage() {
                   Each lever amplifies the others — which is why we never sell them in isolation.
                 </p>
                 <Link
-                  href="/solutions"
+                  href="/solutions#systems"
                   className="inline-flex items-center gap-1.5 text-accent font-semibold text-sm hover:underline"
                 >
-                  Learn more about ECO &rarr;
+                  Explore the 6 modules &rarr;
                 </Link>
               </div>
             </FadeUp>
@@ -634,10 +634,10 @@ export default function ServicesPage() {
                 Book Your Free 30-Min Diagnostic Call
               </Link>
               <Link
-                href="/solutions"
+                href="/solutions#in-action"
                 className="inline-flex items-center gap-1.5 text-white/70 hover:text-white font-medium transition-colors"
               >
-                Explore digital solutions &rarr;
+                See ECO in action &rarr;
               </Link>
             </div>
             <ul className="mt-8 flex flex-col sm:flex-row sm:justify-center gap-3 sm:gap-8 text-sm text-white/85">

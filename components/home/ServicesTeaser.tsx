@@ -29,7 +29,7 @@ const paths = [
   {
     title: "ECO Platform",
     teaser: "6 management systems. One unified core. Runs entirely on your servers — zero cloud dependency. Air-gap compatible.",
-    href: "/solutions",
+    href: "/solutions#in-action",
     cta: "Explore platform",
     accent: "#8B5CF6",
     icon: (

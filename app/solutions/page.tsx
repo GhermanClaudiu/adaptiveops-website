@@ -3,6 +3,7 @@ import Link from "next/link";
 import ECOPlatform from "@/components/solutions/ECOPlatform";
 import ECOInAction from "@/components/solutions/ECOInAction";
 import FoundingPartners from "@/components/solutions/FoundingPartners";
+import LogoWall from "@/components/home/LogoWall";
 import FadeUp from "@/components/shared/FadeUp";
 import JsonLd from "@/components/shared/JsonLd";
 
@@ -74,42 +75,94 @@ export default function SolutionsPage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
+            <div className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 bg-secondary/15 border border-secondary/30 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
+              <span className="text-xs font-bold tracking-widest uppercase text-secondary">
+                EMS Live in Production &middot; 1 Client &middot; 5 Modules in Development
+              </span>
+            </div>
+          </FadeUp>
+          <FadeUp delay={50}>
             <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-              One Platform. Six Systems.
-              <br />
-              <span className="text-accent">Full Operational Control.</span>
+              See Every Quality Deviation, Equipment Alert and KPI Gap{" "}
+              <span className="text-accent">on One Screen.</span>
             </h1>
           </FadeUp>
-          <FadeUp delay={100}>
-            <p className="mt-5 text-lg text-white/60 max-w-2xl leading-relaxed">
-              Most factories run operations on spreadsheets, whiteboards, and tribal knowledge.
-              ECO replaces the chaos with a single digital system — so results are visible,
-              traceable, and don&apos;t depend on one person&apos;s memory.
+          <FadeUp delay={150}>
+            <p className="mt-5 text-lg text-white/65 max-w-2xl leading-relaxed">
+              ECO Platform &mdash; six management systems installed on your servers. The digital layer behind the 30% scrap cut and 51% efficiency lift proven across 8 Tier-1 plants. No cloud dependency. Air-gap compatible.
             </p>
           </FadeUp>
-          <FadeUp delay={200}>
-            <p className="mt-6 text-sm text-white/50 tracking-wide">
-              The digital layer of the AdaptiveOps system &nbsp;&middot;&nbsp; Always combined with training &amp; coaching
+          <FadeUp delay={250}>
+            <p className="mt-5 text-sm text-white/50 tracking-wide">
+              Always paired with training &amp; coaching &mdash; software alone never moves the line.
             </p>
           </FadeUp>
           <FadeUp delay={300}>
-            <div className="mt-8 flex gap-4">
+            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <Link
+                href="/contact"
+                className="inline-block bg-accent text-white font-semibold px-8 py-4 rounded-full text-base whitespace-nowrap transition-shadow hover:shadow-[0_0_24px_rgba(47,128,237,0.5)] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              >
+                Book Your Free 30-Min Diagnostic Call
+              </Link>
+              <a
+                href="#in-action"
+                className="inline-flex items-center gap-1.5 text-white/50 hover:text-white font-medium transition-colors text-sm"
+              >
+                See ECO in action &darr;
+              </a>
+            </div>
+          </FadeUp>
+          <FadeUp delay={400}>
+            <ul className="mt-6 space-y-2 text-sm text-white/70">
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>30 minutes, free, no commitment</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Talk to the founder (20 yrs Tier-1), not a sales rep</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Concrete diagnosis you keep &mdash; even if you don&apos;t hire us</span>
+              </li>
+            </ul>
+          </FadeUp>
+          <FadeUp delay={500}>
+            <div className="mt-8 flex gap-3">
               <a
                 href="#systems"
-                className="inline-flex items-center gap-2 text-white/70 hover:text-white border border-white/20 hover:border-white/40 px-5 py-2.5 rounded-full text-sm font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors"
               >
-                Explore Systems <span>&darr;</span>
+                Browse 6 modules &darr;
               </a>
+              <span className="text-white/20">|</span>
               <a
                 href="#why"
-                className="inline-flex items-center gap-2 text-white/70 hover:text-white border border-white/20 hover:border-white/40 px-5 py-2.5 rounded-full text-sm font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors"
               >
-                Why one platform? <span>&darr;</span>
+                Why one platform &darr;
               </a>
             </div>
           </FadeUp>
         </div>
       </section>
+
+      {/* Trust strip — reused from home for consistency */}
+      <LogoWall />
+
+      {/* See ECO Platform in Action — moved up: real dashboard screenshots are the strongest visual proof on this page */}
+      <div id="in-action">
+        <ECOInAction />
+      </div>
 
       {/* Why One Platform? */}
       <section id="why" className="py-20">
@@ -117,14 +170,13 @@ export default function SolutionsPage() {
           <FadeUp>
             <div className="text-center mb-12">
               <span className="inline-block text-xs font-bold tracking-widest uppercase text-accent mb-4">
-                The problem we solve
+                Why one platform
               </span>
               <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">
-                Why one platform?
+                Four outcomes &mdash; not four features.
               </h2>
               <p className="text-mid text-lg max-w-2xl mx-auto">
-                Most factories run operations on disconnected spreadsheets, legacy tools, and tribal knowledge.
-                ECO replaces the chaos with structure.
+                Manufacturing platforms usually promise &ldquo;single source of truth.&rdquo; That&apos;s a SaaS slogan. Here&apos;s what ECO actually does on the floor:
               </p>
             </div>
           </FadeUp>
@@ -132,42 +184,42 @@ export default function SolutionsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                title: "Eliminate Data Silos",
+                title: "Quality issue \u2192 equipment alert in 30 seconds",
                 description:
-                  "Systems that share data, context, and workflows. Quality issues automatically trigger equipment reviews.",
+                  "When QMS flags a defect, EMS automatically reviews the equipment that produced it. No more 3-hour root cause hunts across siloed tools.",
                 icon: (
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 ),
               },
               {
-                title: "Single Source of Truth",
+                title: "Audit-ready every shift",
                 description:
-                  "One place for all operational data. Not 12 spreadsheets, 3 shared drives, and someone\u2019s notebook.",
+                  "Every action, deviation and decision logged automatically. No more pre-audit Excel marathons. ISO traceability without the binder.",
                 icon: (
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
                   </svg>
                 ),
               },
               {
-                title: "Cross-System Analytics",
+                title: "Your data stays on your servers",
                 description:
-                  "See connections between quality, equipment, and people performance in real-time dashboards.",
+                  "On-premise installation. Air-gap compatible. Connects to Palantir, PowerBI, SAP via API or SQL export. No cloud vendor between you and your data.",
                 icon: (
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z" />
                   </svg>
                 ),
               },
               {
-                title: "Grow at Your Pace",
+                title: "Start with one module. Add others when ready.",
                 description:
-                  "Start with one system \u2014 EMS or QMS. Add others when ready. No big-bang implementation required.",
+                  "Deploy EMS in week 1. Validate the value. Then add QMS, MMS, PMS, OMS, CIS when ready. No big-bang implementation. No vendor lock-in.",
                 icon: (
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
                   </svg>
                 ),
               },
@@ -314,9 +366,6 @@ export default function SolutionsPage() {
         <ECOPlatform />
       </div>
 
-      {/* See ECO Platform in Action */}
-      <ECOInAction />
-
       {/* Founding Partners Programme */}
       <FoundingPartners />
 
@@ -432,12 +481,12 @@ export default function SolutionsPage() {
       {/* Enhanced CTA */}
       <section className="bg-accent py-16">
         <FadeUp>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Ready to see ECO in action?
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+              Ready to see ECO running on your servers?
             </h2>
-            <p className="mt-4 text-lg text-white/80 max-w-xl mx-auto">
-              Book a demo and see how a unified platform transforms your operational performance.
+            <p className="mt-4 text-lg text-white/85 max-w-xl mx-auto">
+              One 30-minute call. We map your situation honestly and tell you whether ECO is the right fit &mdash; or what is.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
@@ -448,11 +497,31 @@ export default function SolutionsPage() {
               </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-1.5 text-white/60 hover:text-white font-medium transition-colors"
+                className="inline-flex items-center gap-1.5 text-white/70 hover:text-white font-medium transition-colors"
               >
                 Explore our services &rarr;
               </Link>
             </div>
+            <ul className="mt-8 flex flex-col sm:flex-row sm:justify-center gap-3 sm:gap-8 text-sm text-white/85">
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>30 minutes, free, no commitment</span>
+              </li>
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Talk to the founder, not a sales rep</span>
+              </li>
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Concrete diagnosis you keep</span>
+              </li>
+            </ul>
           </div>
         </FadeUp>
       </section>
