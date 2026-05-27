@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import FadeUp from "@/components/shared/FadeUp";
 import JsonLd from "@/components/shared/JsonLd";
+import LogoWall from "@/components/home/LogoWall";
 
 export const metadata: Metadata = {
   title: "About",
@@ -53,6 +54,12 @@ const milestones = [
     year: "2024",
     title: "AdaptiveOps & the ECO Framework",
     description: "Founded AdaptiveOps to share what 20+ years taught us. Built the ECO platform — Execution & Control of Operations — so other organizations don\u2019t have to learn these lessons the hard way.",
+    accent: true,
+  },
+  {
+    year: "2026",
+    title: "EMS Live in Production",
+    description: "Equipment Management System running at the first client. Five additional modules in active development. Founding Partner programme open to selected organisations.",
     accent: true,
   },
 ];
@@ -109,18 +116,57 @@ export default function AboutPage() {
           </FadeUp>
           <FadeUp delay={100}>
             <p className="mt-5 text-lg text-white/60 max-w-2xl leading-relaxed">
-              20+ years in automotive manufacturing — 8 plants, EUR 3.2M in savings, 51% scrap reduction.
-              This is the story of what we learned, and why we built AdaptiveOps to make those results
-              available across every operation — from the factory floor to the teams that feed it.
+              20+ years in automotive manufacturing across Valeo, Leoni and Lear Corporation (Fortune 500) &mdash; 8 plants, &euro;3.2M peak annual savings, 51% efficiency lift, 30% scrap reduction. This is the story of what we learned and why we built AdaptiveOps to make those results available across every operation &mdash; from the factory floor to the teams that feed it.
             </p>
           </FadeUp>
           <FadeUp delay={200}>
             <p className="mt-6 text-sm text-white/50 tracking-wide">
-              20+ Years &nbsp;&middot;&nbsp; Fortune 500 &nbsp;&middot;&nbsp; Automotive &amp; Manufacturing &nbsp;&middot;&nbsp; Indirect Operations
+              Valeo &middot; Leoni &middot; Lear Corporation (Fortune 500) &nbsp;&middot;&nbsp; 8 Tier-1 &amp; Tier-2 plants &nbsp;&middot;&nbsp; Romania &amp; Western Europe &nbsp;&middot;&nbsp; 2010&ndash;2024
             </p>
+          </FadeUp>
+          <FadeUp delay={300}>
+            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <Link
+                href="/contact"
+                className="inline-block bg-accent text-white font-semibold px-8 py-4 rounded-full text-base whitespace-nowrap transition-shadow hover:shadow-[0_0_24px_rgba(47,128,237,0.5)] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              >
+                Book Your Free 30-Min Diagnostic Call
+              </Link>
+              <Link
+                href="/before-you-call"
+                className="inline-flex items-center gap-1.5 text-white/50 hover:text-white font-medium transition-colors text-sm"
+              >
+                Read before you call &rarr;
+              </Link>
+            </div>
+          </FadeUp>
+          <FadeUp delay={400}>
+            <ul className="mt-6 space-y-2 text-sm text-white/70">
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>30 minutes, free, no commitment</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Talk to the founder (20 yrs Tier-1), not a sales rep</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Concrete diagnosis you keep &mdash; even if you don&apos;t hire us</span>
+              </li>
+            </ul>
           </FadeUp>
         </div>
       </section>
+
+      {/* Trust strip — reused from home for consistency */}
+      <LogoWall />
 
       {/* Quote — prominent */}
       <section className="bg-white py-16 border-b border-gray-100">
@@ -165,11 +211,7 @@ export default function AboutPage() {
                   Romania and Europe — at Lear Corporation, Leoni, and Valeo.
                 </p>
                 <p>
-                  In that time, I worked in 8 manufacturing plants. I&apos;ve seen what works and what
-                  doesn&apos;t. I&apos;ve seen EUR 3.2M in savings generated from structured systems. I&apos;ve seen
-                  51% scrap reductions from disciplined problem-solving. And I&apos;ve seen
-                  well-intentioned improvement programs collapse because the coaching capability
-                  wasn&apos;t built alongside the tools.
+                  In that time, I worked in 8 manufacturing plants. I&apos;ve seen what works and what doesn&apos;t. I&apos;ve seen &euro;3.2M in peak annual savings generated from structured systems. I&apos;ve seen 51% efficiency lifts and 30% scrap reductions from disciplined problem-solving. And I&apos;ve seen well-intentioned improvement programs collapse because the coaching capability wasn&apos;t built alongside the tools.
                 </p>
                 <div className="border-l-4 border-accent pl-4 py-1 my-2">
                   <p className="text-primary font-semibold text-lg leading-snug">
@@ -462,13 +504,12 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="bg-accent py-16">
         <FadeUp>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
               Let&apos;s build something that works.
             </h2>
-            <p className="mt-4 text-lg text-white/80 max-w-xl mx-auto">
-              Whether you need training, coaching, or a complete digital operations system —
-              it all starts with a conversation.
+            <p className="mt-4 text-lg text-white/85 max-w-xl mx-auto">
+              One 30-minute call. We map your situation honestly and design the right combination &mdash; training, coaching, ECO Platform, or all three working together.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
@@ -478,18 +519,32 @@ export default function AboutPage() {
                 Book Your Free 30-Min Diagnostic Call
               </Link>
               <Link
-                href="/solutions"
-                className="inline-flex items-center gap-1.5 text-white/60 hover:text-white font-medium transition-colors"
+                href="/services"
+                className="inline-flex items-center gap-1.5 text-white/70 hover:text-white font-medium transition-colors"
               >
-                Explore the ECO platform &rarr;
-              </Link>
-              <Link
-                href="/lean-office"
-                className="inline-flex items-center gap-1.5 text-white/60 hover:text-white font-medium transition-colors"
-              >
-                Lean in the Office &rarr;
+                Explore our services &rarr;
               </Link>
             </div>
+            <ul className="mt-8 flex flex-col sm:flex-row sm:justify-center gap-3 sm:gap-8 text-sm text-white/85">
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>30 minutes, free, no commitment</span>
+              </li>
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Talk to the founder, not a sales rep</span>
+              </li>
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Concrete diagnosis you keep</span>
+              </li>
+            </ul>
           </div>
         </FadeUp>
       </section>
