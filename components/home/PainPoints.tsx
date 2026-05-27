@@ -139,14 +139,10 @@ export default function PainPoints() {
           <div>
             <FadeUp>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary leading-tight">
-                Is inefficiency, rework and poor visibility still costing your
-                operation every day?
+                Your KPIs say one thing.<br />Your shop floor tells another.
               </h2>
               <p className="mt-5 text-base md:text-lg text-mid leading-relaxed">
-                Industrial organizations invest in people and processes — yet
-                results are inconsistent, problems repeat, and improvement
-                initiatives fade. The issue is rarely the tools. It&apos;s the
-                system.
+                Every symptom below compounds while you wait. Across 8 Tier-1 and Tier-2 plants we&apos;ve turned around, the same four patterns drove the documented &euro;3.2M peak annual savings opportunity &mdash; and most plants underestimate the total cost by 3&ndash;5&times;.
               </p>
             </FadeUp>
 

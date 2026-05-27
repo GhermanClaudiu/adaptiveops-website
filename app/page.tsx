@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
 import Hero from "@/components/home/Hero";
-import PainPoints from "@/components/home/PainPoints";
-import ECOPreview from "@/components/home/ECOPreview";
-import Pillars from "@/components/home/Pillars";
-import ImpactStats from "@/components/home/ImpactStats";
-// import SocialProof from "@/components/home/SocialProof"; // TODO: re-enable when client logos are available
+import LogoWall from "@/components/home/LogoWall";
 import TransparencyStrip from "@/components/home/TransparencyStrip";
 import Testimonial from "@/components/home/Testimonial";
-import Benefits from "@/components/home/Benefits";
-import FounderBadge from "@/components/home/FounderBadge";
-import NewsletterSignup from "@/components/shared/NewsletterSignup";
-import LinkedInBanner from "@/components/shared/LinkedInBanner";
+import ServicesTeaser from "@/components/home/ServicesTeaser";
+import ImpactStats from "@/components/home/ImpactStats";
 import UrgencyCTA from "@/components/home/UrgencyCTA";
 
 export const metadata: Metadata = {
@@ -37,21 +31,11 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <PainPoints />
-      <ECOPreview />
-      <Pillars />
-      <ImpactStats />
-      {/* <SocialProof /> */}{/* TODO: re-enable when client logos are available */}
+      <LogoWall />
       <TransparencyStrip />
       <Testimonial />
-      <NewsletterSignup variant="dark" />
-      <Benefits />
-      <FounderBadge />
-      <section className="py-12 bg-light">
-        <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <LinkedInBanner />
-        </div>
-      </section>
+      <ServicesTeaser />
+      <ImpactStats />
       <UrgencyCTA />
     </main>
   );

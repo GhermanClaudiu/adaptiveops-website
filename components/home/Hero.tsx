@@ -1,40 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import FadeUp from "@/components/shared/FadeUp";
 
-function useHeroCountUp(end: number, decimals: number, duration = 1500) {
-  const [value, setValue] = useState(0);
-  const animated = useRef(false);
-
-  useEffect(() => {
-    if (animated.current) return;
-    animated.current = true;
-
-    // Delay start to sync with FadeUp (300ms delay on dashboard)
-    const delay = setTimeout(() => {
-      const start = performance.now();
-      const tick = (now: number) => {
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        setValue(parseFloat((eased * end).toFixed(decimals)));
-        if (progress < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    }, 400);
-
-    return () => clearTimeout(delay);
-  }, [end, decimals, duration]);
-
-  return value;
-}
+const credibilityMarkers = [
+  { value: "20+", label: "Years on the\nshop floor" },
+  { value: "8", label: "Tier-1 & Tier-2\nplants delivered" },
+  { value: "€3.2M", label: "Peak annual\nsavings" },
+  { value: "3", label: "Tier-1 OEMs\n(Valeo · Leoni · Lear)" },
+];
 
 export default function Hero() {
-  const oee = useHeroCountUp(87.2, 1);
-  const quality = useHeroCountUp(99.1, 1);
-  const mtbf = useHeroCountUp(142, 0);
-
   return (
     <section
       className="relative overflow-hidden animate-hero-gradient bg-[length:200%_200%]"
@@ -62,23 +39,22 @@ export default function Hero() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 lg:py-40">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
           {/* Left: Text */}
           <div>
             <FadeUp>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1]">
-                Operational{" "}
-                <span className="text-accent">Excellence</span>
-                <br className="hidden sm:block" /> Built from the Shop Floor.
+                Cut Scrap <span className="text-accent">30%</span>.{" "}
+                Lift Efficiency <span className="text-accent">51%</span>.
                 <br />
                 <span className="text-white/60 text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem]">
-                  Applied Across the Entire Organisation.
+                  Proven across 8 Tier-1 plants &mdash; in 6 months, not 18.
                 </span>
               </h1>
             </FadeUp>
             <FadeUp delay={150}>
               <p className="mt-6 text-lg md:text-xl text-white/55 leading-relaxed max-w-xl">
-                From the factory floor to planning, logistics, finance and HR — we build the systems that make improvement stick across every operation.
+                The operational system behind &euro;3.2M in peak annual savings &mdash; installed on your servers, owned by your team. No consultants you&apos;ll never see again. No disruption to daily production.
               </p>
             </FadeUp>
 
@@ -99,115 +75,101 @@ export default function Hero() {
               </div>
             </FadeUp>
 
-            <FadeUp delay={450}>
-              <p className="mt-12 text-sm text-white/60 tracking-wide">
-                Built from 20 years of real factory work — not theory.
-              </p>
+            <FadeUp delay={400}>
+              <ul className="mt-6 space-y-2 text-sm text-white/70">
+                <li className="flex items-start gap-2.5">
+                  <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  <span>30 minutes, free, no commitment</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  <span>Talk to the founder (20 yrs Tier-1), not a sales rep</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  <span>Concrete diagnosis you keep &mdash; even if you don&apos;t hire us</span>
+                </li>
+              </ul>
             </FadeUp>
           </div>
 
-          {/* Right: Dashboard mockup */}
+          {/* Right: Founder card (replaces dashboard mockup per Hormozi pattern — founder = strongest trust anchor for consulting) */}
           <FadeUp delay={300}>
             <div className="relative">
-              {/* Main dashboard card */}
-              <div className="bg-white/[0.07] backdrop-blur-sm border border-white/10 rounded-2xl p-6 shadow-2xl">
-                {/* Header bar */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-400/60" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-400/60" />
-                    <div className="w-3 h-3 rounded-full bg-green-400/60" />
-                  </div>
-                  <span className="text-[10px] font-semibold tracking-widest uppercase text-white/30">ECO Platform</span>
+              <div className="bg-white/[0.07] backdrop-blur-sm border border-white/10 rounded-2xl p-7 lg:p-8 shadow-2xl">
+                {/* Header — wraps on narrow screens */}
+                <div className="flex items-center justify-between flex-wrap gap-x-3 gap-y-2 mb-6">
+                  <span className="text-[10px] font-bold tracking-widest uppercase text-accent">
+                    Who you&apos;ll be working with
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-green-400 whitespace-nowrap">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                    Q3 2026 &middot; 2 spots
+                  </span>
                 </div>
 
-                {/* KPI Row — animated count-up */}
-                <div className="grid grid-cols-3 gap-3 mb-5">
-                  <div className="bg-white/[0.05] rounded-xl p-3 border border-white/[0.06]">
-                    <p className="text-[10px] text-white/40 uppercase tracking-wider mb-1">OEE</p>
-                    <p className="text-2xl font-bold text-white">{oee.toFixed(1)}<span className="text-sm text-white/40">%</span></p>
-                    <div className="mt-2 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                      <div className="h-full bg-accent rounded-full transition-all duration-300" style={{ width: `${(oee / 100) * 100}%` }} />
-                    </div>
-                  </div>
-                  <div className="bg-white/[0.05] rounded-xl p-3 border border-white/[0.06]">
-                    <p className="text-[10px] text-white/40 uppercase tracking-wider mb-1">Quality</p>
-                    <p className="text-2xl font-bold text-white">{quality.toFixed(1)}<span className="text-sm text-white/40">%</span></p>
-                    <div className="mt-2 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                      <div className="h-full bg-secondary rounded-full transition-all duration-300" style={{ width: `${quality}%` }} />
-                    </div>
-                  </div>
-                  <div className="bg-white/[0.05] rounded-xl p-3 border border-white/[0.06]">
-                    <p className="text-[10px] text-white/40 uppercase tracking-wider mb-1">MTBF</p>
-                    <p className="text-2xl font-bold text-white">{mtbf}<span className="text-sm text-white/40">h</span></p>
-                    <div className="mt-2 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                      <div className="h-full bg-[#E65100] rounded-full transition-all duration-300" style={{ width: `${(mtbf / 200) * 100}%` }} />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Chart area */}
-                <div className="bg-white/[0.03] rounded-xl p-4 border border-white/[0.06] mb-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] text-white/40 uppercase tracking-wider">Production Output — Weekly</span>
-                    <span className="text-[10px] text-accent font-semibold">+12.4%</span>
-                  </div>
-                  {/* Simple bar chart */}
-                  <div className="flex items-end gap-1.5 h-16">
-                    {[55, 62, 48, 71, 65, 78, 85].map((h, i) => (
-                      <div key={i} className="flex-1 rounded-t" style={{
-                        height: `${h}%`,
-                        background: i === 6 ? '#2F80ED' : 'rgba(47,128,237,0.25)',
-                      }} />
-                    ))}
-                  </div>
-                  <div className="flex justify-between mt-1.5">
-                    {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d) => (
-                      <span key={d} className="text-[8px] text-white/20 flex-1 text-center">{d}</span>
-                    ))}
+                {/* Photo + name */}
+                <div className="flex items-center gap-4 mb-6">
+                  <Image
+                    src="/ClaudiuPoza.png"
+                    alt="Claudiu Gherman — Founder & Principal Consultant"
+                    width={88}
+                    height={88}
+                    className="rounded-full border-2 border-accent/40 flex-shrink-0"
+                    priority
+                  />
+                  <div>
+                    <p className="text-white font-bold text-lg leading-tight">
+                      Claudiu Gherman
+                    </p>
+                    <p className="text-xs text-white/50 mt-0.5">
+                      Founder &amp; Principal Consultant
+                    </p>
+                    <Link
+                      href="/about"
+                      className="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-accent hover:text-white transition-colors"
+                    >
+                      Read full story &rarr;
+                    </Link>
                   </div>
                 </div>
 
-                {/* Bottom modules row */}
-                <div className="flex gap-2">
-                  {[
-                    { label: "EMS", color: "#E65100" },
-                    { label: "QMS", color: "#1565C0" },
-                    { label: "MMS", color: "#6A1B9A" },
-                    { label: "PMS", color: "#2E7D32" },
-                  ].map((m) => (
-                    <div key={m.label} className="flex-1 rounded-lg py-1.5 text-center border border-white/[0.06]"
-                      style={{ backgroundColor: `${m.color}20` }}>
-                      <span className="text-[10px] font-bold text-white/70">{m.label}</span>
+                {/* Pull quote */}
+                <p className="text-sm text-white/75 italic leading-relaxed border-l-2 border-accent/40 pl-4 mb-6">
+                  &ldquo;Every system we build comes from 20+ years on the shop floor &mdash; across Valeo, Leoni and Lear Corporation. We don&apos;t just advise. We implement.&rdquo;
+                </p>
+
+                {/* Credibility markers */}
+                <div className="grid grid-cols-2 gap-x-4 gap-y-4 pt-5 border-t border-white/10">
+                  {credibilityMarkers.map((m) => (
+                    <div key={m.label}>
+                      <p className="text-xl lg:text-2xl font-bold text-white leading-none">
+                        {m.value}
+                      </p>
+                      <p className="mt-1 text-[10px] text-white/50 uppercase tracking-wider leading-tight whitespace-pre-line">
+                        {m.label}
+                      </p>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Floating notification card */}
-              <div className="absolute -bottom-4 left-0 lg:-left-4 bg-white/[0.1] backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3 shadow-xl">
+              {/* Floating LinkedIn verified badge */}
+              <div className="absolute -bottom-4 -right-3 bg-white/[0.1] backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3 shadow-xl">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                    </svg>
-                  </div>
+                  <svg className="w-5 h-5 text-[#0A66C2]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                  </svg>
                   <div>
-                    <p className="text-[11px] font-semibold text-white">PM-2847 completed</p>
-                    <p className="text-[9px] text-white/40">Preventive maintenance — Line 3</p>
+                    <p className="text-[11px] font-semibold text-white leading-tight">Verified on LinkedIn</p>
+                    <p className="text-[9px] text-white/40">Cross-checkable profile</p>
                   </div>
-                </div>
-              </div>
-
-              {/* Floating user avatars */}
-              <div className="absolute -top-3 right-0 lg:-right-3 bg-white/[0.1] backdrop-blur-sm border border-white/10 rounded-xl px-3 py-2 shadow-xl">
-                <div className="flex items-center gap-1.5">
-                  <div className="flex -space-x-2">
-                    <div className="w-6 h-6 rounded-full bg-accent/30 border border-white/20 flex items-center justify-center text-[8px] font-bold text-white">CG</div>
-                    <div className="w-6 h-6 rounded-full bg-secondary/30 border border-white/20 flex items-center justify-center text-[8px] font-bold text-white">ML</div>
-                    <div className="w-6 h-6 rounded-full bg-[#E65100]/30 border border-white/20 flex items-center justify-center text-[8px] font-bold text-white">DP</div>
-                  </div>
-                  <span className="text-[9px] text-white/40">12 online</span>
                 </div>
               </div>
             </div>
