@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import FadeUp from "@/components/shared/FadeUp";
+import LogoWall from "@/components/home/LogoWall";
 
 const sections = [
   {
@@ -48,7 +49,7 @@ const sections = [
       },
       {
         q: "Why choose AdaptiveOps over a large consulting firm or a certified lean trainer?",
-        a: "Three honest differences.\n\nWith large consulting firms, the senior partner sells the project and a junior consultant delivers it — someone who has never managed a supplier escalation at 2am or run a production line under customer audit pressure. The methodology is generic, the cost is 5 to 10 times higher, and the relationship ends when the project ends.\n\nA certified lean trainer typically knows the tools well but has not lived them under real production pressure — ISO audits, line shutdowns, customer complaints that cannot wait until Monday.\n\nAdaptiveOps is built on 20+ years as a Regional Operational Excellence Manager at Lear Corporation, Leoni and Valeo — implementing these systems in real factories, not teaching them from slides. Results are documented: €3.2M in savings, 51% scrap reduction, 30% OEE improvement across 8 plants. You are hiring the practitioner, not the presenter.",
+        a: "Three honest differences.\n\nWith large consulting firms, the senior partner sells the project and a junior consultant delivers it — someone who has never managed a supplier escalation at 2am or run a production line under customer audit pressure. The methodology is generic, the cost is 5 to 10 times higher, and the relationship ends when the project ends.\n\nA certified lean trainer typically knows the tools well but has not lived them under real production pressure — ISO audits, line shutdowns, customer complaints that cannot wait until Monday.\n\nAdaptiveOps is built on 20+ years as a Regional Operational Excellence Manager at Lear Corporation, Leoni and Valeo — implementing these systems in real factories, not teaching them from slides. Results are documented: €3.2M in peak annual savings, 51% efficiency lift, 30% scrap reduction across 8 plants. You are hiring the practitioner, not the presenter.",
       },
     ],
   },
@@ -94,7 +95,7 @@ const sections = [
     faqs: [
       {
         q: "Who is AdaptiveOps and why should I trust you with my plant?",
-        a: "AdaptiveOps was founded by Gherman Claudiu, a Regional Operational Excellence Manager with 20+ years of experience at Lear Corporation, Leoni and Valeo — three of the largest automotive Tier-1 suppliers in Europe.\n\nThe results from that career are documented and real: €3.2M in cost savings, 51% scrap reduction, 30% OEE improvement — generated across 8 factories in active production environments, not in pilot programmes or controlled experiments.\n\nAdaptiveOps was built because the tools that actually worked in those factories — the management systems, the coaching methods, the digital platforms — did not exist as products a smaller plant could buy. We built them.",
+        a: "AdaptiveOps was founded by Gherman Claudiu, a Regional Operational Excellence Manager with 20+ years of experience at Lear Corporation, Leoni and Valeo — three of the largest automotive Tier-1 suppliers in Europe.\n\nThe results from that career are documented and real: €3.2M in peak annual savings, 51% efficiency lift, 30% scrap reduction — generated across 8 factories in active production environments, not in pilot programmes or controlled experiments.\n\nAdaptiveOps was built because the tools that actually worked in those factories — the management systems, the coaching methods, the digital platforms — did not exist as products a smaller plant could buy. We built them.",
       },
       {
         q: "What industries and countries do you work in?",
@@ -147,20 +148,56 @@ export default function BeforeYouCallPage() {
             </p>
           </FadeUp>
           <FadeUp delay={200}>
+            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <Link
+                href="/contact"
+                className="inline-block bg-accent text-white font-semibold px-8 py-4 rounded-full text-base whitespace-nowrap transition-shadow hover:shadow-[0_0_24px_rgba(47,128,237,0.5)] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              >
+                Book Your Free 30-Min Diagnostic Call
+              </Link>
+              <span className="text-sm text-white/50">or scroll down to read first</span>
+            </div>
+          </FadeUp>
+          <FadeUp delay={300}>
+            <ul className="mt-6 space-y-2 text-sm text-white/70">
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>30 minutes, free, no commitment</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Talk to the founder (20 yrs Tier-1), not a sales rep</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Concrete diagnosis you keep &mdash; even if you don&apos;t hire us</span>
+              </li>
+            </ul>
+          </FadeUp>
+          <FadeUp delay={400}>
             <div className="mt-8 flex flex-wrap gap-3">
               {sections.map((s) => (
                 <a
                   key={s.id}
                   href={`#${s.id}`}
-                  className="inline-flex items-center gap-2 text-white/70 hover:text-white border border-white/20 hover:border-white/40 px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                  className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors"
                 >
-                  {s.label}
+                  {s.label} &darr;
                 </a>
               ))}
             </div>
           </FadeUp>
         </div>
       </section>
+
+      {/* Trust strip — reused from home for consistency */}
+      <LogoWall />
 
       {/* Q&A Sections */}
       {sections.map((section, si) => (
@@ -258,34 +295,47 @@ export default function BeforeYouCallPage() {
       {/* CTA */}
       <section className="bg-accent py-16">
         <FadeUp>
-          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-12 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
               Still have a question we did not answer?
             </h2>
-            <p className="mt-4 text-lg text-white/80 max-w-xl mx-auto">
-              Book the free 30-minute diagnostic call. No sales pitch — just an honest conversation
-              about whether AdaptiveOps is the right fit for your plant.
+            <p className="mt-4 text-lg text-white/85 max-w-xl mx-auto">
+              One 30-minute call. We map your situation honestly and tell you whether AdaptiveOps is the right fit &mdash; or what is.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
                 className="inline-block bg-white text-accent font-semibold px-10 py-4 rounded-full hover:bg-gray-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-shadow"
               >
-                Book Free 30-Min Call
+                Book Your Free 30-Min Diagnostic Call
               </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-1.5 text-white/60 hover:text-white font-medium transition-colors"
+                className="inline-flex items-center gap-1.5 text-white/70 hover:text-white font-medium transition-colors"
               >
-                Explore services &rarr;
-              </Link>
-              <Link
-                href="/lean-office"
-                className="inline-flex items-center gap-1.5 text-white/60 hover:text-white font-medium transition-colors"
-              >
-                Lean in the Office &rarr;
+                Explore our services &rarr;
               </Link>
             </div>
+            <ul className="mt-8 flex flex-col sm:flex-row sm:justify-center gap-3 sm:gap-8 text-sm text-white/85">
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>30 minutes, free, no commitment</span>
+              </li>
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Talk to the founder, not a sales rep</span>
+              </li>
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Concrete diagnosis you keep</span>
+              </li>
+            </ul>
           </div>
         </FadeUp>
       </section>
