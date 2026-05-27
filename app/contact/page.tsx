@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ContactForm from "@/components/forms/ContactForm";
 import FadeUp from "@/components/shared/FadeUp";
+import LogoWall from "@/components/home/LogoWall";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -44,25 +45,28 @@ export default function ContactPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <span className="inline-block text-xs font-bold tracking-widest uppercase text-accent mb-4">
-              Let&apos;s talk
+              The 30-minute diagnostic
             </span>
-            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-              Contact Us
+            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight max-w-3xl">
+              Tell us about your plant.{" "}
+              <span className="text-accent">We&apos;ll tell you honestly if we can help.</span>
             </h1>
           </FadeUp>
           <FadeUp delay={100}>
-            <p className="mt-5 text-lg text-white/60 max-w-2xl leading-relaxed">
-              Ready to improve your operational performance? Whether you need training,
-              coaching, or a complete digital operations system — it all starts with a conversation.
+            <p className="mt-5 text-lg text-white/65 max-w-2xl leading-relaxed">
+              Send the form below or book directly. Within 24 hours, Claudiu replies personally with a calendar link. The call maps your situation against the 30% scrap / 51% efficiency benchmarks we&apos;ve documented across 8 Tier-1 plants &mdash; and you leave with a concrete next step, even if it&apos;s not us.
             </p>
           </FadeUp>
           <FadeUp delay={200}>
-            <p className="mt-6 text-sm text-white/30 tracking-wide">
-              24h Response &nbsp;&middot;&nbsp; Free 30-Min Diagnostic Call &nbsp;&middot;&nbsp; Tailored Solutions
+            <p className="mt-6 text-sm text-white/40 tracking-wide">
+              24h response &nbsp;&middot;&nbsp; Answered personally by the founder &nbsp;&middot;&nbsp; No sales pitch
             </p>
           </FadeUp>
         </div>
       </section>
+
+      {/* Trust strip — reused from home for consistency */}
+      <LogoWall />
 
       {/* Content */}
       <section className="py-20">
@@ -84,36 +88,24 @@ export default function ContactPage() {
             {/* Sidebar */}
             <FadeUp delay={150} className="lg:col-span-2">
               <div className="sticky top-24 space-y-5">
-                {/* What to expect */}
+                {/* What to expect — standardised across the site */}
                 <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm">
                   <h3 className="text-xs font-bold tracking-widest uppercase text-accent mb-4">
-                    What to expect
+                    What you get
                   </h3>
                   <ul className="space-y-3">
                     {[
-                      { text: "We respond within 24 hours", icon: "clock" },
-                      { text: "Free 30-minute diagnostic call", icon: "chat" },
-                      { text: "Tailored proposal based on your needs", icon: "doc" },
-                    ].map((item) => (
-                      <li key={item.text} className="flex items-start gap-3">
-                        <div className="w-7 h-7 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          {item.icon === "clock" && (
-                            <svg className="w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                            </svg>
-                          )}
-                          {item.icon === "chat" && (
-                            <svg className="w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
-                            </svg>
-                          )}
-                          {item.icon === "doc" && (
-                            <svg className="w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                            </svg>
-                          )}
+                      "30 minutes, free, no commitment",
+                      "Talk to the founder (20 yrs Tier-1), not a sales rep",
+                      "Concrete diagnosis you keep — even if you don't hire us",
+                    ].map((text) => (
+                      <li key={text} className="flex items-start gap-3">
+                        <div className="w-7 h-7 rounded-lg bg-secondary/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <svg className="w-3.5 h-3.5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                          </svg>
                         </div>
-                        <span className="text-sm text-mid leading-relaxed">{item.text}</span>
+                        <span className="text-sm text-mid leading-relaxed">{text}</span>
                       </li>
                     ))}
                   </ul>
@@ -208,7 +200,7 @@ export default function ContactPage() {
                     on real experience from real factories.
                   </p>
                   <p className="mt-3 text-sm font-semibold text-white">
-                    Gherman Claudiu Cristian
+                    Claudiu Gherman
                   </p>
                   <p className="text-xs text-white/40">Founder &amp; Principal Consultant</p>
                 </div>
@@ -235,6 +227,64 @@ export default function ContactPage() {
                 </div>
               </div>
             </FadeUp>
+          </div>
+        </div>
+      </section>
+
+      {/* What happens next — 4-step journey timeline */}
+      <section className="bg-light py-16 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <div className="text-center mb-12">
+              <span className="inline-block text-xs font-bold tracking-widest uppercase text-accent mb-3">
+                What happens next
+              </span>
+              <h2 className="text-2xl md:text-3xl font-bold text-primary">
+                Four steps. No mystery. No sales funnel.
+              </h2>
+            </div>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5 relative">
+            {[
+              {
+                step: "01",
+                when: "Today",
+                title: "You submit the form",
+                detail: "Or call directly. Whichever you prefer — both reach Claudiu personally.",
+              },
+              {
+                step: "02",
+                when: "Within 24h",
+                title: "Claudiu replies personally",
+                detail: "Not an auto-responder. A real reply with a calendar link to book the call.",
+              },
+              {
+                step: "03",
+                when: "On the call (30 min)",
+                title: "We map your situation",
+                detail: "Current state, biggest operational pain, what you've already tried. No pitch.",
+              },
+              {
+                step: "04",
+                when: "After the call",
+                title: "You get a concrete next step",
+                detail: "Written summary with our honest recommendation — even if it's to work with someone else.",
+              },
+            ].map((s, i) => (
+              <FadeUp key={s.step} delay={i * 80}>
+                <div className="bg-white border border-gray-100 rounded-xl p-5 h-full flex flex-col relative">
+                  <div className="flex items-baseline justify-between mb-3">
+                    <span className="text-2xl font-black text-accent leading-none">{s.step}</span>
+                    <span className="text-[10px] font-bold tracking-wider uppercase text-accent/70">
+                      {s.when}
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-bold text-primary mb-2 leading-snug">{s.title}</h3>
+                  <p className="text-xs text-mid leading-relaxed">{s.detail}</p>
+                </div>
+              </FadeUp>
+            ))}
           </div>
         </div>
       </section>
