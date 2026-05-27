@@ -120,7 +120,7 @@ export default function AboutPage() {
             </p>
           </FadeUp>
           <FadeUp delay={200}>
-            <p className="mt-6 text-sm text-white/50 tracking-wide">
+            <p className="mt-6 text-sm text-white/70 tracking-wide">
               Valeo &middot; Leoni &middot; Lear Corporation (Fortune 500) &nbsp;&middot;&nbsp; 8 Tier-1 &amp; Tier-2 plants &nbsp;&middot;&nbsp; Romania &amp; Western Europe &nbsp;&middot;&nbsp; 2010&ndash;2024
             </p>
           </FadeUp>
@@ -134,7 +134,7 @@ export default function AboutPage() {
               </Link>
               <Link
                 href="/before-you-call"
-                className="inline-flex items-center gap-1.5 text-white/50 hover:text-white font-medium transition-colors text-sm"
+                className="inline-flex items-center gap-1.5 text-white/70 hover:text-white font-medium transition-colors text-sm"
               >
                 Read before you call &rarr;
               </Link>

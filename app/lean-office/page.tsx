@@ -229,13 +229,13 @@ export default function LeanOfficePage() {
                 >
                   <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: item.color }} />
                   <span className="text-xs font-bold text-white/80">{item.label}</span>
-                  <span className="text-xs text-white/40">{item.desc}</span>
+                  <span className="text-xs text-white/65">{item.desc}</span>
                 </div>
               ))}
             </div>
           </FadeUp>
           <FadeUp delay={280}>
-            <p className="mt-4 text-sm text-white/40 tracking-wide">
+            <p className="mt-4 text-sm text-white/65 tracking-wide">
               A 6-module methodology &nbsp;&middot;&nbsp; Applied to any operational area &nbsp;&middot;&nbsp; Built across 8 Tier-1 plants
             </p>
           </FadeUp>
@@ -249,7 +249,7 @@ export default function LeanOfficePage() {
               </Link>
               <Link
                 href="/before-you-call"
-                className="inline-flex items-center gap-1.5 text-white/50 hover:text-white font-medium transition-colors text-sm"
+                className="inline-flex items-center gap-1.5 text-white/70 hover:text-white font-medium transition-colors text-sm"
               >
                 Read before you call &rarr;
               </Link>
@@ -279,15 +279,15 @@ export default function LeanOfficePage() {
           </FadeUp>
           <FadeUp delay={500}>
             <div className="mt-8 flex gap-3">
-              <a href="#why" className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors">
+              <a href="#why" className="inline-flex items-center gap-2 text-white/65 hover:text-white/70 text-xs font-medium transition-colors">
                 The problem &darr;
               </a>
               <span className="text-white/20">|</span>
-              <a href="#methodology" className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors">
+              <a href="#methodology" className="inline-flex items-center gap-2 text-white/65 hover:text-white/70 text-xs font-medium transition-colors">
                 The methodology &darr;
               </a>
               <span className="text-white/20">|</span>
-              <a href="#where" className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors">
+              <a href="#where" className="inline-flex items-center gap-2 text-white/65 hover:text-white/70 text-xs font-medium transition-colors">
                 Where we apply it &darr;
               </a>
             </div>

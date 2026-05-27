@@ -58,7 +58,7 @@ export default function ContactPage() {
             </p>
           </FadeUp>
           <FadeUp delay={200}>
-            <p className="mt-6 text-sm text-white/40 tracking-wide">
+            <p className="mt-6 text-sm text-white/65 tracking-wide">
               24h response &nbsp;&middot;&nbsp; Answered personally by the founder &nbsp;&middot;&nbsp; No sales pitch
             </p>
           </FadeUp>
@@ -202,7 +202,7 @@ export default function ContactPage() {
                   <p className="mt-3 text-sm font-semibold text-white">
                     Claudiu Gherman
                   </p>
-                  <p className="text-xs text-white/40">Founder &amp; Principal Consultant</p>
+                  <p className="text-xs text-white/65">Founder &amp; Principal Consultant</p>
                 </div>
 
                 {/* ECO reference */}

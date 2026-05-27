@@ -126,7 +126,7 @@ export default function ServicesPage() {
             </p>
           </FadeUp>
           <FadeUp delay={200}>
-            <p className="mt-5 text-sm text-white/50 tracking-wide">
+            <p className="mt-5 text-sm text-white/70 tracking-wide">
               Training builds the why &nbsp;&middot;&nbsp; Coaching ensures the how &nbsp;&middot;&nbsp; Digital makes it visible &nbsp;&middot;&nbsp; Together &mdash; not separately.
             </p>
           </FadeUp>
@@ -140,7 +140,7 @@ export default function ServicesPage() {
               </Link>
               <Link
                 href="/before-you-call"
-                className="inline-flex items-center gap-1.5 text-white/50 hover:text-white font-medium transition-colors text-sm"
+                className="inline-flex items-center gap-1.5 text-white/70 hover:text-white font-medium transition-colors text-sm"
               >
                 Read before you call &rarr;
               </Link>
@@ -172,14 +172,14 @@ export default function ServicesPage() {
             <div className="mt-8 flex gap-3">
               <a
                 href="#training"
-                className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-white/65 hover:text-white/70 text-xs font-medium transition-colors"
               >
                 Jump to training &darr;
               </a>
               <span className="text-white/20">|</span>
               <a
                 href="#coaching"
-                className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-white/65 hover:text-white/70 text-xs font-medium transition-colors"
               >
                 Jump to coaching &darr;
               </a>

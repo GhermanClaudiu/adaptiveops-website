@@ -155,7 +155,7 @@ export default function BeforeYouCallPage() {
               >
                 Book Your Free 30-Min Diagnostic Call
               </Link>
-              <span className="text-sm text-white/50">or scroll down to read first</span>
+              <span className="text-sm text-white/70">or scroll down to read first</span>
             </div>
           </FadeUp>
           <FadeUp delay={300}>
@@ -186,7 +186,7 @@ export default function BeforeYouCallPage() {
                 <a
                   key={s.id}
                   href={`#${s.id}`}
-                  className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors"
+                  className="inline-flex items-center gap-2 text-white/65 hover:text-white/70 text-xs font-medium transition-colors"
                 >
                   {s.label} &darr;
                 </a>

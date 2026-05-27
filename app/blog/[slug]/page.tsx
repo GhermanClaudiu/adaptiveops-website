@@ -133,7 +133,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <FadeUp>
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-white transition-colors mb-6"
+                className="inline-flex items-center gap-1.5 text-sm text-white/65 hover:text-white transition-colors mb-6"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
@@ -144,7 +144,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <span className="text-xs font-semibold text-accent bg-accent/20 px-2.5 py-1 rounded-full">
                   {sanityPost.category}
                 </span>
-                <span className="text-xs text-white/50">
+                <span className="text-xs text-white/70">
                   {new Date(sanityPost.publishedAt).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
@@ -305,7 +305,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <FadeUp>
             <Link
               href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm text-white/40 hover:text-white transition-colors mb-6"
+              className="inline-flex items-center gap-1.5 text-sm text-white/65 hover:text-white transition-colors mb-6"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
@@ -316,7 +316,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <span className="text-xs font-semibold text-accent bg-accent/20 px-2.5 py-1 rounded-full">
                 {post.category}
               </span>
-              <span className="text-xs text-white/50">
+              <span className="text-xs text-white/70">
                 {new Date(post.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
@@ -327,7 +327,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight">
               {post.title}
             </h1>
-            <p className="mt-4 text-white/50 text-lg leading-relaxed max-w-2xl">
+            <p className="mt-4 text-white/70 text-lg leading-relaxed max-w-2xl">
               {post.excerpt}
             </p>
           </FadeUp>

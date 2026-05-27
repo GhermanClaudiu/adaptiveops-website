@@ -85,9 +85,9 @@ export default function ServicesPricing() {
                 </span>
                 <div className="flex items-end gap-2 mb-1">
                   <span className="text-4xl font-bold text-white">€1,000</span>
-                  <span className="text-white/50 mb-1.5">/ day</span>
+                  <span className="text-white/70 mb-1.5">/ day</span>
                 </div>
-                <p className="text-sm text-white/50">Results-focused, on-site delivery</p>
+                <p className="text-sm text-white/70">Results-focused, on-site delivery</p>
                 <span className="inline-block mt-3 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full">
                   Most popular
                 </span>
@@ -111,7 +111,7 @@ export default function ServicesPricing() {
               </ul>
 
               <div className="relative pt-4 border-t border-white/10">
-                <p className="text-xs text-white/40">
+                <p className="text-xs text-white/65">
                   <span className="font-semibold text-white/60">Includes:</span> Phone coaching support in the week following each session.
                 </p>
               </div>

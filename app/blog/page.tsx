@@ -131,7 +131,7 @@ export default async function BlogPage() {
             </p>
           </FadeUp>
           <FadeUp delay={200}>
-            <p className="mt-6 text-sm text-white/50 tracking-wide">
+            <p className="mt-6 text-sm text-white/70 tracking-wide">
               {blogCategories.join("  ·  ")}
             </p>
           </FadeUp>
@@ -143,7 +143,7 @@ export default async function BlogPage() {
               >
                 Book Your Free 30-Min Diagnostic Call
               </Link>
-              <span className="text-sm text-white/50">or browse the articles below</span>
+              <span className="text-sm text-white/70">or browse the articles below</span>
             </div>
           </FadeUp>
           <FadeUp delay={400}>

@@ -94,7 +94,7 @@ export default function SolutionsPage() {
             </p>
           </FadeUp>
           <FadeUp delay={250}>
-            <p className="mt-5 text-sm text-white/50 tracking-wide">
+            <p className="mt-5 text-sm text-white/70 tracking-wide">
               Always paired with training &amp; coaching &mdash; software alone never moves the line.
             </p>
           </FadeUp>
@@ -108,7 +108,7 @@ export default function SolutionsPage() {
               </Link>
               <a
                 href="#in-action"
-                className="inline-flex items-center gap-1.5 text-white/50 hover:text-white font-medium transition-colors text-sm"
+                className="inline-flex items-center gap-1.5 text-white/70 hover:text-white font-medium transition-colors text-sm"
               >
                 See ECO in action &darr;
               </a>
@@ -140,14 +140,14 @@ export default function SolutionsPage() {
             <div className="mt-8 flex gap-3">
               <a
                 href="#systems"
-                className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-white/65 hover:text-white/70 text-xs font-medium transition-colors"
               >
                 Browse 6 modules &darr;
               </a>
               <span className="text-white/20">|</span>
               <a
                 href="#why"
-                className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-white/65 hover:text-white/70 text-xs font-medium transition-colors"
               >
                 Why one platform &darr;
               </a>
@@ -297,7 +297,7 @@ export default function SolutionsPage() {
                   daily management, KPI tracking, problem solving, improvement planning, audit
                   management, and training records.
                 </p>
-                <p className="text-white/50 leading-relaxed mb-6">
+                <p className="text-white/70 leading-relaxed mb-6">
                   Everything your plant needs to manage operational excellence — visible,
                   traceable, and connected.{" "}
                   <span className="text-accent font-semibold">EMS is live</span> — deployed
@@ -344,7 +344,7 @@ export default function SolutionsPage() {
                         <span className="text-accent">{pillar.icon}</span>
                         <span className="text-sm font-bold text-white">{pillar.label}</span>
                       </div>
-                      <p className="text-xs text-white/40 leading-relaxed">{pillar.desc}</p>
+                      <p className="text-xs text-white/65 leading-relaxed">{pillar.desc}</p>
                     </div>
                   ))}
                 </div>

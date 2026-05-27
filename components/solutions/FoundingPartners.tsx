@@ -46,15 +46,15 @@ export default function FoundingPartners() {
                 <div className="mb-6">
                   <div className="flex items-end gap-3 mb-1">
                     <span className="text-5xl md:text-6xl font-black text-white">€6,500</span>
-                    <span className="text-white/50 text-sm pb-2">/ module<br />perpetual licence</span>
+                    <span className="text-white/70 text-sm pb-2">/ module<br />perpetual licence</span>
                   </div>
                   <div className="flex items-center gap-3 mt-3">
-                    <span className="text-white/30 line-through text-lg">€15,000</span>
+                    <span className="text-white/55 line-through text-lg">€15,000</span>
                     <span className="bg-accent text-white text-xs font-bold px-2.5 py-1 rounded-full">
                       Save €8,500 / module
                     </span>
                   </div>
-                  <p className="text-white/30 text-xs mt-2">
+                  <p className="text-white/55 text-xs mt-2">
                     Standard price applies after founding cohort closes
                   </p>
                 </div>
@@ -63,7 +63,7 @@ export default function FoundingPartners() {
                 <div className="border-t border-white/10 mb-6" />
 
                 {/* What's included */}
-                <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-4">
+                <p className="text-white/70 text-xs font-bold uppercase tracking-widest mb-4">
                   What&apos;s included
                 </p>
                 <ul className="space-y-3 mb-8 flex-1">

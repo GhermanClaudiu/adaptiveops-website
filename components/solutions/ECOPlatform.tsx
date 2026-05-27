@@ -31,7 +31,7 @@ const statusBadge: Record<Status, { label: string; bg: string; text: string; dot
   live: { label: "LIVE NOW", bg: "bg-secondary/20", text: "text-secondary", dot: "bg-secondary", pulse: true },
   beta: { label: "IN BETA", bg: "bg-amber-500/20", text: "text-amber-300", dot: "bg-amber-400", pulse: false },
   dev: { label: "IN DEVELOPMENT", bg: "bg-accent/20", text: "text-accent", dot: "bg-accent", pulse: false },
-  roadmap: { label: "ROADMAP", bg: "bg-white/10", text: "text-white/50", dot: "bg-white/30", pulse: false },
+  roadmap: { label: "ROADMAP", bg: "bg-white/10", text: "text-white/70", dot: "bg-white/30", pulse: false },
 };
 
 const systems: System[] = [
@@ -184,7 +184,7 @@ export default function ECOPlatform() {
               ECO Platform
             </span>
           </div>
-          <p className="text-white/50 text-sm md:text-base">
+          <p className="text-white/70 text-sm md:text-base">
             6 Integrated Management Systems &middot; One Unified Platform
           </p>
         </div>
@@ -240,10 +240,10 @@ export default function ECOPlatform() {
                 <span className="text-sm md:text-[15px] font-semibold text-white block mb-1">
                   {sys.name}
                 </span>
-                <span className="text-[11px] text-white/40 italic block mb-3">
+                <span className="text-[11px] text-white/65 italic block mb-3">
                   {sys.standard}
                 </span>
-                <span className="text-[10px] text-white/25 group-hover:text-white/40 transition-colors">
+                <span className="text-[10px] text-white/25 group-hover:text-white/65 transition-colors">
                   Click to explore &rarr;
                 </span>
               </button>
@@ -292,7 +292,7 @@ export default function ECOPlatform() {
                   {selected.pitch}
                 </p>
               </div>
-              <div className="bg-white/[0.08] rounded-lg px-4 py-2 text-xs text-white/50 flex-shrink-0">
+              <div className="bg-white/[0.08] rounded-lg px-4 py-2 text-xs text-white/70 flex-shrink-0">
                 Standard:{" "}
                 <strong className="text-white">{selected.standard}</strong>
               </div>
@@ -308,7 +308,7 @@ export default function ECOPlatform() {
                   >
                     Tier 1 &mdash; Core
                   </p>
-                  <span className="text-[10px] text-white/40 uppercase tracking-wider">Included in license</span>
+                  <span className="text-[10px] text-white/65 uppercase tracking-wider">Included in license</span>
                 </div>
                 <div className="space-y-2">
                   {selected.modules
@@ -331,7 +331,7 @@ export default function ECOPlatform() {
                           <p className="text-[13px] text-white/90 leading-snug">
                             {mod.outcome}
                           </p>
-                          <p className="text-[10px] text-white/40 mt-0.5 uppercase tracking-wider">
+                          <p className="text-[10px] text-white/65 mt-0.5 uppercase tracking-wider">
                             {mod.name}
                           </p>
                         </div>
@@ -342,10 +342,10 @@ export default function ECOPlatform() {
               {/* Tier 2 */}
               <div>
                 <div className="flex items-baseline justify-between mb-3">
-                  <p className="text-[11px] font-bold tracking-widest uppercase text-white/40">
+                  <p className="text-[11px] font-bold tracking-widest uppercase text-white/65">
                     Tier 2 &mdash; Advanced
                   </p>
-                  <span className="text-[10px] text-white/30 uppercase tracking-wider">Roadmap / add-on</span>
+                  <span className="text-[10px] text-white/55 uppercase tracking-wider">Roadmap / add-on</span>
                 </div>
                 <div className="space-y-2">
                   {selected.modules
@@ -390,14 +390,14 @@ export default function ECOPlatform() {
 
         {/* Shared Kernel */}
         <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-5 md:p-6">
-          <p className="text-[11px] font-bold tracking-widest uppercase text-white/30 mb-4">
+          <p className="text-[11px] font-bold tracking-widest uppercase text-white/55 mb-4">
             Shared Infrastructure &mdash; Available Across All Systems
           </p>
           <div className="flex flex-wrap gap-2">
             {kernel.map((k) => (
               <span
                 key={k}
-                className="bg-white/[0.06] border border-white/[0.08] rounded-full px-3.5 py-1.5 text-xs text-white/50 flex items-center gap-2"
+                className="bg-white/[0.06] border border-white/[0.08] rounded-full px-3.5 py-1.5 text-xs text-white/70 flex items-center gap-2"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-accent/50" />
                 {k}
