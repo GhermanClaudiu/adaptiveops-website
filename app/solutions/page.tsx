@@ -257,26 +257,19 @@ export default function SolutionsPage() {
             {/* Left — acronym visual */}
             <FadeUp className="lg:w-5/12">
               <div className="flex flex-col items-center lg:items-start">
-                <div className="flex items-baseline gap-1 mb-6">
-                  {[
-                    { letter: "E", word: "Execution", color: "#2F80ED" },
-                    { letter: "C", word: "Control", color: "#10B981" },
-                    { letter: "O", word: "Operations", color: "#2F80ED" },
-                  ].map((item) => (
-                    <div key={item.letter} className="flex flex-col items-center">
-                      <span
-                        className="text-5xl md:text-7xl font-black leading-none"
-                        style={{ color: item.color }}
-                      >
-                        {item.letter}
-                      </span>
-                      <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest text-white/40 mt-2">
-                        {item.word}
-                      </span>
-                    </div>
-                  ))}
+                {/* Big ECO letters — colored to match each initial in the phrase below */}
+                <div className="flex items-baseline gap-1 mb-5">
+                  <span className="text-5xl md:text-7xl font-black leading-none" style={{ color: "#2F80ED" }}>E</span>
+                  <span className="text-5xl md:text-7xl font-black leading-none" style={{ color: "#10B981" }}>C</span>
+                  <span className="text-5xl md:text-7xl font-black leading-none" style={{ color: "#2F80ED" }}>O</span>
                 </div>
-                <div className="flex items-center gap-3 mt-2">
+                {/* Full phrase — initials color-matched to letters above */}
+                <p className="text-sm md:text-base font-semibold text-white/85 leading-snug text-center lg:text-left">
+                  <span style={{ color: "#2F80ED" }}>E</span>xecution &amp;{" "}
+                  <span style={{ color: "#10B981" }}>C</span>ontrol of{" "}
+                  <span style={{ color: "#2F80ED" }}>O</span>perations
+                </p>
+                <div className="flex items-center gap-3 mt-5">
                   <div className="h-px w-12 bg-accent/30" />
                   <span className="text-xs font-bold uppercase tracking-widest text-accent/60">
                     Framework
