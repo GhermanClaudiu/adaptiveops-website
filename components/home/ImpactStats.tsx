@@ -9,7 +9,7 @@ function StatItem({ prefix, value, suffix, label }: {
   suffix?: string;
   label: string;
 }) {
-  const { count, ref } = useCountUp(value);
+  const { count, ref } = useCountUp(value, 400);
 
   return (
     <div ref={ref} className="text-center">
@@ -28,7 +28,7 @@ function StatItemDecimal({ prefix, suffix, label }: {
   suffix?: string;
   label: string;
 }) {
-  const { count, ref } = useCountUp(32); // animate to 32, display as 3.2
+  const { count, ref } = useCountUp(32, 400); // animate to 32, display as 3.2 — 400ms for screenshot safety
 
   return (
     <div ref={ref} className="text-center">
@@ -55,7 +55,7 @@ export default function ImpactStats() {
           />
           <StatItem prefix="" value={51} suffix="%" label="Efficiency increase achieved in production operations" />
           <StatItem prefix="" value={30} suffix="%" label="Scrap rate reduction through continuous improvement tools" />
-          <StatItem prefix="" value={20} suffix="+" label="Years of hands-on industrial experience" />
+          <StatItem prefix="" value={3} suffix="" label="Tier-1 OEMs delivered: Valeo · Leoni · Lear" />
         </div>
         </FadeUp>
         <FadeUp delay={200}>

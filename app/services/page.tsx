@@ -255,7 +255,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Training Section */}
-      <section id="training" className="py-20">
+      <section id="training" className="py-20 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <div className="mb-12">
@@ -412,7 +412,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Coaching Section */}
-      <section id="coaching" className="py-20 bg-light">
+      <section id="coaching" className="py-20 bg-light scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <div className="mb-12">

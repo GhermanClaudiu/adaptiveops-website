@@ -3,7 +3,7 @@ import FadeUp from "@/components/shared/FadeUp";
 
 export default function ServicesPricing() {
   return (
-    <section className="bg-light py-20">
+    <section id="pricing" className="bg-light py-20 scroll-mt-20">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-12">
 
         {/* Header */}

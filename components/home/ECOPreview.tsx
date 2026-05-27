@@ -51,13 +51,10 @@ export default function ECOPreview() {
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight mb-5">
-                6 Management Systems.
-                <br />
-                One Unified Platform.
+                The only manufacturing platform that runs entirely on your servers.
               </h2>
               <p className="text-white/60 text-base md:text-lg leading-relaxed mb-6 max-w-lg">
-                From equipment and quality to materials and people — ECO integrates
-                everything your operations need into a single digital core.
+                Six management systems. One unified core. Zero cloud dependency. Air-gap compatible. Connects to Palantir, PowerBI, SAP via API or SQL export.
               </p>
               {/* Module badges — staggered fade-in */}
               <div className="flex flex-wrap gap-2 mb-8">
@@ -83,26 +80,6 @@ export default function ECOPreview() {
                   </span>
                 ))}
               </div>
-              {/* Deployment & integration trust strip */}
-              <div className="flex flex-col gap-2 mb-8">
-                <div className="flex items-center gap-2">
-                  <svg className="w-3.5 h-3.5 text-green-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                  <span className="text-xs text-white/50">
-                    <span className="text-white/80 font-semibold">On-premise deployment</span> — installed on your servers, no cloud dependency, air-gap compatible.
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                  <span className="text-xs text-white/50">
-                    <span className="text-white/80 font-semibold">Open data</span> — connects to Palantir, PowerBI, SAP and other platforms via API or SQL export.
-                  </span>
-                </div>
-              </div>
-
               <Link
                 href="/solutions"
                 className="inline-block bg-accent text-white font-semibold px-8 py-3.5 rounded-full transition-shadow hover:shadow-[0_0_20px_rgba(47,128,237,0.45)] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"

@@ -3,13 +3,13 @@ import FadeUp from "@/components/shared/FadeUp";
 
 const pillars = [
   {
-    title: "We make results visible",
+    title: "You see exactly what's failing — for the first time",
     description:
-      "ECO Platform gives you real-time visibility into what's working and what isn't — so progress is measured, not assumed. Built specifically for automotive and manufacturing operations.",
+      "ECO Platform deploys on your servers in week 1. By week 4, every quality deviation, equipment event and KPI gap is visible on one screen — without uploading a single file to the cloud.",
     topics: [
-      "EMS \u2014 Equipment Management",
-      "QMS \u2014 Quality Management",
-      "Performance Dashboards",
+      "Real-time OEE, quality & equipment KPIs",
+      "Hidden 6-figure losses surfaced fast",
+      "Dashboards your CFO can audit",
     ],
     href: "/solutions",
     accentColor: "#8B5CF6",
@@ -20,14 +20,13 @@ const pillars = [
     ),
   },
   {
-    title: "We build capability",
+    title: "Your team solves your bottleneck — under direct coaching",
     description:
-      "Your engineers and managers learn by solving real problems in your plant — not theory, not slides. Applied operational excellence that stays when we leave.",
+      "Your engineers and shift managers learn by fixing your actual problem on your actual floor. Not theory. Not slides. Capability stays when we leave.",
     topics: [
-      "Operational Excellence",
-      "Problem Solving",
-      "Continuous Improvement",
-      "Leadership Development",
+      "Engineers solve the next problem without us",
+      "Toyota Kata becomes the daily standard",
+      "Plant managers coach instead of firefight",
     ],
     href: "/services",
     accentColor: "#2F80ED",
@@ -38,14 +37,13 @@ const pillars = [
     ),
   },
   {
-    title: "We drive implementation",
+    title: "The fix sticks after we leave",
     description:
-      "We work alongside your team on the shop floor until the new standard becomes the normal way of working. Not remote advice — direct presence until change sticks.",
+      "We stay on the floor until the new standard holds without us. Direct presence, not remote advice. Then we hand over — fully owned by your team.",
     topics: [
-      "Process Optimization",
-      "Management Systems",
-      "Performance Management",
-      "Team Development",
+      "Standard holds 12+ months after handover",
+      "Audit-ready documentation, owned by your team",
+      "Zero re-engagement needed — by design",
     ],
     href: "/services",
     accentColor: "#10B981",
@@ -64,11 +62,10 @@ export default function Pillars() {
         <FadeUp>
           <div className="text-center mb-14">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
-              Three levers. One system. Permanent results.
+              How We Hit 85%+ OEE in 6 Months &mdash; Not 18.
             </h2>
             <p className="mt-4 text-base md:text-lg text-mid max-w-2xl mx-auto">
-              We don&apos;t sell training separately from coaching separately from software.
-              We design the right combination for your situation — and stay until the result is permanent.
+              Three integrated levers. One system. Permanent results. We don&apos;t sell training separately from coaching separately from software &mdash; we design the right combination for your situation and stay until the result sticks.
             </p>
           </div>
         </FadeUp>
@@ -115,30 +112,6 @@ export default function Pillars() {
           ))}
         </div>
 
-        {/* Extension banner — indirect operations */}
-        <FadeUp delay={400}>
-          <div className="mt-8 rounded-2xl border border-accent/15 bg-accent/[0.03] px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
-            <div className="flex items-center gap-3 flex-shrink-0">
-              <div className="w-9 h-9 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
-                <svg className="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                </svg>
-              </div>
-              <p className="text-xs font-bold uppercase tracking-widest text-accent">Beyond the shop floor</p>
-            </div>
-            <p className="text-sm text-mid leading-relaxed flex-1">
-              The same three levers — visibility, capability, implementation — apply to every indirect operation:
-              planning, logistics, HR, finance. Unstructured indirect teams add cost through Speed, Quality and Delivery
-              long before the problem reaches the factory floor.
-            </p>
-            <Link
-              href="/lean-office"
-              className="flex-shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-accent border border-accent/30 hover:bg-accent hover:text-white px-4 py-2 rounded-full transition-colors whitespace-nowrap"
-            >
-              Lean in the Office &rarr;
-            </Link>
-          </div>
-        </FadeUp>
       </div>
     </section>
   );

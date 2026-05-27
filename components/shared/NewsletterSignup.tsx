@@ -11,8 +11,8 @@ interface NewsletterSignupProps {
 
 export default function NewsletterSignup({
   variant = "dark",
-  title = "Practical insights from the shop floor. Delivered monthly. No fluff.",
-  subtitle = "Join manufacturing leaders who get actionable operational excellence tips — straight from 20+ years of real factory experience.",
+  title = "Steal one operational improvement every month.",
+  subtitle = "5 minutes of reading. Real plants. No theory. So your next shift starts with one less problem than last month.",
 }: NewsletterSignupProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
