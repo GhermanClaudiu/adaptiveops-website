@@ -1,148 +1,167 @@
 export interface TrainingProgram {
   id: string;
   title: string;
+  subtitle: string;
   hook: string;
   level: string;
   duration: string;
   audience: string;
-  topics: string[];
-  outcome: string;
+  walkOut: string[];
+  firstResult: string;
 }
 
 export const trainingPrograms: TrainingProgram[] = [
   {
     id: "T1",
     title: "Lean Manufacturing Fundamentals",
-    hook: "Most plants have improvement initiatives running in parallel that never connect. This program gives your leadership team a shared system — not more initiatives.",
+    subtitle: "Get your team to agree on what “waste” actually means — in 2 days.",
+    hook:
+      "Most plants run improvement initiatives in parallel that never connect. This program gives the team a shared system — not more initiatives.",
     level: "Introductory",
     duration: "1–2 days",
-    audience: "Operators, team leaders, process engineers",
-    topics: [
-      "8 Wastes — identification and elimination",
-      "5S principles — implementation and sustainment",
-      "Value Stream Mapping — basics",
-      "Introduction to Lean thinking",
+    audience:
+      "Teams new to Lean — operators, team leaders and process engineers running their first improvement program.",
+    walkOut: [
+      "Your team spots the 8 types of waste in their own area",
+      "A 5S audit checklist running on every shift",
+      "One value stream mapped, photographed, taped to the wall",
+      "Common Lean vocabulary across team, supervisors and management",
+      "A 30-day waste-elimination action plan signed by area supervisor",
     ],
-    outcome:
-      "Participants identify waste in their own work area and propose elimination actions.",
+    firstResult: "First waste items eliminated within 30 days of completion.",
   },
   {
     id: "T2",
     title: "5S — The Order That Drives Performance",
-    hook: "Every factory has waste. Most can\u2019t see it because it\u2019s been there so long it looks normal. This program changes what your team sees when they walk the floor.",
+    subtitle:
+      "Stop seeing “normal” clutter. Start seeing waste — and fixing it.",
+    hook:
+      "Every factory has waste. Most can’t see it because it’s been there so long it looks normal. This program changes what your team sees when they walk the floor.",
     level: "Practical",
     duration: "1 day workshop + on-site follow-up",
-    audience: "Production teams, area supervisors",
-    topics: [
-      "The 5 steps: Sort, Set in Order, Shine, Standardize, Sustain",
-      "5S Audit — how to conduct and maintain",
-      "Creating visual standards",
-      "Hands-on session in the production area",
+    audience:
+      "Production teams and area supervisors fighting daily clutter that hides the bigger problems.",
+    walkOut: [
+      "5S audit completed in your priority production area",
+      "Visual standard board created and posted on the line",
+      "Sustainment routine assigned to specific roles per shift",
+      "Hands-on session done IN your real production area — not a meeting room",
+      "Before/after photos for management reporting",
     ],
-    outcome:
-      "Audited production area, visual standard created, sustainment plan defined.",
+    firstResult: "Visible workplace change within 1 week of the workshop.",
   },
   {
     id: "T3",
     title: "OEE — Overall Equipment Effectiveness",
-    hook: "Most OEE numbers are calculated after the shift ends. By then, the losses are already locked in. This program makes performance visible in real time, while there\u2019s still time to act.",
+    subtitle: "Spot losses while there’s still time to act — not after the shift.",
+    hook:
+      "Most OEE numbers are calculated after the shift ends. By then the losses are already locked in. This program makes performance visible in real time, while there’s still time to act.",
     level: "Intermediate",
     duration: "1–2 days",
-    audience: "Production engineers, maintenance managers, line managers",
-    topics: [
-      "3 OEE pillars: Availability, Performance, Quality",
-      "OEE calculation and interpretation",
-      "Identifying major losses (6 Big Losses)",
-      "Implementing an OEE measurement system",
-      "Real production case studies",
+    audience:
+      "Production engineers, maintenance managers and line managers measuring OEE for the first time — or trying to make existing numbers actually drive action.",
+    walkOut: [
+      "OEE calculation method validated against your line data",
+      "6 Big Losses identified and prioritized for your specific equipment",
+      "Real-time measurement framework specified for your shop floor",
+      "Top-3 loss action plan with named owners",
+      "Case study workshop using your line numbers — not generic theory",
     ],
-    outcome:
-      "OEE calculation system implemented or improved, priority actions identified.",
+    firstResult: "First OEE-driven shop floor decision made within 1 week.",
   },
   {
     id: "T4",
     title: "SMED — Single-Minute Exchange of Die",
-    hook: "If your morning meetings run long, cover everything, and solve nothing — the problem isn\u2019t the people. It\u2019s the format. This program fixes that.",
+    subtitle: "Cut setup time without buying new machines or replacing people.",
+    hook:
+      "Setup time is invisible until you measure it. Once measured, most plants find 30–50% reduction available — with the existing equipment and the existing operators.",
     level: "Intermediate",
     duration: "1–2 days",
-    audience: "Process engineers, advanced operators, team leaders",
-    topics: [
-      "Internal vs. external activities",
-      "Video analysis of changeover",
-      "Externalization and parallelization techniques",
-      "Standardizing the new method",
-      "Calculating generated savings",
+    audience:
+      "Process engineers, advanced operators and team leaders working on equipment-bound throughput.",
+    walkOut: [
+      "Video analysis of one full changeover on your equipment",
+      "Internal vs external activities separated and documented",
+      "New standardized changeover sequence created",
+      "Setup time reduction measured and quantified in minutes",
+      "Cost savings calculated for the management report",
     ],
-    outcome: "Measurable setup time reduction, documented standard.",
+    firstResult: "Measurable setup-time reduction by end of training week.",
   },
   {
     id: "T5",
     title: "Problem Solving — A3 Thinking & Root Cause Analysis",
-    hook: "The same problem appearing on the weekly report for the third time is not bad luck. It means root cause was never reached. This program teaches your team to stop there.",
+    subtitle: "Stop seeing the same problem on next month’s report.",
+    hook:
+      "The same problem appearing on the weekly report for the third time is not bad luck. It means the root cause was never reached. This program teaches your team to stop there.",
     level: "Intermediate",
     duration: "1–2 days",
-    audience: "Engineers, quality managers, team leaders, production managers",
-    topics: [
-      "A3 structure — from problem to solution on a single page",
-      "Root Cause Analysis: 5 Why, Ishikawa (Fishbone)",
-      "Correct problem definition",
-      "Solution implementation and verification",
-      "Recurrence prevention",
+    audience:
+      "Engineers, quality managers, team leaders and production managers tired of recurring problems that keep coming back.",
+    walkOut: [
+      "One real factory problem solved using A3 during the training",
+      "A3 template adapted to your reporting style",
+      "Root cause analysis tree (5-Why or Ishikawa) on your real problem",
+      "Implementation plan with verification checkpoints",
+      "Recurrence-prevention standard documented",
     ],
-    outcome:
-      "Participants solve a real factory problem using A3 during the training.",
+    firstResult: "Solved problem in hand by end of training day 2.",
   },
   {
     id: "T6",
     title: "Toyota Kata — Coaching for Continuous Improvement",
-    hook: "Customer complaints that arrive as surprises are always problems that existed for weeks on the shop floor. This program builds the systems that catch them before they ship.",
+    subtitle: "Build a daily improvement routine that doesn’t need you watching.",
+    hook:
+      "Improvement programs die when the trainer leaves. Toyota Kata is the routine that keeps improvement happening daily — without you watching.",
     level: "Advanced",
     duration: "2–3 days",
-    audience: "Production managers, supervisors, internal coaches",
-    topics: [
-      "Improvement Kata — the 4 steps",
-      "Coaching Kata — daily coaching session structure",
-      "Creating a culture of continuous improvement",
-      "Daily practice: Starter Kata",
-      "Management by questions vs. management by directives",
+    audience:
+      "Production managers, supervisors and internal coaches who want CI to outlive the program.",
+    walkOut: [
+      "Improvement Kata 4-step cycle running on your line",
+      "Coaching Kata daily session structure (~15 min/day)",
+      "Starter Kata practice exercises adapted to your context",
+      "Shift-by-shift questioning framework — not telling",
+      "Improvement routine that survives turnover and shift changes",
     ],
-    outcome:
-      "Managers apply Coaching Kata with their teams, generating a sustainable improvement routine.",
+    firstResult: "Daily Kata sessions running within 2 weeks of training.",
   },
   {
     id: "T7",
     title: "Leadership for Production Teams",
-    hook: "If your Q1 is still spent deciding what to improve, you\u2019ve already lost 25% of your improvement year. This program moves that planning to Q4, where it belongs.",
+    subtitle: "Lead the team you actually have — not the one you wish you had.",
+    hook:
+      "Promoting your best technical operator to team leader doesn’t make them a leader. Leadership is a separate skill — and it can be taught.",
     level: "Intermediate–Advanced",
     duration: "2–3 days (modular program)",
-    audience: "Team leaders, supervisors, newly promoted line managers",
-    topics: [
-      "Leader role in production vs. operator role",
-      "Effective shop floor communication",
-      "Conflict management in teams",
-      "Motivation and engagement — what actually works",
-      "Constructive feedback and people development",
-      "Managing absenteeism and turnover",
+    audience:
+      "Team leaders, supervisors and newly promoted line managers making the jump from doing the work to leading the work.",
+    walkOut: [
+      "Personal communication style identified and sharpened",
+      "Conflict-management techniques you can use on Monday",
+      "Constructive feedback framework — not destructive",
+      "Plan for managing absenteeism and turnover in YOUR team",
+      "30-day action plan with measurable behavior targets",
     ],
-    outcome:
-      "Leaders apply concrete communication and motivation techniques in daily work.",
+    firstResult: "Different team dynamic visible within 2 weeks.",
   },
   {
     id: "T8",
     title: "Operational Performance Management",
-    hook: "A manager who gives orders gets compliance. A manager who asks the right questions gets improvement. This program is about the second kind.",
+    subtitle: "Lead through KPIs and questions — not orders.",
+    hook:
+      "A manager who gives orders gets compliance. A manager who asks the right questions gets improvement. This program is about the second kind.",
     level: "Advanced",
     duration: "2 days",
-    audience: "Production Managers, Operations Managers, Plant Managers",
-    topics: [
-      "Defining and cascading operational KPIs",
-      "Daily Management System — what a well-run day looks like",
-      "Performance visualization (dashboards, SQCDM)",
-      "Efficient production meetings — structure and discipline",
-      "Problem escalation and decision circuits",
-      "Production cost budgeting and control",
+    audience:
+      "Production Managers, Operations Managers and Plant Managers running KPI dashboards that don’t actually drive action.",
+    walkOut: [
+      "Daily Management System designed for your plant",
+      "SQCDM dashboards specified and templated",
+      "Production meeting agenda restructured for action — not status updates",
+      "Problem escalation and decision circuit defined",
+      "Production cost budget framework",
     ],
-    outcome:
-      "Daily management system defined, KPIs aligned, production meetings restructured.",
+    firstResult: "Restructured production meeting running within 1 week.",
   },
 ];
