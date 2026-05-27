@@ -89,16 +89,27 @@ export default function ServicesTeaser() {
           ))}
         </div>
 
-        {/* Lean in the Office — secondary mention */}
+        {/* Secondary mentions — Lean Office (different scope) + Academy (different audience) */}
         <FadeUp delay={400}>
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 text-sm">
-            <span className="text-mid">Beyond the production floor:</span>
-            <Link
-              href="/lean-office"
-              className="inline-flex items-center gap-1.5 text-accent font-semibold hover:text-blue-600 transition-colors"
-            >
-              Lean in the Office &mdash; for planning, logistics, HR &amp; finance &rarr;
-            </Link>
+          <div className="mt-10 space-y-3 text-center text-sm">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <span className="text-mid">Beyond the production floor:</span>
+              <Link
+                href="/lean-office"
+                className="inline-flex items-center gap-1.5 text-accent font-semibold hover:text-blue-600 transition-colors"
+              >
+                Lean in the Office &mdash; for planning, logistics, HR &amp; finance &rarr;
+              </Link>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <span className="text-mid">Or learn on your own:</span>
+              <Link
+                href="/academy"
+                className="inline-flex items-center gap-1.5 text-accent font-semibold hover:text-blue-600 transition-colors"
+              >
+                Academy &mdash; practice operational reflexes 15 min a day &rarr;
+              </Link>
+            </div>
           </div>
         </FadeUp>
       </div>

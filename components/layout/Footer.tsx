@@ -1,6 +1,9 @@
 import Link from "next/link";
 
-const footerLinks = {
+const footerLinks: {
+  company: { href: string; label: string; external?: boolean }[];
+  services: { href: string; label: string; external?: boolean }[];
+} = {
   company: [
     { href: "/about", label: "About" },
     { href: "/services", label: "Services" },
@@ -11,6 +14,7 @@ const footerLinks = {
     { href: "/solutions", label: "Digital Solutions" },
     { href: "/services", label: "Training Programs" },
     { href: "/services", label: "Operational Coaching" },
+    { href: "/academy", label: "Academy" },
   ],
 };
 
@@ -101,16 +105,33 @@ export default function Footer() {
               Services
             </h4>
             <ul className="space-y-2">
-              {footerLinks.services.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/60 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {footerLinks.services.map((link) =>
+                link.external ? (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors"
+                    >
+                      <span>{link.label}</span>
+                      <svg className="w-3 h-3 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                      </svg>
+                      <span className="sr-only">(opens in new tab)</span>
+                    </a>
+                  </li>
+                ) : (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/60 hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ),
+              )}
             </ul>
           </div>
         </div>
