@@ -147,14 +147,14 @@ export default async function BlogPage() {
               <article className="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                   {/* Image */}
-                  <Link href={`/blog/${featuredPost.slug}`} className="block">
+                  <Link href={`/blog/${featuredPost.slug}`} className="block bg-primary h-full">
                     {featuredPost.image ? (
                       <Image
                         src={featuredPost.image.src}
                         alt={featuredPost.image.alt}
                         width={800}
                         height={450}
-                        className="w-full h-64 lg:h-full object-cover object-top"
+                        className="w-full h-64 lg:h-full object-contain"
                         priority
                       />
                     ) : (
@@ -218,14 +218,14 @@ export default async function BlogPage() {
                 <FadeUp key={post.key} delay={index * 80}>
                   <article className="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
                     {/* Image */}
-                    <Link href={`/blog/${post.slug}`} className="block">
+                    <Link href={`/blog/${post.slug}`} className="block bg-primary">
                       {post.image ? (
                         <Image
                           src={post.image.src}
                           alt={post.image.alt}
                           width={800}
                           height={450}
-                          className="w-full aspect-video object-cover object-top"
+                          className="w-full aspect-video object-contain"
                         />
                       ) : (
                         <BlogImagePlaceholder
