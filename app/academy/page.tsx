@@ -240,7 +240,26 @@ export default function AcademyPage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
-            <span className="inline-block text-xs font-bold tracking-widest uppercase text-accent mb-4">
+            {/* Live trigger — clickable badge proving the platform exists. Solid amber colour + whole-pill pulse for high visibility on dark navy. Hover halts the pulse so the user can read and click without distraction. */}
+            <a
+              href={ACADEMY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mb-3 px-4 py-2 bg-amber-400 hover:bg-amber-300 border-2 border-amber-500 rounded-full shadow-[0_0_24px_rgba(251,191,36,0.5)] hover:shadow-[0_0_36px_rgba(251,191,36,0.7)] animate-pulse hover:animate-none transition-all focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+            >
+              <span className="relative flex w-2 h-2">
+                <span className="absolute inline-flex w-full h-full rounded-full bg-amber-900 opacity-60 animate-ping" />
+                <span className="relative inline-flex w-2 h-2 rounded-full bg-amber-900" />
+              </span>
+              <span className="text-[11px] font-black tracking-widest uppercase text-amber-950">
+                Live now &middot; academy.adaptiveops.eu
+              </span>
+              <svg className="w-3.5 h-3.5 text-amber-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+              </svg>
+              <span className="sr-only">(opens academy.adaptiveops.eu in new tab)</span>
+            </a>
+            <span className="block text-xs font-bold tracking-widest uppercase text-accent mb-4">
               AdaptiveOps Academy &middot; 12-Week Pilot Program for Plants
             </span>
             <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight max-w-3xl">
