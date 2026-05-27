@@ -46,14 +46,13 @@ export default function Hero() {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1]">
                 Cut Scrap <span className="text-accent">30%</span>.{" "}
                 Lift Efficiency <span className="text-accent">51%</span>.
-                <br />
-                <span className="text-white/60 text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem]">
-                  Proven across 8 Tier-1 plants &mdash; in 6 months, not 18.
-                </span>
               </h1>
+              <p className="mt-3 text-white/70 text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold leading-tight">
+                Proven across 8 Tier-1 plants &mdash; in 6 months, not 18.
+              </p>
             </FadeUp>
             <FadeUp delay={150}>
-              <p className="mt-6 text-lg md:text-xl text-white/55 leading-relaxed max-w-xl">
+              <p className="mt-6 text-lg md:text-xl text-white/70 leading-relaxed max-w-xl">
                 The operational system behind &euro;3.2M in peak annual savings &mdash; installed on your servers, owned by your team. No consultants you&apos;ll never see again. No disruption to daily production.
               </p>
             </FadeUp>
@@ -68,7 +67,7 @@ export default function Hero() {
                 </Link>
                 <Link
                   href="/before-you-call"
-                  className="inline-flex items-center gap-1.5 text-white/50 hover:text-white font-medium transition-colors"
+                  className="inline-flex items-center gap-1.5 text-white/70 hover:text-white font-medium transition-colors py-2 px-1 -mx-1 rounded focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
                 >
                   Read before you call &rarr;
                 </Link>
@@ -128,12 +127,12 @@ export default function Hero() {
                     <p className="text-white font-bold text-lg leading-tight">
                       Claudiu Gherman
                     </p>
-                    <p className="text-xs text-white/50 mt-0.5">
+                    <p className="text-xs text-white/70 mt-0.5">
                       Founder &amp; Principal Consultant
                     </p>
                     <Link
                       href="/about"
-                      className="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-accent hover:text-white transition-colors"
+                      className="inline-flex items-center gap-1 mt-1.5 text-xs font-semibold text-accent hover:text-white transition-colors py-1.5 px-1 -mx-1 rounded focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
                     >
                       Read full story &rarr;
                     </Link>
@@ -152,7 +151,7 @@ export default function Hero() {
                       <p className="text-xl lg:text-2xl font-bold text-white leading-none">
                         {m.value}
                       </p>
-                      <p className="mt-1 text-[10px] text-white/50 uppercase tracking-wider leading-tight whitespace-pre-line">
+                      <p className="mt-1 text-[10px] text-white/70 uppercase tracking-wider leading-tight whitespace-pre-line">
                         {m.label}
                       </p>
                     </div>
@@ -168,7 +167,7 @@ export default function Hero() {
                   </svg>
                   <div>
                     <p className="text-[11px] font-semibold text-white leading-tight">Verified on LinkedIn</p>
-                    <p className="text-[9px] text-white/40">Cross-checkable profile</p>
+                    <p className="text-[9px] text-white/60">Cross-checkable profile</p>
                   </div>
                 </div>
               </div>

@@ -59,7 +59,7 @@ export default function ImpactStats() {
         </div>
         </FadeUp>
         <FadeUp delay={200}>
-        <p className="mt-12 text-center text-white/40 text-base lg:text-lg max-w-2xl mx-auto">
+        <p className="mt-12 text-center text-white/65 text-base lg:text-lg max-w-2xl mx-auto">
           These aren&apos;t projections. They&apos;re results from real
           production environments.
         </p>

@@ -30,7 +30,7 @@ export default function CookieBanner() {
       <div className="flex gap-3 mt-3">
         <button
           onClick={decline}
-          className="text-sm text-white/50 hover:text-white px-3 py-1.5 rounded-lg transition-colors focus-visible:ring-2 focus-visible:ring-white"
+          className="text-sm text-white/70 hover:text-white px-3 py-1.5 rounded-lg transition-colors focus-visible:ring-2 focus-visible:ring-white"
         >
           Decline
         </button>

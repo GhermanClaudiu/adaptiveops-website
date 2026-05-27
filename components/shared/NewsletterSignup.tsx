@@ -63,7 +63,7 @@ export default function NewsletterSignup({
           </h2>
           <p
             className={`mt-3 text-sm md:text-base leading-relaxed max-w-lg mx-auto ${
-              isDark ? "text-white/50" : "text-mid"
+              isDark ? "text-white/70" : "text-mid"
             }`}
           >
             {subtitle}

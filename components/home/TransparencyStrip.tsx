@@ -42,7 +42,7 @@ export default function TransparencyStrip() {
     <section className="bg-primary py-16 border-t border-white/5">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-12">
         <FadeUp>
-          <p className="text-center text-xs font-bold tracking-widest uppercase text-white/30 mb-10">
+          <p className="text-center text-xs font-bold tracking-widest uppercase text-white/55 mb-10">
             Before you decide
           </p>
         </FadeUp>
@@ -56,7 +56,7 @@ export default function TransparencyStrip() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-white font-bold text-lg mb-2">{p.label}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{p.description}</p>
+                  <p className="text-white/70 text-sm leading-relaxed">{p.description}</p>
                 </div>
                 <Link
                   href={p.href}
