@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import FadeUp from "@/components/shared/FadeUp";
+import LogoWall from "@/components/home/LogoWall";
 
 // ── Data ────────────────────────────────────────────────────────────────────
 
@@ -210,11 +211,8 @@ export default function LeanOfficePage() {
             </h1>
           </FadeUp>
           <FadeUp delay={100}>
-            <p className="mt-5 text-lg text-white/60 max-w-2xl leading-relaxed">
-              Every planning gap, every undocumented procedure, every capacity guess in your
-              indirect teams becomes a delay, a defect, or an extra cost on the production floor.
-              Indirect inefficiency doesn&apos;t stay in the back office — it shows up in your
-              Speed, Quality, and Delivery numbers.
+            <p className="mt-5 text-lg text-white/65 max-w-2xl leading-relaxed">
+              The same framework that delivered 30% scrap reduction and 51% efficiency lift on the shop floor &mdash; now applied to planning, logistics, HR, finance and customer service. Indirect inefficiency doesn&apos;t stay in the back office; it shows up in your Speed, Quality and Delivery numbers.
             </p>
           </FadeUp>
           <FadeUp delay={200}>
@@ -238,24 +236,67 @@ export default function LeanOfficePage() {
           </FadeUp>
           <FadeUp delay={280}>
             <p className="mt-4 text-sm text-white/40 tracking-wide">
-              A 6-module methodology &nbsp;·&nbsp; Applied to any operational area &nbsp;·&nbsp; The same framework that works on the shop floor
+              A 6-module methodology &nbsp;&middot;&nbsp; Applied to any operational area &nbsp;&middot;&nbsp; Built across 8 Tier-1 plants
             </p>
           </FadeUp>
           <FadeUp delay={300}>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#why" className="inline-flex items-center gap-2 text-white/70 hover:text-white border border-white/20 hover:border-white/40 px-5 py-2.5 rounded-full text-sm font-medium transition-colors">
+            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <Link
+                href="/contact"
+                className="inline-block bg-accent text-white font-semibold px-8 py-4 rounded-full text-base whitespace-nowrap transition-shadow hover:shadow-[0_0_24px_rgba(47,128,237,0.5)] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              >
+                Book Your Free 30-Min Diagnostic Call
+              </Link>
+              <Link
+                href="/before-you-call"
+                className="inline-flex items-center gap-1.5 text-white/50 hover:text-white font-medium transition-colors text-sm"
+              >
+                Read before you call &rarr;
+              </Link>
+            </div>
+          </FadeUp>
+          <FadeUp delay={400}>
+            <ul className="mt-6 space-y-2 text-sm text-white/70">
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>30 minutes, free, no commitment</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Talk to the founder (20 yrs Tier-1), not a sales rep</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Concrete diagnosis you keep &mdash; even if you don&apos;t hire us</span>
+              </li>
+            </ul>
+          </FadeUp>
+          <FadeUp delay={500}>
+            <div className="mt-8 flex gap-3">
+              <a href="#why" className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors">
                 The problem &darr;
               </a>
-              <a href="#methodology" className="inline-flex items-center gap-2 text-white/70 hover:text-white border border-white/20 hover:border-white/40 px-5 py-2.5 rounded-full text-sm font-medium transition-colors">
+              <span className="text-white/20">|</span>
+              <a href="#methodology" className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors">
                 The methodology &darr;
               </a>
-              <a href="#where" className="inline-flex items-center gap-2 text-white/70 hover:text-white border border-white/20 hover:border-white/40 px-5 py-2.5 rounded-full text-sm font-medium transition-colors">
+              <span className="text-white/20">|</span>
+              <a href="#where" className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-xs font-medium transition-colors">
                 Where we apply it &darr;
               </a>
             </div>
           </FadeUp>
         </div>
       </section>
+
+      {/* Trust strip — reused from home for consistency */}
+      <LogoWall />
 
       {/* ── The Problem ── */}
       <section id="why" className="py-20 bg-white">
@@ -330,11 +371,10 @@ export default function LeanOfficePage() {
                 Process Excellence Framework
               </span>
               <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">
-                Six modules. One direction: operational control.
+                Six modules. Six concrete shifts in how your team operates.
               </h2>
               <p className="text-mid text-lg max-w-2xl mx-auto">
-                The same structured approach used in production — adapted and validated
-                for indirect operations. Select any module to see what it delivers.
+                The same structured approach used in production &mdash; adapted and validated for indirect operations. Click any module to see what changes &mdash; and what happens if you skip it.
               </p>
             </div>
           </FadeUp>
@@ -596,10 +636,10 @@ export default function LeanOfficePage() {
               </div>
               <div className="flex-shrink-0">
                 <Link
-                  href="/solutions"
+                  href="/solutions#systems"
                   className="inline-flex items-center gap-2 border border-accent text-accent font-semibold px-6 py-3 rounded-full hover:bg-accent hover:text-white transition-colors text-sm"
                 >
-                  Explore ECO Platform &rarr;
+                  Explore the 6 ECO modules &rarr;
                 </Link>
               </div>
             </div>
@@ -610,28 +650,47 @@ export default function LeanOfficePage() {
       {/* ── CTA ── */}
       <section className="bg-accent py-16">
         <FadeUp>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Ready to bring structure to your indirect operations?
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+              Ready to bring shop-floor rigour to your indirect operations?
             </h2>
-            <p className="mt-4 text-lg text-white/80 max-w-xl mx-auto">
-              Book the free 30-minute diagnostic. We will map your situation and tell you
-              honestly which module to start with — and what results to expect.
+            <p className="mt-4 text-lg text-white/85 max-w-xl mx-auto">
+              One 30-minute call. We map your situation honestly and tell you which module to start with &mdash; and what results to expect.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-block bg-white text-accent font-semibold px-10 py-4 rounded-full hover:bg-gray-100 transition-colors"
+                className="inline-block bg-white text-accent font-semibold px-10 py-4 rounded-full hover:bg-gray-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-shadow"
               >
-                Book Free 30-Min Call
+                Book Your Free 30-Min Diagnostic Call
               </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-1.5 text-white/60 hover:text-white font-medium transition-colors"
+                className="inline-flex items-center gap-1.5 text-white/70 hover:text-white font-medium transition-colors"
               >
                 Explore all services &rarr;
               </Link>
             </div>
+            <ul className="mt-8 flex flex-col sm:flex-row sm:justify-center gap-3 sm:gap-8 text-sm text-white/85">
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>30 minutes, free, no commitment</span>
+              </li>
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Talk to the founder, not a sales rep</span>
+              </li>
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Concrete diagnosis you keep</span>
+              </li>
+            </ul>
           </div>
         </FadeUp>
       </section>
