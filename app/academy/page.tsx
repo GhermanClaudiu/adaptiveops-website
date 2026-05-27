@@ -261,7 +261,7 @@ export default function AcademyPage() {
           <FadeUp delay={300}>
             <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-5">
               <Link
-                href="/contact"
+                href="/contact?service=academy"
                 className="inline-block bg-accent text-white font-semibold px-8 py-4 rounded-full text-base whitespace-nowrap transition-shadow hover:shadow-[0_0_24px_rgba(47,128,237,0.5)] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
               >
                 Apply for 2026 Cohort
@@ -734,7 +734,7 @@ export default function AcademyPage() {
               </div>
               <div className="mt-6 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center gap-4">
                 <Link
-                  href="/contact"
+                  href="/contact?service=academy"
                   className="inline-flex items-center gap-2 bg-accent text-white font-semibold px-8 py-3.5 rounded-full hover:shadow-[0_0_24px_rgba(47,128,237,0.5)] active:scale-[0.98] transition-shadow"
                 >
                   Apply for the Discovery
@@ -795,7 +795,7 @@ export default function AcademyPage() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/contact"
+                href="/contact?service=academy"
                 className="inline-flex items-center gap-2 bg-white text-accent font-semibold px-10 py-4 rounded-full hover:bg-gray-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-shadow"
               >
                 Apply for the 2026 Cohort

@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useEffect, useState, FormEvent } from "react";
 
 const interestOptions = [
   "Training Programs",
   "Coaching & Mentoring",
+  "Academy (12-week Pilot)",
   "Digital Solutions (ECO Platform)",
   "Quality Systems (QMS)",
   "Equipment Management (EMS)",
@@ -13,9 +14,38 @@ const interestOptions = [
   "Other",
 ];
 
+// Maps the `?service=` URL param to an interest option for auto-selection
+// when the buyer lands on /contact from a specific page CTA.
+const serviceParamMap: Record<string, string> = {
+  academy: "Academy (12-week Pilot)",
+  training: "Training Programs",
+  coaching: "Coaching & Mentoring",
+  eco: "Digital Solutions (ECO Platform)",
+  solutions: "Digital Solutions (ECO Platform)",
+  qms: "Quality Systems (QMS)",
+  ems: "Equipment Management (EMS)",
+  mms: "Material Management (MMS)",
+};
+
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [interests, setInterests] = useState<string[]>([]);
+
+  // Auto-select an interest from the ?service= URL param so CTAs from
+  // dedicated pages (e.g. /academy "Apply for 2026 Cohort") land on the
+  // form with the relevant pill already chosen.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get("service");
+    if (!raw) return;
+    const key = raw.toLowerCase();
+    const matched =
+      serviceParamMap[key] ||
+      interestOptions.find((o) => o.toLowerCase() === key) ||
+      interestOptions.find((o) => o.toLowerCase().startsWith(key + " "));
+    if (matched) setInterests([matched]);
+  }, []);
 
   function toggleInterest(option: string) {
     setInterests((prev) =>
