@@ -6,7 +6,7 @@ import { blogPosts, blogCategories } from "@/lib/content/blog";
 import { urlFor } from "@/lib/sanity/image";
 import FadeUp from "@/components/shared/FadeUp";
 import NewsletterSignup from "@/components/shared/NewsletterSignup";
-import LinkedInBanner from "@/components/shared/LinkedInBanner";
+import LogoWall from "@/components/home/LogoWall";
 import BlogImagePlaceholder from "@/components/blog/BlogImagePlaceholder";
 import { getReadingTime } from "@/lib/utils/readingTime";
 
@@ -126,9 +126,8 @@ export default async function BlogPage() {
             </h1>
           </FadeUp>
           <FadeUp delay={100}>
-            <p className="mt-5 text-lg text-white/60 max-w-2xl leading-relaxed">
-              No theory, no jargon. Practical answers to the problems manufacturing
-              managers face every week — written by someone who has lived them.
+            <p className="mt-5 text-lg text-white/65 max-w-2xl leading-relaxed">
+              No theory, no jargon. Practical answers to the problems manufacturing managers face every week &mdash; written from 20+ years across Valeo, Leoni and Lear Corporation.
             </p>
           </FadeUp>
           <FadeUp delay={200}>
@@ -136,8 +135,44 @@ export default async function BlogPage() {
               {blogCategories.join("  ·  ")}
             </p>
           </FadeUp>
+          <FadeUp delay={300}>
+            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <Link
+                href="/contact"
+                className="inline-block bg-accent text-white font-semibold px-8 py-4 rounded-full text-base whitespace-nowrap transition-shadow hover:shadow-[0_0_24px_rgba(47,128,237,0.5)] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              >
+                Book Your Free 30-Min Diagnostic Call
+              </Link>
+              <span className="text-sm text-white/50">or browse the articles below</span>
+            </div>
+          </FadeUp>
+          <FadeUp delay={400}>
+            <ul className="mt-6 space-y-2 text-sm text-white/70">
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>30 minutes, free, no commitment</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Talk to the founder (20 yrs Tier-1), not a sales rep</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Concrete diagnosis you keep &mdash; even if you don&apos;t hire us</span>
+              </li>
+            </ul>
+          </FadeUp>
         </div>
       </section>
+
+      {/* Trust strip — reused from home for consistency */}
+      <LogoWall />
 
       {/* Featured Article */}
       {featuredPost && (
@@ -280,25 +315,18 @@ export default async function BlogPage() {
         </section>
       )}
 
-      {/* LinkedIn */}
-      <section className="py-12 bg-light">
-        <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <LinkedInBanner />
-        </div>
-      </section>
-
-      {/* Newsletter */}
+      {/* Newsletter — soft conversion path for blog readers */}
       <NewsletterSignup variant="light" />
 
       {/* CTA */}
       <section className="bg-accent py-16">
         <FadeUp>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
-              From reading to doing.
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+              Read one article. Apply it Monday.
             </h2>
-            <p className="mt-4 text-lg text-white/80 max-w-xl mx-auto">
-              These insights come from real factories. Let&apos;s apply them to yours.
+            <p className="mt-4 text-lg text-white/85 max-w-xl mx-auto">
+              These notes are written for the manager who needs the next concrete step &mdash; not the next framework. If you want to map the framework to YOUR plant, one 30-minute call is enough.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
@@ -309,11 +337,31 @@ export default async function BlogPage() {
               </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-1.5 text-white/60 hover:text-white font-medium transition-colors"
+                className="inline-flex items-center gap-1.5 text-white/70 hover:text-white font-medium transition-colors"
               >
                 Explore our services &rarr;
               </Link>
             </div>
+            <ul className="mt-8 flex flex-col sm:flex-row sm:justify-center gap-3 sm:gap-8 text-sm text-white/85">
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>30 minutes, free, no commitment</span>
+              </li>
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Talk to the founder, not a sales rep</span>
+              </li>
+              <li className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Concrete diagnosis you keep</span>
+              </li>
+            </ul>
           </div>
         </FadeUp>
       </section>
