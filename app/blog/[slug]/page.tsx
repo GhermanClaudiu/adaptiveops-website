@@ -11,6 +11,10 @@ import JsonLd from "@/components/shared/JsonLd";
 import NewsletterSignup from "@/components/shared/NewsletterSignup";
 import LinkedInBanner from "@/components/shared/LinkedInBanner";
 import BlogImagePlaceholder from "@/components/blog/BlogImagePlaceholder";
+import ToolCta from "@/components/shared/ToolCta";
+
+// Articles that should surface the Level 5 targeting tool CTA at the end of the body.
+const LEVEL5_TOOL_SLUGS = ["which-processes-need-level-5-maturity"];
 
 interface BlogPostPageProps {
   params: { slug: string };
@@ -183,6 +187,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div className="prose prose-lg max-w-none">
                 <PortableTextRenderer content={sanityPost.body} />
               </div>
+
+              {LEVEL5_TOOL_SLUGS.includes(sanityPost.slug.current) && (
+                <div className="mt-12">
+                  <ToolCta />
+                </div>
+              )}
 
               <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <Link
@@ -397,6 +407,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 );
               })}
             </div>
+
+            {LEVEL5_TOOL_SLUGS.includes(post.slug) && (
+              <div className="mt-12">
+                <ToolCta />
+              </div>
+            )}
 
             <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <Link

@@ -10,7 +10,7 @@ const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "/academy", label: "Academy" },
   { href: "/lean-office", label: "Lean in the Office" },
   { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
+  { href: "/resources", label: "Resources" },
   { href: "/before-you-call", label: "Before You Call" },
 ];
 
