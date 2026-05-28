@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import FadeUp from "@/components/shared/FadeUp";
 import NewsletterSignup from "@/components/shared/NewsletterSignup";
+import LogoWall from "@/components/home/LogoWall";
 
 export const metadata: Metadata = {
   title: "Downloads",
@@ -56,6 +57,9 @@ export default function ResourcesDownloadsPage() {
         </div>
       </section>
 
+      {/* Trust strip */}
+      <LogoWall />
+
       {/* In-progress note */}
       <section className="py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -105,7 +109,11 @@ export default function ResourcesDownloadsPage() {
       </section>
 
       {/* Newsletter — be notified when worksheets land */}
-      <NewsletterSignup variant="dark" />
+      <NewsletterSignup
+        variant="dark"
+        title="Be first to get the worksheets."
+        subtitle="We're testing the first printable templates on real floors now. Drop your email and we'll send them the day they go live — plus one operational improvement a month."
+      />
     </main>
   );
 }

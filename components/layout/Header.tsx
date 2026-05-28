@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
-type NavChild = { href: string; label: string; tint?: string };
+type NavChild = { href: string; label: string; tint?: string; dot?: string };
 type NavItem =
   | { href: string; label: string; external?: boolean }
   | { label: string; children: NavChild[] };
@@ -18,9 +18,9 @@ const navLinks: NavItem[] = [
   {
     label: "Resources",
     children: [
-      { href: "/resources/tools", label: "Tools", tint: "bg-accent/20 border-accent/40 hover:bg-accent/30" },
-      { href: "/resources/downloads", label: "Downloads", tint: "bg-secondary/20 border-secondary/40 hover:bg-secondary/30" },
-      { href: "/blog", label: "Blog", tint: "bg-white/10 border-white/25 hover:bg-white/20" },
+      { href: "/resources/tools", label: "Tools", tint: "bg-accent/20 border-accent/40 hover:bg-accent/30", dot: "bg-accent" },
+      { href: "/resources/downloads", label: "Downloads", tint: "bg-secondary/20 border-secondary/40 hover:bg-secondary/30", dot: "bg-secondary" },
+      { href: "/blog", label: "Blog", tint: "bg-white/10 border-white/25 hover:bg-white/20", dot: "bg-mid" },
     ],
   },
   { href: "/before-you-call", label: "Before You Call" },
@@ -110,15 +110,16 @@ export default function Header() {
                     </svg>
                   </button>
                   {open && (
-                    <ul className="absolute left-0 top-full pt-2 min-w-[180px]">
-                      <div className="bg-primary border border-white/10 rounded-lg shadow-xl py-1.5 overflow-hidden">
+                    <ul className="absolute left-0 top-full pt-2 min-w-[200px]">
+                      <div className="bg-white border border-gray-200 rounded-lg shadow-xl py-1.5 overflow-hidden">
                         {link.children.map((child) => (
                           <li key={child.href}>
                             <Link
                               href={child.href}
-                              className="block px-4 py-2 text-sm font-medium text-white/80 hover:text-white hover:bg-white/5 transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset"
+                              className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-primary hover:bg-light transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
                               onClick={() => setDropdownOpen(null)}
                             >
+                              <span className={`w-2 h-2 rounded-full flex-shrink-0 ${child.dot ?? "bg-mid"}`} aria-hidden="true" />
                               {child.label}
                             </Link>
                           </li>
@@ -155,7 +156,7 @@ export default function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="px-3 py-2 text-sm font-medium text-white/80 hover:text-white rounded-md transition-colors"
+                  className="inline-flex items-center px-3 py-2 text-sm font-medium text-white/80 hover:text-white rounded-md transition-colors"
                 >
                   {link.label}
                 </Link>

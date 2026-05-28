@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import FadeUp from "@/components/shared/FadeUp";
 import NewsletterSignup from "@/components/shared/NewsletterSignup";
+import LogoWall from "@/components/home/LogoWall";
 
 export const metadata: Metadata = {
   title: "Tools & Self-Assessments",
@@ -51,11 +52,47 @@ export default function ResourcesToolsPage() {
           </FadeUp>
           <FadeUp delay={100}>
             <p className="mt-5 text-lg text-white/70 max-w-2xl leading-relaxed">
-              Practical instruments you can use today &mdash; interactive self-assessments, worksheets, and articles written from 20+ years across Valeo, Leoni and Lear Corporation. No theory, no jargon.
+              Free interactive self-assessments that walk you through the same chains we run with clients &mdash; on your own numbers, in your own browser. Built from 20+ years across Valeo, Leoni and Lear Corporation. No theory, no jargon.
             </p>
+          </FadeUp>
+          <FadeUp delay={200}>
+            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <Link
+                href="/resources/level-5-targeting"
+                className="inline-block bg-accent text-white font-semibold px-8 py-4 rounded-full text-base whitespace-nowrap transition-shadow hover:shadow-[0_0_24px_rgba(47,128,237,0.5)] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              >
+                Open the Level 5 Targeting tool
+              </Link>
+              <span className="text-sm text-white/70">free &middot; 15 minutes &middot; no signup</span>
+            </div>
+          </FadeUp>
+          <FadeUp delay={300}>
+            <ul className="mt-6 space-y-2 text-sm text-white/70">
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>Runs entirely in your browser &mdash; your numbers never leave your device</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>No signup, no cloud upload, no sales call required</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>The same logic we run on Tier-1 floors &mdash; not a generic template</span>
+              </li>
+            </ul>
           </FadeUp>
         </div>
       </section>
+
+      {/* Trust strip */}
+      <LogoWall />
 
       {/* Tools */}
       <section className="py-20">
@@ -116,6 +153,33 @@ export default function ResourcesToolsPage() {
                 </div>
               </div>
             </Link>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* Bridge to the paid offer */}
+      <section className="bg-light py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center gap-6">
+              <div className="flex-1">
+                <h2 className="text-xl sm:text-2xl font-bold text-primary leading-snug">
+                  Want this run on your plant &mdash; with your team, your data, your targets?
+                </h2>
+                <p className="mt-2 text-mid leading-relaxed">
+                  The tool gives you the map. A free 30-minute diagnostic call gives you the route &mdash; a concrete next step you keep, even if you don&apos;t hire us.
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-blue-600 text-white font-semibold px-7 py-3.5 rounded-lg whitespace-nowrap transition-colors active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 self-start sm:self-auto"
+              >
+                Book a free diagnostic call
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </Link>
+            </div>
           </FadeUp>
         </div>
       </section>
