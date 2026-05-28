@@ -45,7 +45,7 @@ The key insight: operational excellence is not about doing everything at once. I
     `.trim(),
   },
   {
-    slug: "daily-management-system-guide",
+    slug: "how-to-build-a-daily-management-system-that-actually-works",
     title: "How to Build a Daily Management System That Actually Works",
     date: "2026-03-01",
     category: "Management Systems",

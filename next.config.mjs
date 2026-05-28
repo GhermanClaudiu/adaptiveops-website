@@ -8,6 +8,20 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/resources",
+        destination: "/resources/tools",
+        permanent: true,
+      },
+      {
+        source: "/blog/daily-management-system-guide",
+        destination: "/blog/how-to-build-a-daily-management-system-that-actually-works",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
