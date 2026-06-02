@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import FadeUp from "@/components/shared/FadeUp";
+import { captureLead } from "@/lib/leadCapture";
 
 interface NewsletterSignupProps {
   variant?: "dark" | "light";
@@ -16,6 +17,7 @@ export default function NewsletterSignup({
 }: NewsletterSignupProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -23,10 +25,18 @@ export default function NewsletterSignup({
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!email) return;
+    if (!email || !consent) return;
 
     setStatus("loading");
     setErrorMsg("");
+
+    // Fire-and-forget lead capture to Academy (consent is required above).
+    captureLead({
+      email,
+      name: name || undefined,
+      source: "Newsletter",
+      consent,
+    });
 
     try {
       const res = await fetch("/api/newsletter", {
@@ -39,6 +49,7 @@ export default function NewsletterSignup({
         setStatus("success");
         setName("");
         setEmail("");
+        setConsent(false);
       } else {
         const data = await res.json().catch(() => ({}));
         setErrorMsg((data as Record<string, string>).error || "Something went wrong. Try again.");
@@ -109,9 +120,27 @@ export default function NewsletterSignup({
                   }`}
                 />
               </div>
+              <label
+                className={`mt-4 flex items-start gap-2.5 text-left text-xs leading-relaxed cursor-pointer ${
+                  isDark ? "text-white/55" : "text-mid"
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  required
+                  className="mt-0.5 w-4 h-4 flex-shrink-0 rounded accent-accent focus-visible:ring-2 focus-visible:ring-accent"
+                />
+                <span>
+                  I agree to AdaptiveOps storing my details to send the monthly
+                  newsletter. I can unsubscribe anytime.
+                </span>
+              </label>
+
               <button
                 type="submit"
-                disabled={status === "loading"}
+                disabled={status === "loading" || !consent}
                 className="mt-3 w-full sm:w-auto bg-accent text-white font-semibold px-8 py-3 rounded-lg transition-shadow hover:shadow-[0_0_20px_rgba(47,128,237,0.4)] disabled:opacity-60 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary text-sm"
               >
                 {status === "loading" ? (

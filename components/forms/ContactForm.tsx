@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, FormEvent } from "react";
+import { captureLead } from "@/lib/leadCapture";
 
 const interestOptions = [
   "Training Programs",
@@ -59,6 +60,21 @@ export default function ContactForm() {
 
     const form = e.currentTarget;
     const data = new FormData(form);
+
+    // Fire-and-forget lead capture to Academy. The GDPR checkbox is required,
+    // so it is always ticked at submit time — consent is guaranteed here.
+    captureLead({
+      email: String(data.get("email") || ""),
+      name: String(data.get("name") || "") || undefined,
+      company: String(data.get("company") || "") || undefined,
+      source: "ContactForm",
+      consent: Boolean(data.get("gdpr")),
+      payload: {
+        interests,
+        phone: String(data.get("phone") || "") || undefined,
+        message: String(data.get("message") || "") || undefined,
+      },
+    });
 
     try {
       const res = await fetch("/api/contact", {

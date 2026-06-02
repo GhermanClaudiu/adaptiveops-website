@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { captureLead } from "@/lib/leadCapture";
 
 /* Markup ported from the standalone tool, restyled to AdaptiveOps tokens.
    The internal topbar is removed (site Header sits above); the report CTA
@@ -117,7 +118,8 @@ const TOOL_HTML = `
       <p>We'll show your candidate list on screen now, and send a formatted copy you can bring to your next leadership meeting.</p>
       <div class="gate-form"><input type="email" id="g-email" placeholder="Work email"><input type="text" id="g-role" placeholder="Your role (e.g. Plant Manager)"></div>
       <div class="gate-row"><div class="gate-form"><input type="text" id="g-plant" placeholder="Plant / company (optional)"><button class="btn btn-primary" onclick="l5generate()" style="white-space:nowrap;">Generate report →</button></div></div>
-      <div class="err" id="e-gate" style="color:#FCA5A5;">Enter a valid work email and your role.</div>
+      <label class="gate-consent" for="g-consent"><input type="checkbox" id="g-consent"><span>I agree to AdaptiveOps storing my details to send this report and occasional operational insights. I can unsubscribe anytime.</span></label>
+      <div class="err" id="e-gate" style="color:#FCA5A5;">Enter a valid work email, your role, and tick the consent box.</div>
       <div class="fine">No spam. Your assessment inputs are used only to generate this report. Unsubscribe anytime.</div>
     </div>
     <div class="nav-row"><button class="btn btn-ghost" onclick="l5go('p4')">← Back</button><span></span></div>
@@ -394,9 +396,24 @@ export default function Level5TargetingTool() {
     function generate() {
       const email = ($("g-email") as HTMLInputElement).value.trim();
       const role = ($("g-role") as HTMLInputElement).value.trim();
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || role.length < 2) return showErr("e-gate");
-      STATE.lead = { email, role, plant: ($("g-plant") as HTMLInputElement).value.trim() };
-      /* PRODUCTION: POST {lead, ratings, tn, kpis, causes} to backend / MailerLite here */
+      const consent = ($("g-consent") as HTMLInputElement).checked;
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || role.length < 2 || !consent) return showErr("e-gate");
+      const plant = ($("g-plant") as HTMLInputElement).value.trim();
+      STATE.lead = { email, role, plant };
+      // Fire-and-forget lead capture to Academy — report renders immediately below.
+      captureLead({
+        email,
+        role,
+        company: plant || undefined,
+        source: "Level5Targeting",
+        consent,
+        payload: {
+          ratings: Object.values(STATE.ratings),
+          trueNorth: STATE.tn.type,
+          kpis: selectedKPIs().map((k) => k.name),
+          completedAt: new Date().toISOString(),
+        },
+      });
       buildReport(); go("report");
     }
 
@@ -611,6 +628,9 @@ export default function Level5TargetingTool() {
 .l5tool .gate .fine{font-size:12px;color:rgba(255,255,255,.4);margin-top:14px}
 .l5tool .gate-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 .l5tool .gate-row .gate-form{flex:1}
+.l5tool .gate-consent{display:flex;align-items:flex-start;gap:10px;margin-top:18px;font-size:13px;line-height:1.5;color:rgba(255,255,255,.7);cursor:pointer;max-width:60ch}
+.l5tool .gate-consent input{margin-top:2px;width:16px;height:16px;flex-shrink:0;accent-color:var(--rust);cursor:pointer}
+.l5tool .gate-consent:hover{color:rgba(255,255,255,.85)}
 
 .l5tool .report-head{background:var(--charcoal);color:#fff;border-radius:12px 12px 0 0;padding:32px 34px}
 .l5tool .report-head .eyebrow{color:var(--amber)}
