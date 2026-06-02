@@ -137,8 +137,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-white/10 text-center text-sm text-white/65">
-          &copy; {new Date().getFullYear()} AdaptiveOps. All rights reserved.
+        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2 text-center text-sm text-white/65">
+          <span>&copy; {new Date().getFullYear()} AdaptiveOps. All rights reserved.</span>
+          <Link
+            href="/cookie-policy"
+            className="text-white/65 hover:text-white transition-colors"
+          >
+            Cookie Policy
+          </Link>
         </div>
       </div>
     </footer>

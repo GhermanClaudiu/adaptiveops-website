@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import CookieBanner from "@/components/shared/CookieBanner";
+import CookieConsent from "@/components/shared/CookieConsent";
 import JsonLd from "@/components/shared/JsonLd";
 import "./globals.css";
 
@@ -309,16 +308,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
-        )}
         <JsonLd data={organizationSchema} />
         <JsonLd data={faqSchema} />
         <JsonLd data={softwareSchema} />
         <Header />
         <div className="pt-16">{children}</div>
         <Footer />
-        <CookieBanner />
+        <CookieConsent gaId={process.env.NEXT_PUBLIC_GA_ID} />
       </body>
     </html>
   );
