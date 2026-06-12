@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, type CSSProperties } from "react";
 import Link from "next/link";
 
 type Cell = {
@@ -13,18 +13,51 @@ type Cell = {
   defect: boolean;
   zone: number;
   marked: boolean;
+  // Visual chaos (only set for chaos cells, undefined elsewhere)
+  colorCls?: string;
+  familyCls?: string;
+  sizeCls?: string;
+  weightCls?: string;
 };
 
-type StepId = "without" | "sort" | "order" | "shine" | "standardize" | "sustain";
+// Visual chaos palette — brand colors + a couple of warm/cool accents for variety
+const CHAOS_COLORS = [
+  "text-primary",
+  "text-accent",
+  "text-secondary",
+  "text-mid",
+  "text-red-500",
+  "text-orange-500",
+  "text-purple-600",
+  "text-primary",
+  "text-primary",
+];
+const CHAOS_FAMILIES = ["", "", "", "font-serif", "font-mono"];
+const CHAOS_SIZES = [
+  "text-[9px] sm:text-[10px]",
+  "text-[10px] sm:text-xs",
+  "text-xs sm:text-sm",
+  "text-sm sm:text-base",
+  "text-base sm:text-lg",
+];
+const CHAOS_WEIGHTS = ["font-normal", "font-semibold", "font-bold", "font-black"];
+
+function pickOne<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+type StepId = "without" | "sort" | "afterSort" | "order" | "shine" | "standardize" | "sustain";
 type Kind = "find" | "sort" | "shine" | "sustain" | "standardize";
-type Phase = "intro" | "playing" | "stepDone" | "finished";
+type Phase = "intro" | "playing" | "stepDone" | "animating2S" | "finished";
 
 const TARGET = 50;
 const ROUND_TIME = 30;
+const ANIM_2S_MS = 1600;
 
 const NEXT: Record<StepId, StepId | "finished"> = {
   without: "sort",
-  sort: "order",
+  sort: "afterSort",
+  afterSort: "order",
   order: "shine",
   shine: "standardize",
   standardize: "sustain",
@@ -33,11 +66,12 @@ const NEXT: Record<StepId, StepId | "finished"> = {
 
 const STEP: Record<StepId, { kind: Kind; tag: string; instruction: string; timed: boolean }> = {
   without: { kind: "find", tag: "Round 1 · Without 5S", instruction: "Find 1 → 50 in order, as fast as you can.", timed: true },
-  sort: { kind: "sort", tag: "1S · Sort (Seiri)", instruction: "Red-tag the clutter: click every number above 50 to remove it.", timed: true },
-  order: { kind: "find", tag: "2S · Set in Order — replay", instruction: "Find 1 → 50 again. Notice the difference.", timed: true },
+  sort: { kind: "sort", tag: "1S · Sort (Seiri)", instruction: "Red-tag the clutter — click every number above 50. Take your time, no clock.", timed: false },
+  afterSort: { kind: "find", tag: "1S applied · After Sort", instruction: "Find 1 → 50 again — same chaos, just less of it.", timed: true },
+  order: { kind: "find", tag: "2S applied · After Set in Order", instruction: "Find 1 → 50 — now everything has its place.", timed: true },
   shine: { kind: "shine", tag: "3S · Shine (Seiso)", instruction: "Clean & inspect: click every number that's faded or struck-through.", timed: true },
   standardize: { kind: "standardize", tag: "4S · Standardize (Seiketsu)", instruction: "The range is now color-coded into zones — a visual standard anyone can follow.", timed: false },
-  sustain: { kind: "sustain", tag: "5S · Sustain (Shitsuke)", instruction: "Audit the area: click anything abnormal — a defect that crept back in.", timed: true },
+  sustain: { kind: "sustain", tag: "5S · Sustain (Shitsuke)", instruction: "Audit the area — click anything abnormal. Take your time, no clock. The standard makes deviations easy to spot.", timed: false },
 };
 
 const FIVE_S: { id: StepId; s: string; name: string; dot: string; principle: string }[] = [
@@ -72,11 +106,16 @@ function chaos(): Cell[] {
     value: v,
     isJunk: v > 50,
     dirty: Math.random() < 0.18,
-    rotate: Math.random() < 0.3 ? Math.round(Math.random() * 24 - 12) : 0,
+    // Heavier rotation — 65% of cells, up to ±90° (some sideways, some upside-down-ish)
+    rotate: Math.random() < 0.65 ? Math.round(Math.random() * 180 - 90) : 0,
     muted: Math.random() < 0.15,
     defect: false,
     zone: Math.floor(((v - 1) % 50) / 10),
     marked: false,
+    colorCls: pickOne(CHAOS_COLORS),
+    familyCls: pickOne(CHAOS_FAMILIES),
+    sizeCls: pickOne(CHAOS_SIZES),
+    weightCls: pickOne(CHAOS_WEIGHTS),
   }));
 }
 
@@ -97,23 +136,48 @@ function ordered(opts: { dirty?: boolean; defects?: boolean }): Cell[] {
     });
   }
   if (opts.dirty) {
-    pick(range(0, TARGET - 1), 12).forEach((idx) => {
+    pick(range(0, TARGET - 1), 15).forEach((idx) => {
       cells[idx].dirty = true;
       cells[idx].rotate = Math.random() < 0.5 ? Math.round(Math.random() * 20 - 10) : 0;
     });
   }
   if (opts.defects) {
-    pick(range(0, TARGET - 1), 5).forEach((idx, k) => {
+    // Mix of realistic 5S defects. All defects are visually EVIDENT against the
+    // standardized grid — the lesson is "a real standard makes deviations pop".
+    const distribution = [
+      "clutter", "clutter",
+      "dirty", "dirty",
+      "rotation", "rotation",
+      "color", "color",
+      "font", "font",
+    ];
+    pick(range(0, TARGET - 1), distribution.length).forEach((idx, k) => {
       cells[idx].defect = true;
-      const t = k % 3;
-      if (t === 0) {
-        cells[idx].value = 51 + Math.floor(Math.random() * 49); // clutter crept back
+      const t = distribution[k];
+      if (t === "clutter") {
+        // Clutter crept back — wrong value AND screaming visual
+        cells[idx].value = 51 + Math.floor(Math.random() * 49);
         cells[idx].isJunk = true;
-      } else if (t === 1) {
-        cells[idx].dirty = true; // not cleaned
-        cells[idx].rotate = Math.round(Math.random() * 18 - 9);
+        cells[idx].colorCls = "text-red-600";
+        cells[idx].weightCls = "font-black";
+        cells[idx].sizeCls = "text-base sm:text-lg";
+      } else if (t === "dirty") {
+        // Not cleaned — heavy strikethrough + faded
+        cells[idx].dirty = true;
+        cells[idx].muted = true;
+      } else if (t === "rotation") {
+        // Drifted from its slot — sideways or upside-down-ish
+        cells[idx].rotate = (Math.random() < 0.5 ? -1 : 1) * (55 + Math.floor(Math.random() * 35));
+      } else if (t === "color") {
+        // Wrong color — bright, off-brand, larger
+        cells[idx].colorCls = pickOne(["text-purple-600", "text-orange-500", "text-pink-600"]);
+        cells[idx].weightCls = "font-black";
+        cells[idx].sizeCls = "text-base sm:text-lg";
       } else {
-        cells[idx].value = ((idx + 7) % TARGET) + 1; // duplicate / wrong number
+        // Wrong font / non-standard style — serif italic or bold mono
+        cells[idx].familyCls = pickOne(["font-serif italic", "font-mono"]);
+        cells[idx].sizeCls = "text-base sm:text-lg";
+        cells[idx].weightCls = "font-black";
       }
     });
   }
@@ -128,10 +192,12 @@ export default function FiveSGame() {
   const [progress, setProgress] = useState(0);
   const [stepTotal, setStepTotal] = useState(0);
   const [timeLeft, setTimeLeft] = useState(ROUND_TIME);
+  const [animOn, setAnimOn] = useState(false);
   const [results, setResults] = useState({
     without: null as number | null,
     sort: null as number | null,
     sortTotal: 0,
+    afterSort: null as number | null,
     order: null as number | null,
     shine: null as number | null,
     shineTotal: 0,
@@ -140,12 +206,44 @@ export default function FiveSGame() {
     sustainTotal: 0,
   });
 
-  const startStep = useCallback((s: StepId) => {
+  const startStep = useCallback((s: StepId, prevCells?: Cell[]) => {
     let c: Cell[];
-    if (s === "without" || s === "sort") c = chaos();
-    else if (s === "order") c = ordered({});
-    else if (s === "shine") c = ordered({ dirty: true });
-    else if (s === "sustain") c = ordered({ defects: true });
+    if (s === "without") c = chaos();
+    else if (s === "sort") c = prevCells ?? chaos();
+    else if (s === "afterSort") {
+      // Keep sort's grid (junk marked stays "removed"), reset marked only on 1-50
+      c = (prevCells ?? chaos()).map((cell) =>
+        cell.isJunk ? cell : { ...cell, marked: false },
+      );
+    } else if (s === "order") {
+      if (prevCells) {
+        // Keep chaos visuals (colors, fonts, sizes, rotation, dirty, muted) — just sort by value
+        const real = prevCells
+          .filter((cell) => cell.value !== null && !cell.isJunk)
+          .sort((a, b) => (a.value as number) - (b.value as number));
+        c = [];
+        for (let i = 0; i < 100; i++) {
+          if (i < real.length) {
+            const orig = real[i];
+            c.push({
+              ...orig,
+              id: i,
+              marked: false,
+              zone: Math.floor((((orig.value as number) - 1) % 50) / 10),
+            });
+          } else {
+            c.push({
+              id: i, value: null, isJunk: false, dirty: false, rotate: 0,
+              muted: false, defect: false, zone: 0, marked: false,
+            });
+          }
+        }
+      } else c = ordered({});
+    } else if (s === "shine") {
+      // Keep order's grid (chaos visuals stay) — Shine targets the line-through (dirty) cells
+      if (prevCells) c = prevCells.map((cell) => ({ ...cell, marked: false }));
+      else c = ordered({ dirty: true });
+    } else if (s === "sustain") c = ordered({ defects: true });
     else c = ordered({}); // standardize
     let total = 0;
     if (s === "sort") total = c.filter((x) => x.isJunk).length;
@@ -166,6 +264,7 @@ export default function FiveSGame() {
         switch (step) {
           case "without": return { ...r, without: value };
           case "sort": return { ...r, sort: value, sortTotal: stepTotal };
+          case "afterSort": return { ...r, afterSort: value };
           case "order": return { ...r, order: value };
           case "shine": return { ...r, shine: value, shineTotal: stepTotal };
           case "standardize": return { ...r, standardize: true };
@@ -192,6 +291,29 @@ export default function FiveSGame() {
     }
   }, [phase, step, timeLeft, nextNumber, progress, finishStep]);
 
+  // Action-step completed (sort/shine/sustain reached target count)
+  useEffect(() => {
+    if (phase !== "playing") return;
+    const k = STEP[step].kind;
+    if (k !== "sort" && k !== "shine" && k !== "sustain") return;
+    if (stepTotal > 0 && progress >= stepTotal) {
+      finishStep(progress);
+    }
+  }, [phase, step, progress, stepTotal, finishStep]);
+
+  // Trigger 2S animation: render once in starting position, then flip transform next frame
+  useEffect(() => {
+    if (phase !== "animating2S") {
+      setAnimOn(false);
+      return;
+    }
+    setAnimOn(false);
+    const id = window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => setAnimOn(true));
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [phase]);
+
   function mark(id: number) {
     setCells((cs) => cs.map((c) => (c.id === id ? { ...c, marked: true } : c)));
   }
@@ -207,33 +329,36 @@ export default function FiveSGame() {
     } else if (kind === "sort") {
       if (!c.isJunk) return;
       mark(c.id);
-      const np = progress + 1;
-      setProgress(np);
-      if (np >= stepTotal) finishStep(np);
+      setProgress((p) => p + 1);
     } else if (kind === "shine") {
       if (!c.dirty) return;
       mark(c.id);
-      const np = progress + 1;
-      setProgress(np);
-      if (np >= stepTotal) finishStep(np);
+      setProgress((p) => p + 1);
     } else if (kind === "sustain") {
       if (!c.defect) return;
       mark(c.id);
-      const np = progress + 1;
-      setProgress(np);
-      if (np >= stepTotal) finishStep(np);
+      setProgress((p) => p + 1);
     }
   }
 
   function advance() {
     const n = NEXT[step];
-    if (n === "finished") setPhase("finished");
-    else startStep(n);
+    if (n === "finished") {
+      setPhase("finished");
+    } else if (step === "afterSort" && n === "order") {
+      // Animate 2S: numbers slide from chaotic positions to ordered positions
+      setPhase("animating2S");
+      window.setTimeout(() => startStep("order", cells), ANIM_2S_MS);
+    } else if (n === "sort" || n === "afterSort" || n === "shine") {
+      startStep(n, cells);
+    } else {
+      startStep(n);
+    }
   }
 
   function replay() {
     setResults({
-      without: null, sort: null, sortTotal: 0, order: null,
+      without: null, sort: null, sortTotal: 0, afterSort: null, order: null,
       shine: null, shineTotal: 0, standardize: false, sustain: null, sustainTotal: 0,
     });
     setPhase("intro");
@@ -247,8 +372,12 @@ export default function FiveSGame() {
 
   // ---- cell rendering ----
   function renderCell(c: Cell) {
-    // Sort: removed junk disappears
-    if (step === "sort" && c.marked) {
+    // Sort & afterSort: removed junk disappears
+    if ((step === "sort" || step === "afterSort") && c.marked && c.isJunk) {
+      return <div key={c.id} className="aspect-square rounded-md bg-black/[0.025]" aria-hidden="true" />;
+    }
+    // Animating 2S: junk slots stay empty, valid numbers translate to ordered positions
+    if (phase === "animating2S" && c.isJunk) {
       return <div key={c.id} className="aspect-square rounded-md bg-black/[0.025]" aria-hidden="true" />;
     }
     if (c.value === null) {
@@ -258,13 +387,48 @@ export default function FiveSGame() {
     const zoneBg = step === "standardize" || step === "sustain" ? ZONE_BG[c.zone] : "bg-white";
     const isDirtyNow = c.dirty && !(step === "shine" && c.marked);
 
-    let stateCls = `${zoneBg} border-gray-200 text-primary`;
-    if (kind === "find" && c.marked) stateCls = "bg-secondary border-secondary text-white";
-    else if (step === "shine" && c.marked) stateCls = "bg-white border-secondary ring-2 ring-secondary text-primary";
-    else if (step === "sustain" && c.marked) stateCls = "bg-secondary/15 border-secondary ring-2 ring-secondary text-primary";
+    // Visual chaos (only when cell carries chaos attributes, e.g. without/sort/afterSort)
+    const useChaos = !!(c.colorCls || c.familyCls || c.sizeCls || c.weightCls);
+    const chaosColor = c.colorCls ?? "text-primary";
+    const chaosFamily = c.familyCls ?? "";
+    const chaosSize = c.sizeCls ?? "text-[10px] sm:text-xs md:text-sm";
+    const chaosWeight = c.weightCls ?? "font-bold";
+    const defaultTypography = "text-[10px] sm:text-xs md:text-sm font-bold";
+    const typographyCls = useChaos ? `${chaosFamily} ${chaosSize} ${chaosWeight}` : defaultTypography;
 
-    const noiseCls = `${isDirtyNow ? "line-through text-mid" : ""} ${c.muted && !c.marked ? "text-mid" : ""}`;
-    const interactive = step !== "standardize";
+    let bgBorderCls = `${zoneBg} border-gray-200`;
+    let textColorCls = useChaos ? chaosColor : "text-primary";
+    if (kind === "find" && c.marked) {
+      bgBorderCls = "bg-secondary border-secondary";
+      textColorCls = "text-white";
+    } else if (step === "shine" && c.marked) {
+      bgBorderCls = "bg-white border-secondary ring-2 ring-secondary";
+      textColorCls = "text-primary";
+    } else if (step === "sustain" && c.marked) {
+      bgBorderCls = "bg-secondary/15 border-secondary ring-2 ring-secondary";
+      textColorCls = "text-primary";
+    }
+
+    const noiseCls = `${isDirtyNow ? "line-through" : ""} ${isDirtyNow && !useChaos ? "text-mid" : ""} ${c.muted && !c.marked && !useChaos ? "text-mid" : ""}`;
+    const interactive = step !== "standardize" && phase === "playing";
+
+    // Build transform: chaotic rotate (when applicable) + 2S translate (when animating)
+    let transform = c.rotate ? `rotate(${c.rotate}deg)` : "";
+    if (phase === "animating2S" && animOn && c.value !== null) {
+      const currRow = Math.floor(c.id / 10);
+      const currCol = c.id % 10;
+      const destRow = Math.floor((c.value - 1) / 10);
+      const destCol = (c.value - 1) % 10;
+      const dx = (destCol - currCol) * 100;
+      const dy = (destRow - currRow) * 100;
+      transform = `translate(${dx}%, ${dy}%) rotate(0deg)`;
+    }
+    const style: CSSProperties = {
+      ...(transform ? { transform } : {}),
+      ...(phase === "animating2S"
+        ? { transition: `transform ${ANIM_2S_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`, zIndex: 5 }
+        : {}),
+    };
 
     return (
       <button
@@ -274,21 +438,26 @@ export default function FiveSGame() {
         disabled={!interactive}
         aria-label={`Number ${c.value}`}
         aria-pressed={c.marked}
-        className={`aspect-square rounded-md border text-[10px] sm:text-xs md:text-sm font-bold flex items-center justify-center select-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:z-10 ${interactive ? "hover:border-accent" : "cursor-default"} ${stateCls} ${noiseCls}`}
-        style={c.rotate ? { transform: `rotate(${c.rotate}deg)` } : undefined}
+        className={`aspect-square rounded-md border flex items-center justify-center select-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:z-10 ${interactive ? "hover:border-accent" : "cursor-default"} ${bgBorderCls} ${textColorCls} ${typographyCls} ${noiseCls}`}
+        style={style}
       >
         {c.value}
       </button>
     );
   }
 
+  const gridWrapperCls = "mx-auto w-full";
+  const gridWrapperStyle: CSSProperties = { maxWidth: "min(100%, calc(100vh - 280px))" };
+
   return (
     <section className="bg-light">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-        <div className="mb-6">
-          <span className="inline-block text-xs font-bold tracking-widest uppercase text-accent mb-3">5S Numbers Game</span>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary leading-tight">See what 5S does in 30 seconds.</h1>
-        </div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+        {phase !== "playing" && phase !== "animating2S" && (
+          <div className="mb-4 sm:mb-6">
+            <span className="inline-block text-xs font-bold tracking-widest uppercase text-accent mb-2 sm:mb-3">5S Numbers Game</span>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary leading-tight">See what 5S does in 30 seconds.</h1>
+          </div>
+        )}
 
         {/* INTRO */}
         {phase === "intro" && (
@@ -346,7 +515,7 @@ export default function FiveSGame() {
                   STEP[step].instruction
                 )}
               </p>
-              {STEP[step].timed && (
+              {(STEP[step].timed || step === "sort" || step === "sustain") && (
                 <p className="text-sm font-bold text-secondary whitespace-nowrap">
                   {metricLabel} {metricValue}/{metricTotal}
                 </p>
@@ -354,7 +523,7 @@ export default function FiveSGame() {
             </div>
 
             {STEP[step].timed && (
-              <div className="h-1.5 w-full rounded-full bg-gray-200 overflow-hidden mb-5">
+              <div className="h-1.5 w-full rounded-full bg-gray-200 overflow-hidden mb-3 sm:mb-4">
                 <div
                   className={`h-full rounded-full transition-[width] duration-1000 ease-linear ${lowTime ? "bg-red-500" : "bg-accent"}`}
                   style={{ width: `${(timeLeft / ROUND_TIME) * 100}%` }}
@@ -363,16 +532,33 @@ export default function FiveSGame() {
             )}
 
             {step === "standardize" && (
-              <p className="text-mid text-sm leading-relaxed mb-5 max-w-2xl">{STEP[step].instruction}</p>
+              <p className="text-mid text-sm leading-relaxed mb-4 max-w-2xl">{STEP[step].instruction}</p>
             )}
 
-            <div className="grid grid-cols-10 gap-1 sm:gap-1.5">{cells.map(renderCell)}</div>
+            <div className={gridWrapperCls} style={gridWrapperStyle}>
+              <div className="grid grid-cols-10 gap-1 sm:gap-1.5">{cells.map(renderCell)}</div>
+            </div>
 
             {kind === "find" && (
-              <p className="mt-4 text-xs text-mid text-center">
+              <p className="mt-3 text-xs text-mid text-center">
                 Click the numbers in order. You&apos;re looking for{" "}
                 <span className="font-bold text-primary">{nextNumber > TARGET ? "done" : nextNumber}</span>.
               </p>
+            )}
+
+            {(step === "sort" || step === "sustain") && (
+              <div className="mt-4 flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => finishStep(progress)}
+                  className="inline-flex items-center gap-2 bg-accent hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                >
+                  {step === "sort" ? "Done sorting — replay round" : "Done auditing — see results"}
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
             )}
 
             {step === "standardize" && (
@@ -390,6 +576,20 @@ export default function FiveSGame() {
           </div>
         )}
 
+        {/* 2S ANIMATION */}
+        {phase === "animating2S" && (
+          <div>
+            <p className="text-[11px] font-bold tracking-widest uppercase text-mid mb-2">2S · Set in Order (Seiton)</p>
+            <p className="text-base sm:text-lg font-bold text-primary mb-4">
+              A place for everything — watch each number fly to its home.
+            </p>
+            <div className={gridWrapperCls} style={gridWrapperStyle}>
+              <div className="grid grid-cols-10 gap-1 sm:gap-1.5">{cells.map(renderCell)}</div>
+            </div>
+            <p className="mt-3 text-xs text-mid text-center">Same task. Same clock. About to feel very different.</p>
+          </div>
+        )}
+
         {/* STEP DONE */}
         {phase === "stepDone" && <StepDone step={step} results={results} onAdvance={advance} />}
 
@@ -400,6 +600,20 @@ export default function FiveSGame() {
   );
 }
 
+// ---- Shared result shape ----
+type Results = {
+  without: number | null;
+  sort: number | null;
+  sortTotal: number;
+  afterSort: number | null;
+  order: number | null;
+  shine: number | null;
+  shineTotal: number;
+  standardize: boolean;
+  sustain: number | null;
+  sustainTotal: number;
+};
+
 // ---- Step transition card ----
 function StepDone({
   step,
@@ -407,9 +621,11 @@ function StepDone({
   onAdvance,
 }: {
   step: StepId;
-  results: { without: number | null; sort: number | null; sortTotal: number; order: number | null; shine: number | null; shineTotal: number; sustain: number | null; sustainTotal: number };
+  results: Results;
   onAdvance: () => void;
 }) {
+  const withoutDelta = (results.afterSort ?? 0) - (results.without ?? 0);
+  const orderDelta = (results.order ?? 0) - (results.afterSort ?? 0);
   const done: Record<StepId, { result: string; nextDot: string; nextTitle: string; nextDesc: string; button: string } | { result: string; last: true }> = {
     without: {
       result: `You reached ${results.without} of 50 in the mess.`,
@@ -420,13 +636,20 @@ function StepDone({
     },
     sort: {
       result: `Cleared ${results.sort} of ${results.sortTotal} clutter items.`,
+      nextDot: "bg-accent",
+      nextTitle: "Now replay — Find 1 → 50 again",
+      nextDesc: "Same chaos, just less of it. This round shows what Sort ALONE bought you, before any organizing.",
+      button: "Find again →",
+    },
+    afterSort: {
+      result: `You reached ${results.afterSort} of 50 — that's +${withoutDelta} from Sort alone.`,
       nextDot: "bg-secondary",
-      nextTitle: "Now apply 2S · Set in Order",
-      nextDesc: "Give the 50 you kept a logical home, in order. A place for everything — instant to find.",
+      nextTitle: "Now watch 2S · Set in Order",
+      nextDesc: "Each remaining number gets a home — in order. Watch the workplace organize itself, then play the round again.",
       button: "Set in Order →",
     },
     order: {
-      result: `You reached ${results.order} of 50 — same task, same clock.`,
+      result: `You reached ${results.order} of 50 — +${orderDelta} more, just from organizing.`,
       nextDot: "bg-accent",
       nextTitle: "Now apply 3S · Shine",
       nextDesc: "Clean and inspect. Find the items that are damaged or unclear and put them right.",
@@ -496,7 +719,7 @@ function Finished({
   results,
   onReplay,
 }: {
-  results: { without: number | null; sort: number | null; sortTotal: number; order: number | null; shine: number | null; shineTotal: number; standardize: boolean; sustain: number | null; sustainTotal: number };
+  results: Results;
   onReplay: () => void;
 }) {
   const metricFor = (id: StepId): string => {
@@ -510,30 +733,37 @@ function Finished({
     }
   };
 
+  const without = results.without ?? 0;
+  const afterSort = results.afterSort ?? 0;
+  const order = results.order ?? 0;
+  const sortGain = afterSort - without;
+  const orderGain = order - afterSort;
+
   return (
     <div className="space-y-8">
       <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 sm:p-9">
-        <h2 className="text-xl sm:text-2xl font-bold text-primary">Your score, before vs after 5S</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-primary">Your score, round by round</h2>
         <p className="mt-2 text-mid leading-relaxed">
-          Same task, same 30-second clock. In the mess you reached{" "}
-          <strong className="text-primary">{results.without}</strong>. After Sort and Set in Order,{" "}
-          <strong className="text-primary">{results.order}</strong>. That&apos;s not a faster person &mdash; it&apos;s a
+          Same task, same 30-second clock. Sort alone gave you{" "}
+          <strong className="text-primary">+{sortGain}</strong>. Set in Order added{" "}
+          <strong className="text-primary">+{orderGain}</strong> more. That&apos;s not a faster person &mdash; it&apos;s a
           better system. 5S does exactly this to a real shop floor.
         </p>
 
-        <div className="mt-7 grid grid-cols-2 gap-4 max-w-md">
+        <div className="mt-7 grid grid-cols-3 gap-3 sm:gap-4 max-w-xl">
           {(
             [
               { label: "Without 5S", value: results.without, color: "bg-mid" },
-              { label: "After 5S", value: results.order, color: "bg-secondary" },
+              { label: "After Sort", value: results.afterSort, color: "bg-accent" },
+              { label: "After Set in Order", value: results.order, color: "bg-secondary" },
             ] as const
           ).map((b) => (
             <div key={b.label} className="flex flex-col items-center">
               <div className="w-full h-32 sm:h-40 bg-light rounded-lg flex items-end overflow-hidden">
                 <div className={`w-full ${b.color} rounded-t-lg transition-[height] duration-700 ease-out`} style={{ height: `${((b.value ?? 0) / TARGET) * 100}%` }} />
               </div>
-              <p className="mt-2 text-2xl font-black text-primary tabular-nums">{b.value}</p>
-              <p className="text-[11px] font-semibold tracking-wide uppercase text-mid text-center leading-tight">{b.label}</p>
+              <p className="mt-2 text-xl sm:text-2xl font-black text-primary tabular-nums">{b.value}</p>
+              <p className="text-[10px] sm:text-[11px] font-semibold tracking-wide uppercase text-mid text-center leading-tight">{b.label}</p>
             </div>
           ))}
         </div>
