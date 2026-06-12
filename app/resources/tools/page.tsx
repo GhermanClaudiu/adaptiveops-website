@@ -100,60 +100,106 @@ export default function ResourcesToolsPage() {
           <FadeUp>
             <div className="mb-10">
               <span className="inline-block text-xs font-bold tracking-widest uppercase text-accent mb-3">
-                Self-assessments
+                Interactive tools
               </span>
               <h2 className="text-2xl md:text-3xl font-bold text-primary">
                 Run the logic, not just the theory.
               </h2>
               <p className="mt-3 text-mid text-base md:text-lg max-w-2xl">
-                Self-assessments that walk you through the same chains we use with clients &mdash; on your own numbers, in your own browser.
+                Self-assessments and training games that put the methods in your hands &mdash; on your own numbers, in your own browser.
               </p>
             </div>
           </FadeUp>
 
-          <FadeUp delay={100}>
-            <Link
-              href="/resources/level-5-targeting"
-              className="group block bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-2">
-                {/* Visual */}
-                <div className="relative bg-primary p-8 lg:p-10 flex flex-col justify-center min-h-[240px]">
-                  <div className="absolute -top-1/4 -right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
-                  <div className="relative">
-                    <span className="inline-flex items-center gap-2 mb-4">
-                      <span className="w-2 h-2 rounded-full bg-secondary" />
-                      <span className="text-[11px] font-bold tracking-widest uppercase text-secondary">
-                        Free · 15 minutes · No cloud upload
+          <div className="space-y-6">
+            <FadeUp delay={100}>
+              <Link
+                href="/resources/level-5-targeting"
+                className="group block bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                  {/* Visual */}
+                  <div className="relative bg-primary p-8 lg:p-10 flex flex-col justify-center min-h-[240px]">
+                    <div className="absolute -top-1/4 -right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+                    <div className="relative">
+                      <span className="inline-flex items-center gap-2 mb-4">
+                        <span className="w-2 h-2 rounded-full bg-secondary" />
+                        <span className="text-[11px] font-bold tracking-widest uppercase text-secondary">
+                          Free · 15 minutes · No cloud upload
+                        </span>
                       </span>
+                      <p className="text-4xl lg:text-5xl font-black text-white leading-none">20%</p>
+                      <p className="mt-2 text-sm text-white/70 max-w-xs">
+                        of your processes drive the result. This tool finds which ones deserve Level 5.
+                      </p>
+                    </div>
+                  </div>
+                  {/* Content */}
+                  <div className="p-8 lg:p-10 flex flex-col justify-center">
+                    <span className="text-xs font-semibold text-accent bg-accent/10 px-2.5 py-1 rounded-full self-start">
+                      Self-Assessment
                     </span>
-                    <p className="text-4xl lg:text-5xl font-black text-white leading-none">20%</p>
-                    <p className="mt-2 text-sm text-white/70 max-w-xs">
-                      of your processes drive the result. This tool finds which ones deserve Level 5.
+                    <h3 className="mt-4 text-2xl font-bold text-primary leading-tight group-hover:text-accent transition-colors">
+                      Level 5 Targeting Self-Assessment
+                    </h3>
+                    <p className="mt-3 text-mid leading-relaxed">
+                      Trace your plant&apos;s single financial goal down to the specific processes worth the maturity investment. From Plant Cost Rate to a ranked Level 5 candidate list, owned by named departments.
                     </p>
+                    <span className="mt-6 inline-flex items-center gap-1.5 text-accent font-semibold text-sm group-hover:gap-2.5 transition-all">
+                      Open the tool
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                      </svg>
+                    </span>
                   </div>
                 </div>
-                {/* Content */}
-                <div className="p-8 lg:p-10 flex flex-col justify-center">
-                  <span className="text-xs font-semibold text-accent bg-accent/10 px-2.5 py-1 rounded-full self-start">
-                    Self-Assessment
-                  </span>
-                  <h3 className="mt-4 text-2xl font-bold text-primary leading-tight group-hover:text-accent transition-colors">
-                    Level 5 Targeting Self-Assessment
-                  </h3>
-                  <p className="mt-3 text-mid leading-relaxed">
-                    Trace your plant&apos;s single financial goal down to the specific processes worth the maturity investment. From Plant Cost Rate to a ranked Level 5 candidate list, owned by named departments.
-                  </p>
-                  <span className="mt-6 inline-flex items-center gap-1.5 text-accent font-semibold text-sm group-hover:gap-2.5 transition-all">
-                    Open the tool
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                    </svg>
-                  </span>
+              </Link>
+            </FadeUp>
+
+            <FadeUp delay={180}>
+              <Link
+                href="/resources/5s-numbers-game"
+                className="group block bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                  {/* Visual */}
+                  <div className="relative bg-primary p-8 lg:p-10 flex flex-col justify-center min-h-[240px]">
+                    <div className="absolute -top-1/4 -right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+                    <div className="relative">
+                      <span className="inline-flex items-center gap-2 mb-4">
+                        <span className="w-2 h-2 rounded-full bg-secondary" />
+                        <span className="text-[11px] font-bold tracking-widest uppercase text-secondary">
+                          Free · 3 rounds · No signup
+                        </span>
+                      </span>
+                      <p className="text-4xl lg:text-5xl font-black text-white leading-none">30s</p>
+                      <p className="mt-2 text-sm text-white/70 max-w-xs">
+                        is all it takes to feel what 5S does &mdash; same task, very different result.
+                      </p>
+                    </div>
+                  </div>
+                  {/* Content */}
+                  <div className="p-8 lg:p-10 flex flex-col justify-center">
+                    <span className="text-xs font-semibold text-secondary bg-secondary/10 px-2.5 py-1 rounded-full self-start">
+                      Lean game
+                    </span>
+                    <h3 className="mt-4 text-2xl font-bold text-primary leading-tight group-hover:text-accent transition-colors">
+                      The 5S Numbers Game
+                    </h3>
+                    <p className="mt-3 text-mid leading-relaxed">
+                      Find the numbers 1 to 50 in 30 seconds &mdash; first in a messy workplace, then after Sort and Set in Order clean it up. Watch your score climb as the system improves, not the person. The training classic, now in your browser.
+                    </p>
+                    <span className="mt-6 inline-flex items-center gap-1.5 text-accent font-semibold text-sm group-hover:gap-2.5 transition-all">
+                      Play the game
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                      </svg>
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </FadeUp>
+              </Link>
+            </FadeUp>
+          </div>
         </div>
       </section>
 
