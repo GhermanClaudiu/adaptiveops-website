@@ -28,6 +28,12 @@ export interface ToolEntry {
   statCaption: string;
   /** Eyebrow meta on the visual, e.g. "Free · 15 minutes · No cloud upload". */
   meta: string;
+  /**
+   * Community social-proof tail, rendered as "Join {N} {usagePhrase}".
+   * Tool-specific verb: a game is "played", an assessment is "run".
+   * e.g. "people who played this" → "Join 14 people who played this".
+   */
+  usagePhrase: string;
 }
 
 export const TOOLS: ToolEntry[] = [
@@ -43,6 +49,7 @@ export const TOOLS: ToolEntry[] = [
     statCaption:
       "of your processes drive the result. This tool finds which ones deserve Level 5.",
     meta: "Free · 15 minutes · No cloud upload",
+    usagePhrase: "who ran this assessment",
   },
   {
     slug: "5s-numbers-game",
@@ -56,6 +63,7 @@ export const TOOLS: ToolEntry[] = [
     statCaption:
       "is all it takes to feel what 5S does — same task, very different result.",
     meta: "Free · 3 rounds · No signup",
+    usagePhrase: "people who played this",
   },
 ];
 
