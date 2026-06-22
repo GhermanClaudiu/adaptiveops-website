@@ -772,17 +772,28 @@ function Finished({
           ))}
         </div>
 
-        <button
-          type="button"
-          onClick={onReplay}
-          className="mt-7 inline-flex items-center gap-2 border border-gray-300 text-primary font-semibold px-6 py-3 rounded-lg hover:bg-light transition-colors active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-        >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12a7.5 7.5 0 0 1 12.8-5.3L21 9m0 0V4.5M21 9h-4.5" />
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3L3 15m0 0v4.5M3 15h4.5" />
-          </svg>
-          Play again
-        </button>
+        <div className="mt-7 flex flex-col sm:flex-row sm:items-center gap-3">
+          <button
+            type="button"
+            onClick={onReplay}
+            className="inline-flex items-center gap-2 border border-gray-300 text-primary font-semibold px-6 py-3 rounded-lg hover:bg-light transition-colors active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12a7.5 7.5 0 0 1 12.8-5.3L21 9m0 0V4.5M21 9h-4.5" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3L3 15m0 0v4.5M3 15h4.5" />
+            </svg>
+            Play again
+          </button>
+          <a
+            href="#tool-testimonials"
+            className="inline-flex items-center gap-1.5 text-accent font-semibold px-2 py-3 rounded hover:text-blue-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+          >
+            Enjoyed it? Leave a testimonial
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+            </svg>
+          </a>
+        </div>
       </div>
 
       <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 sm:p-9">
