@@ -43,7 +43,7 @@ export default async function ToolTestimonials({ toolSlug }: { toolSlug: string 
   const usagePhrase = getTool(toolSlug)?.usagePhrase ?? "people who used this";
 
   return (
-    <section className="bg-light py-16 sm:py-20 print:hidden">
+    <section id="tool-testimonials" className="scroll-mt-24 bg-light py-16 sm:py-20 print:hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
           <div>
