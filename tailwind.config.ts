@@ -31,11 +31,16 @@ const config: Config = {
           "0%, 100%": { transform: "translate(0, 0)" },
           "50%": { transform: "translate(-35px, -20px)" },
         },
+        "marquee-up": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(-50%)" },
+        },
       },
       animation: {
         "hero-gradient": "hero-gradient 8s ease-in-out infinite",
         "drift-slow": "drift-slow 20s ease-in-out infinite",
         "drift-slow-reverse": "drift-slow-reverse 25s ease-in-out infinite",
+        "marquee-up": "marquee-up 24s linear infinite",
       },
     },
   },
