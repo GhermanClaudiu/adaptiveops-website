@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, type CSSProperties } from "react";
 import Link from "next/link";
+import { fireToolStart } from "@/lib/toolStats";
 
 type Cell = {
   id: number;
@@ -486,7 +487,10 @@ export default function FiveSGame() {
             </ul>
             <button
               type="button"
-              onClick={() => startStep("without")}
+              onClick={() => {
+                fireToolStart("5s-numbers-game");
+                startStep("without");
+              }}
               className="mt-7 inline-flex items-center gap-2 bg-accent hover:bg-blue-600 text-white font-semibold px-7 py-3.5 rounded-lg transition-colors active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               Start Round 1
