@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import FiveSGame from "@/components/resources/FiveSGame";
+import ToolTestimonials from "@/components/resources/ToolTestimonials";
 import NewsletterSignup from "@/components/shared/NewsletterSignup";
 
 export const metadata: Metadata = {
@@ -41,6 +42,8 @@ export default function FiveSNumbersGamePage() {
       </div>
 
       <FiveSGame />
+
+      <ToolTestimonials toolSlug="5s-numbers-game" />
 
       <NewsletterSignup variant="dark" />
     </main>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Level5TargetingTool from "@/components/resources/Level5TargetingTool";
+import ToolTestimonials from "@/components/resources/ToolTestimonials";
 
 export const metadata: Metadata = {
   title: "Level 5 Targeting Self-Assessment",
@@ -41,6 +42,8 @@ export default function Level5TargetingPage() {
       </div>
 
       <Level5TargetingTool />
+
+      <ToolTestimonials toolSlug="level-5-targeting" />
     </main>
   );
 }

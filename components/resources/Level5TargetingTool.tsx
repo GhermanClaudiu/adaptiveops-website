@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { captureLead } from "@/lib/leadCapture";
+import { fireToolStart } from "@/lib/toolStats";
 
 /* Markup ported from the standalone tool, restyled to AdaptiveOps tokens.
    The internal topbar is removed (site Header sits above); the report CTA
@@ -497,6 +498,16 @@ export default function Level5TargetingTool() {
     return () => {
       ["l5go", "l5rate", "l5onTNType", "l5checkP2", "l5toggleKPI", "l5kpiInput", "l5toggleCause", "l5setPrimary", "l5generate", "l5restart"].forEach((k) => { delete w[k]; });
     };
+  }, []);
+
+  /* Fire the "started" usage ping when the visitor begins the assessment.
+     Listener on the intro's primary button — fire-and-forget, session-deduped. */
+  useEffect(() => {
+    const startBtn = ref.current?.querySelector("#p-intro .btn-primary");
+    if (!startBtn) return;
+    const handler = () => fireToolStart("level-5-targeting");
+    startBtn.addEventListener("click", handler);
+    return () => startBtn.removeEventListener("click", handler);
   }, []);
 
   return (
