@@ -3,9 +3,9 @@ import {
   getToolCounts,
   MIN_REVIEWS_TO_SHOW,
   MIN_STARTS_TO_SHOW,
-  type ToolTestimonial,
 } from "@/lib/toolStats";
 import ToolTestimonialForm from "@/components/resources/ToolTestimonialForm";
+import TestimonialsWall from "@/components/resources/TestimonialsWall";
 import { getTool } from "@/lib/content/tools";
 
 /** Inline filled/empty stars for a given rating. */
@@ -24,34 +24,6 @@ function Stars({ rating, size = "w-4 h-4" }: { rating: number; size?: string }) 
         </svg>
       ))}
     </span>
-  );
-}
-
-function formatMonth(iso: string): string {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return "";
-  return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
-}
-
-function TestimonialCard({ t }: { t: ToolTestimonial }) {
-  const month = formatMonth(t.submittedAtUtc);
-  return (
-    <figure className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col h-full">
-      <Stars rating={t.rating} />
-      <blockquote className="mt-3 text-[15px] text-primary leading-relaxed flex-1">
-        &ldquo;{t.content}&rdquo;
-      </blockquote>
-      <figcaption className="mt-4 border-t border-gray-100 pt-3">
-        <p className="text-sm font-bold text-primary">
-          {t.firstName} {t.lastName}
-        </p>
-        <p className="text-xs text-mid">
-          {t.role}
-          {t.company ? ` · ${t.company}` : ""}
-        </p>
-        {month && <p className="mt-1 text-[11px] text-gray-400">{month}</p>}
-      </figcaption>
-    </figure>
   );
 }
 
@@ -113,11 +85,7 @@ export default async function ToolTestimonials({ toolSlug }: { toolSlug: string 
         </div>
 
         {hasReviews ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {data.items.map((t) => (
-              <TestimonialCard key={t.id} t={t} />
-            ))}
-          </div>
+          <TestimonialsWall items={data.items} />
         ) : (
           <p className="text-mid leading-relaxed max-w-xl">
             No testimonials yet &mdash; if you&apos;ve run this tool on your floor, be the
