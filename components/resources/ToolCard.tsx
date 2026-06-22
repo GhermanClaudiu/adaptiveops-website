@@ -64,6 +64,7 @@ export default function ToolCard({
           <div className="mt-5">
             <ToolStatBadge
               count={count}
+              usagePhrase={tool.usagePhrase}
               averageRating={averageRating}
               reviewCount={reviewCount}
             />
