@@ -14,6 +14,7 @@ interface TurnstileOptions {
   "expired-callback"?: () => void;
   theme?: "light" | "dark" | "auto";
   action?: string;
+  appearance?: "always" | "execute" | "interaction-only";
 }
 
 interface TurnstileApi {
@@ -52,6 +53,8 @@ export default function Turnstile({
   sitekey,
   action,
   theme = "auto",
+  appearance,
+  className = "min-h-[65px]",
   onVerify,
   onExpire,
   onError,
@@ -59,6 +62,9 @@ export default function Turnstile({
   sitekey: string;
   action?: string;
   theme?: "light" | "dark" | "auto";
+  /** "interaction-only" keeps the widget invisible until a challenge is needed. */
+  appearance?: "always" | "execute" | "interaction-only";
+  className?: string;
   onVerify: (token: string) => void;
   onExpire?: () => void;
   onError?: () => void;
@@ -79,6 +85,7 @@ export default function Turnstile({
           sitekey,
           action,
           theme,
+          appearance,
           callback: (t) => cbs.current.onVerify(t),
           "expired-callback": () => cbs.current.onExpire?.(),
           "error-callback": () => cbs.current.onError?.(),
@@ -97,7 +104,7 @@ export default function Turnstile({
         widgetId.current = null;
       }
     };
-  }, [sitekey, action, theme]);
+  }, [sitekey, action, theme, appearance]);
 
-  return <div ref={ref} className="min-h-[65px]" />;
+  return <div ref={ref} className={className} />;
 }

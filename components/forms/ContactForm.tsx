@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useState, FormEvent } from "react";
+import Turnstile from "@/components/resources/Turnstile";
 import { captureLead } from "@/lib/leadCapture";
+
+// Cloudflare Turnstile SITE key is public; default to the real key so the
+// background anti-spam check works on Vercel even without the env var.
+const SITE_KEY =
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "0x4AAAAAADpFjD_w0lL5oXUh";
 
 const interestOptions = [
   "Training Programs",
@@ -31,6 +37,7 @@ const serviceParamMap: Record<string, string> = {
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [interests, setInterests] = useState<string[]>([]);
+  const [turnstileToken, setTurnstileToken] = useState("");
 
   // Auto-select an interest from the ?service= URL param so CTAs from
   // dedicated pages (e.g. /academy "Apply for 2026 Cohort") land on the
@@ -69,6 +76,7 @@ export default function ContactForm() {
       company: String(data.get("company") || "") || undefined,
       source: "ContactForm",
       consent: Boolean(data.get("gdpr")),
+      turnstileToken,
       payload: {
         interests,
         phone: String(data.get("phone") || "") || undefined,
@@ -211,6 +219,18 @@ export default function ContactForm() {
           I agree to the processing of my personal data in accordance with GDPR. *
         </label>
       </div>
+
+      {/* Background anti-spam for the Academy lead capture. Invisible unless
+          Cloudflare decides a challenge is needed. */}
+      <Turnstile
+        sitekey={SITE_KEY}
+        action="contact-lead"
+        appearance="interaction-only"
+        className=""
+        onVerify={setTurnstileToken}
+        onExpire={() => setTurnstileToken("")}
+        onError={() => setTurnstileToken("")}
+      />
 
       {status === "error" && (
         <p className="text-sm text-red-600">

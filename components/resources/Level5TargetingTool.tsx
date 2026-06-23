@@ -4,6 +4,36 @@ import { useEffect, useRef } from "react";
 import { captureLead } from "@/lib/leadCapture";
 import { fireToolStart } from "@/lib/toolStats";
 
+// Cloudflare Turnstile SITE key is public; default to the real key so the
+// background anti-spam check works on Vercel even without the env var.
+const SITE_KEY =
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "0x4AAAAAADpFjD_w0lL5oXUh";
+
+const TURNSTILE_SRC =
+  "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+
+function loadTurnstile(): Promise<void> {
+  if (typeof window === "undefined") return Promise.resolve();
+  if (window.turnstile) return Promise.resolve();
+  return new Promise<void>((resolve, reject) => {
+    const existing = document.querySelector<HTMLScriptElement>(
+      `script[src="${TURNSTILE_SRC}"]`,
+    );
+    if (existing) {
+      existing.addEventListener("load", () => resolve());
+      existing.addEventListener("error", () => reject(new Error("Turnstile load failed")));
+      return;
+    }
+    const s = document.createElement("script");
+    s.src = TURNSTILE_SRC;
+    s.async = true;
+    s.defer = true;
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error("Turnstile load failed"));
+    document.head.appendChild(s);
+  });
+}
+
 /* Markup ported from the standalone tool, restyled to AdaptiveOps tokens.
    The internal topbar is removed (site Header sits above); the report CTA
    points at the internal /contact route. */
@@ -120,6 +150,7 @@ const TOOL_HTML = `
       <div class="gate-form"><input type="email" id="g-email" placeholder="Work email"><input type="text" id="g-role" placeholder="Your role (e.g. Plant Manager)"></div>
       <div class="gate-row"><div class="gate-form"><input type="text" id="g-plant" placeholder="Plant / company (optional)"><button class="btn btn-primary" onclick="l5generate()" style="white-space:nowrap;">Generate report →</button></div></div>
       <label class="gate-consent" for="g-consent"><input type="checkbox" id="g-consent"><span>I agree to AdaptiveOps storing my details to send this report and occasional operational insights. I can unsubscribe anytime.</span></label>
+      <div id="l5-turnstile"></div>
       <div class="err" id="e-gate" style="color:#FCA5A5;">Enter a valid work email, your role, and tick the consent box.</div>
       <div class="fine">No spam. Your assessment inputs are used only to generate this report. Unsubscribe anytime.</div>
     </div>
@@ -247,7 +278,8 @@ export default function Level5TargetingTool() {
       kpis: Record<string, { on: boolean; cur: number | null; tgt: number | null }>;
       causes: Record<string, { sel: Set<string>; primary: string | null }>;
       lead: Record<string, string>;
-    } = { ratings: {}, tn: { type: "pcr", cur: null, tgt: null, ebitda: "" }, kpis: {}, causes: {}, lead: {} };
+      turnstileToken: string;
+    } = { ratings: {}, tn: { type: "pcr", cur: null, tgt: null, ebitda: "" }, kpis: {}, causes: {}, lead: {}, turnstileToken: "" };
 
     const STEPS = [
       { id: "intro", label: "Intro" }, { id: "p1", label: "Maturity" }, { id: "p2", label: "True North" },
@@ -408,6 +440,7 @@ export default function Level5TargetingTool() {
         company: plant || undefined,
         source: "Level5Targeting",
         consent,
+        turnstileToken: STATE.turnstileToken,
         payload: {
           ratings: Object.values(STATE.ratings),
           trueNorth: STATE.tn.type,
@@ -495,7 +528,30 @@ export default function Level5TargetingTool() {
     /* INIT */
     renderProcesses(); renderKPIs(); renderProgress(); onTNType();
 
+    /* Background anti-spam for the Academy lead capture (invisible unless
+       Cloudflare needs a challenge). Token is read in generate(). */
+    let widgetId: string | null = null;
+    let cancelled = false;
+    loadTurnstile()
+      .then(() => {
+        const host = $("l5-turnstile");
+        if (cancelled || !host || !window.turnstile) return;
+        widgetId = window.turnstile.render(host, {
+          sitekey: SITE_KEY,
+          action: "level5-lead",
+          appearance: "interaction-only",
+          callback: (t) => { STATE.turnstileToken = t; },
+          "expired-callback": () => { STATE.turnstileToken = ""; },
+          "error-callback": () => { STATE.turnstileToken = ""; },
+        });
+      })
+      .catch(() => { /* non-blocking — report still renders without it */ });
+
     return () => {
+      cancelled = true;
+      if (widgetId && window.turnstile) {
+        try { window.turnstile.remove(widgetId); } catch { /* already gone */ }
+      }
       ["l5go", "l5rate", "l5onTNType", "l5checkP2", "l5toggleKPI", "l5kpiInput", "l5toggleCause", "l5setPrimary", "l5generate", "l5restart"].forEach((k) => { delete w[k]; });
     };
   }, []);

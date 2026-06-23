@@ -30,6 +30,8 @@ export interface LeadInput {
   source: LeadSource;
   payload?: Record<string, unknown>;
   consent: boolean;
+  /** Cloudflare Turnstile token — required by the endpoint to pass anti-spam. */
+  turnstileToken?: string;
 }
 
 /**
@@ -54,6 +56,7 @@ export function captureLead(input: LeadInput): void {
     source: input.source,
     payload: input.payload,
     consent: input.consent,
+    turnstileToken: input.turnstileToken || undefined,
   });
 
   try {

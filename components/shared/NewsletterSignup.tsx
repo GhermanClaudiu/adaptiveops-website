@@ -2,7 +2,13 @@
 
 import { FormEvent, useState } from "react";
 import FadeUp from "@/components/shared/FadeUp";
+import Turnstile from "@/components/resources/Turnstile";
 import { captureLead } from "@/lib/leadCapture";
+
+// Cloudflare Turnstile SITE key is public; default to the real key so the
+// background anti-spam check works on Vercel even without the env var.
+const SITE_KEY =
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "0x4AAAAAADpFjD_w0lL5oXUh";
 
 interface NewsletterSignupProps {
   variant?: "dark" | "light";
@@ -18,6 +24,7 @@ export default function NewsletterSignup({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -31,11 +38,13 @@ export default function NewsletterSignup({
     setErrorMsg("");
 
     // Fire-and-forget lead capture to Academy (consent is required above).
+    // Turnstile runs in the background; the token is usually ready by submit.
     captureLead({
       email,
       name: name || undefined,
       source: "Newsletter",
       consent,
+      turnstileToken,
     });
 
     try {
@@ -137,6 +146,18 @@ export default function NewsletterSignup({
                   newsletter. I can unsubscribe anytime.
                 </span>
               </label>
+
+              {/* Background anti-spam for the Academy lead capture. Invisible
+                  unless Cloudflare decides a challenge is needed. */}
+              <Turnstile
+                sitekey={SITE_KEY}
+                action="newsletter-lead"
+                appearance="interaction-only"
+                className="flex justify-center"
+                onVerify={setTurnstileToken}
+                onExpire={() => setTurnstileToken("")}
+                onError={() => setTurnstileToken("")}
+              />
 
               <button
                 type="submit"
