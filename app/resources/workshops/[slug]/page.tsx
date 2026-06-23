@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import FadeUp from "@/components/shared/FadeUp";
 import NewsletterSignup from "@/components/shared/NewsletterSignup";
-import WorkshopMeetergoEmbed from "@/components/resources/WorkshopMeetergoEmbed";
+import WorkshopRegisterForm from "@/components/resources/WorkshopRegisterForm";
 import WorkshopTestimonialForm from "@/components/resources/WorkshopTestimonialForm";
 import { WORKSHOPS, getWorkshop } from "@/lib/content/workshops";
 
@@ -173,13 +173,30 @@ export default function WorkshopDetailPage({
                       Notify me about the next one
                     </Link>
                   </div>
-                ) : (
-                  <WorkshopMeetergoEmbed
-                    meetergoUrl={workshop.meetergoUrl}
+                ) : workshop.displayDate ? (
+                  <WorkshopRegisterForm
+                    workshopSlug={workshop.slug}
                     displayDate={workshop.displayDate}
                     duration={workshop.duration}
                     language={workshop.language}
                   />
+                ) : (
+                  <div className="rounded-2xl border border-gray-200 bg-light p-8 text-center">
+                    <span className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-accent">
+                      <span className="w-2 h-2 rounded-full bg-accent" aria-hidden="true" />
+                      Registration opens soon
+                    </span>
+                    <p className="mt-4 text-mid leading-relaxed">
+                      The next date is being scheduled. Leave your email and we&apos;ll tell you the
+                      moment registration opens.
+                    </p>
+                    <Link
+                      href="#workshop-newsletter"
+                      className="mt-5 inline-flex items-center gap-2 bg-accent hover:bg-blue-600 text-white font-semibold px-7 py-3.5 rounded-lg transition-colors active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                    >
+                      Notify me about the next session
+                    </Link>
+                  </div>
                 )}
               </div>
             </FadeUp>
