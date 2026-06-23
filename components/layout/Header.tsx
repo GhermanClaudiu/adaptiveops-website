@@ -19,7 +19,8 @@ const navLinks: NavItem[] = [
     label: "Resources",
     children: [
       { href: "/resources/tools", label: "Tools", tint: "bg-accent/20 border-accent/40 hover:bg-accent/30", dot: "bg-accent" },
-      { href: "/resources/downloads", label: "Downloads", tint: "bg-secondary/20 border-secondary/40 hover:bg-secondary/30", dot: "bg-secondary" },
+      { href: "/resources/workshops", label: "Workshops", tint: "bg-secondary/20 border-secondary/40 hover:bg-secondary/30", dot: "bg-secondary" },
+      { href: "/resources/downloads", label: "Downloads", tint: "bg-white/10 border-white/25 hover:bg-white/20", dot: "bg-mid" },
       { href: "/blog", label: "Blog", tint: "bg-white/10 border-white/25 hover:bg-white/20", dot: "bg-mid" },
     ],
   },

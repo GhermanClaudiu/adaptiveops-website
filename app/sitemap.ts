@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/content/blog";
+import { WORKSHOPS } from "@/lib/content/workshops";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.adaptiveops.eu";
@@ -55,6 +56,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/resources/workshops`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/resources/downloads`,
       lastModified: now,
       changeFrequency: "monthly",
@@ -75,5 +82,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...blogPages];
+  const workshopPages: MetadataRoute.Sitemap = WORKSHOPS.map((w) => ({
+    url: `${baseUrl}/resources/workshops/${w.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...blogPages, ...workshopPages];
 }
