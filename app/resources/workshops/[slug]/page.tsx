@@ -176,7 +176,6 @@ export default function WorkshopDetailPage({
                 ) : (
                   <WorkshopMeetergoEmbed
                     meetergoUrl={workshop.meetergoUrl}
-                    title={workshop.title}
                     displayDate={workshop.displayDate}
                     duration={workshop.duration}
                     language={workshop.language}

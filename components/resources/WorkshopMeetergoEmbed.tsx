@@ -18,13 +18,11 @@ import Link from "next/link";
  */
 export default function WorkshopMeetergoEmbed({
   meetergoUrl,
-  title,
   displayDate,
   duration,
   language,
 }: {
   meetergoUrl?: string;
-  title: string;
   displayDate?: string;
   duration: string;
   language: string;
