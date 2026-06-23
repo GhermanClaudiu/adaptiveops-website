@@ -58,8 +58,8 @@ export default function WorkshopsPage() {
           <FadeUp delay={100}>
             <p className="mt-5 text-lg text-white/70 max-w-2xl leading-relaxed">
               Short, practical sessions on the methods we run with clients &mdash; 5S that
-              sticks, time &amp; motion, problem solving with A3, AI for beginners. Built from
-              20+ years across Valeo, Leoni and Lear Corporation. No theory dump, no sales pitch.
+              sticks, time &amp; motion, problem solving with A3, AI for beginners. No theory
+              dump, no sales pitch.
             </p>
           </FadeUp>
           <FadeUp delay={300}>
