@@ -49,6 +49,12 @@ export default function WorkshopDetailPage({
   const past = workshop.status === "past";
   const dateLabel = workshop.displayDate ?? "New date being scheduled";
 
+  // Registration is open only for an upcoming session that already has a date.
+  // Then the visitor should register above, not join a "runs again" waitlist —
+  // so the bottom waitlist block shows only for past sessions or upcoming ones
+  // whose date isn't set yet.
+  const registrationOpen = !past && Boolean(workshop.displayDate);
+
   return (
     <main className="bg-light">
       {/* Breadcrumb */}
@@ -241,18 +247,30 @@ export default function WorkshopDetailPage({
         </div>
       </section>
 
-      {/* Workshop waitlist — notify me when this session runs again (NOT the
-          monthly newsletter; see NewsletterSignup mode="waitlist"). */}
-      <div id="workshop-newsletter">
-        <NewsletterSignup
-          variant="dark"
-          mode="waitlist"
-          workshopSlug={workshop.slug}
-          workshopTitle={workshop.title}
-          title="Be first to know when this workshop runs again."
-          subtitle="We announce new dates to the list first. One short email when a session is scheduled — nothing else."
-        />
-      </div>
+      {/* Workshop waitlist — only when there's nothing to register for yet
+          (past session, or upcoming with no date). When registration is open
+          the visitor registers above instead. mode="waitlist" => a workshop
+          lead, NOT the monthly newsletter; see NewsletterSignup. */}
+      {!registrationOpen && (
+        <div id="workshop-newsletter">
+          <NewsletterSignup
+            variant="dark"
+            mode="waitlist"
+            workshopSlug={workshop.slug}
+            workshopTitle={workshop.title}
+            title={
+              past
+                ? "Be first to know when this workshop runs again."
+                : "Be first to know when this workshop is scheduled."
+            }
+            subtitle={
+              past
+                ? "We announce new dates to the list first. One short email when a session is scheduled — nothing else."
+                : "The date isn't set yet. Leave your email and we'll tell you the moment registration opens — nothing else."
+            }
+          />
+        </div>
+      )}
     </main>
   );
 }
