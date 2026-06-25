@@ -241,10 +241,14 @@ export default function WorkshopDetailPage({
         </div>
       </section>
 
-      {/* Newsletter */}
+      {/* Workshop waitlist — notify me when this session runs again (NOT the
+          monthly newsletter; see NewsletterSignup mode="waitlist"). */}
       <div id="workshop-newsletter">
         <NewsletterSignup
           variant="dark"
+          mode="waitlist"
+          workshopSlug={workshop.slug}
+          workshopTitle={workshop.title}
           title="Be first to know when this workshop runs again."
           subtitle="We announce new dates to the list first. One short email when a session is scheduled — nothing else."
         />

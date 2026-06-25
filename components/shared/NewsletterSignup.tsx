@@ -10,16 +10,59 @@ import { captureLead } from "@/lib/leadCapture";
 const SITE_KEY =
   process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "0x4AAAAAADpFjD_w0lL5oXUh";
 
+type Mode = "newsletter" | "waitlist";
+
 interface NewsletterSignupProps {
   variant?: "dark" | "light";
+  /**
+   * "newsletter" (default) — recurring monthly list: subscribes to MailerLite
+   * and captures a Newsletter lead.
+   * "waitlist" — "notify me when this workshop runs again": captures a single
+   * workshop-scoped lead to Academy and DOES NOT add the person to the monthly
+   * newsletter (the promise is "one email when scheduled, nothing else").
+   */
+  mode?: Mode;
   title?: string;
   subtitle?: string;
+  /** Waitlist mode only — identifies which workshop the lead is waiting for. */
+  workshopSlug?: string;
+  workshopTitle?: string;
 }
+
+// Copy differs per mode so the consent text, button and confirmation always
+// match what actually happens to the user's data.
+const COPY: Record<Mode, {
+  consent: string;
+  button: string;
+  loading: string;
+  footer: string;
+  success: string;
+}> = {
+  newsletter: {
+    consent:
+      "I agree to AdaptiveOps storing my details to send the monthly newsletter. I can unsubscribe anytime.",
+    button: "Get Free Operational Excellence Tips",
+    loading: "Subscribing…",
+    footer: "No spam. Unsubscribe anytime. We respect your inbox.",
+    success: "Thank you! Practical insights from the shop floor — delivered monthly.",
+  },
+  waitlist: {
+    consent:
+      "I agree to AdaptiveOps storing my email to notify me when this workshop is scheduled again. I can unsubscribe anytime.",
+    button: "Notify me about the next session",
+    loading: "Saving…",
+    footer: "One email when a date is set — nothing else. Unsubscribe anytime.",
+    success: "You're on the list. We'll email you the moment a new date is set.",
+  },
+};
 
 export default function NewsletterSignup({
   variant = "dark",
+  mode = "newsletter",
   title = "Steal one operational improvement every month.",
   subtitle = "5 minutes of reading. Real plants. No theory. So your next shift starts with one less problem than last month.",
+  workshopSlug,
+  workshopTitle,
 }: NewsletterSignupProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -29,6 +72,8 @@ export default function NewsletterSignup({
   const [errorMsg, setErrorMsg] = useState("");
 
   const isDark = variant === "dark";
+  const isWaitlist = mode === "waitlist";
+  const copy = COPY[mode];
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -37,15 +82,29 @@ export default function NewsletterSignup({
     setStatus("loading");
     setErrorMsg("");
 
-    // Fire-and-forget lead capture to Academy (consent is required above).
-    // Turnstile runs in the background; the token is usually ready by submit.
+    // Lead capture to Academy (consent is required above). Turnstile runs in
+    // the background; the token is usually ready by submit. The waitlist is a
+    // workshop-scoped lead ("Other" + payload), NOT a newsletter subscription.
     captureLead({
       email,
       name: name || undefined,
-      source: "Newsletter",
+      source: isWaitlist ? "Other" : "Newsletter",
+      payload: isWaitlist
+        ? { intent: "workshop-waitlist", workshopSlug, workshopTitle }
+        : undefined,
       consent,
       turnstileToken,
     });
+
+    // Waitlist must not touch the monthly newsletter list. The Academy capture
+    // above is fire-and-forget (per integration doc §8) — confirm immediately.
+    if (isWaitlist) {
+      setStatus("success");
+      setName("");
+      setEmail("");
+      setConsent(false);
+      return;
+    }
 
     try {
       const res = await fetch("/api/newsletter", {
@@ -98,7 +157,7 @@ export default function NewsletterSignup({
                   <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                 </svg>
                 <p className={`text-sm font-medium ${isDark ? "text-white" : "text-primary"}`}>
-                  Thank you! Practical insights from the shop floor — delivered monthly.
+                  {copy.success}
                 </p>
               </div>
             </div>
@@ -141,17 +200,14 @@ export default function NewsletterSignup({
                   required
                   className="mt-0.5 w-4 h-4 flex-shrink-0 rounded accent-accent focus-visible:ring-2 focus-visible:ring-accent"
                 />
-                <span>
-                  I agree to AdaptiveOps storing my details to send the monthly
-                  newsletter. I can unsubscribe anytime.
-                </span>
+                <span>{copy.consent}</span>
               </label>
 
               {/* Background anti-spam for the Academy lead capture. Invisible
                   unless Cloudflare decides a challenge is needed. */}
               <Turnstile
                 sitekey={SITE_KEY}
-                action="newsletter-lead"
+                action={isWaitlist ? "workshop-waitlist" : "newsletter-lead"}
                 appearance="interaction-only"
                 className="flex justify-center"
                 onVerify={setTurnstileToken}
@@ -169,10 +225,10 @@ export default function NewsletterSignup({
                     <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
                       <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeDasharray="32" strokeLinecap="round" />
                     </svg>
-                    Subscribing…
+                    {copy.loading}
                   </span>
                 ) : (
-                  "Get Free Operational Excellence Tips"
+                  copy.button
                 )}
               </button>
 
@@ -181,7 +237,7 @@ export default function NewsletterSignup({
               )}
 
               <p className={`mt-4 text-xs ${isDark ? "text-white/25" : "text-mid/60"}`}>
-                No spam. Unsubscribe anytime. We respect your inbox.
+                {copy.footer}
               </p>
             </form>
           )}
