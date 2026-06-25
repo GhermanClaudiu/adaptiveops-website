@@ -18,6 +18,7 @@ export type LeadSource =
   | "WorksheetDownload"
   | "Newsletter"
   | "ContactForm"
+  | "Workshop"
   | "Other";
 
 export interface LeadInput {

@@ -84,13 +84,14 @@ export default function NewsletterSignup({
 
     // Lead capture to Academy (consent is required above). Turnstile runs in
     // the background; the token is usually ready by submit. The waitlist is a
-    // workshop-scoped lead ("Other" + payload), NOT a newsletter subscription.
+    // workshop-scoped lead (source "Workshop" + payload), NOT a newsletter
+    // subscription.
     captureLead({
       email,
       name: name || undefined,
-      source: isWaitlist ? "Other" : "Newsletter",
+      source: isWaitlist ? "Workshop" : "Newsletter",
       payload: isWaitlist
-        ? { intent: "workshop-waitlist", workshopSlug, workshopTitle }
+        ? { workshopSlug, workshopTitle }
         : undefined,
       consent,
       turnstileToken,
