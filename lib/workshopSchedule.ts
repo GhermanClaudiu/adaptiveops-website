@@ -9,7 +9,9 @@
  * - CONTENT (title, copy, audience, language, recording) → `lib/content/workshops.ts`.
  * - SCHEDULE (date + open/closed) → live from here; the registry's
  *   `displayDate`/`status` are kept only as a build-time / outage FALLBACK that
- *   the live value overrides (hybrid). The site never does date/timezone math.
+ *   the live value overrides (hybrid). The displayed date is derived from the
+ *   live `startsAtUtc` via Intl (Europe/Bucharest), preferring the backend's
+ *   preformatted `displayDate` once Academy ships that field.
  *
  * Mirrors `lib/toolStats.ts`: server-side GET (no CORS), cached 60s, NEVER
  * throws — on any failure the caller falls back to the registry so the page
@@ -129,6 +131,43 @@ export async function getAllWorkshopSchedules(
 }
 
 /**
+ * Format an occurrence start (UTC ISO) + duration into the site's date string,
+ * e.g. "16 July 2026 · 18:30–19:30 (Bucharest)". Intl with an explicit
+ * Europe/Bucharest timezone → DST-correct even though the server runs UTC.
+ * Returns null on unparseable input. Lets the card/detail date be derived
+ * straight from Academy's live `startsAtUtc`, with no manual registry date.
+ */
+function formatBucharestDate(
+  startsAtUtc: string,
+  durationMinutes: number,
+): string | null {
+  const start = new Date(startsAtUtc);
+  if (Number.isNaN(start.getTime())) return null;
+
+  const tz = "Europe/Bucharest";
+  const dateFmt = new Intl.DateTimeFormat("en-GB", {
+    timeZone: tz,
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const timeFmt = new Intl.DateTimeFormat("en-GB", {
+    timeZone: tz,
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  });
+
+  const datePart = dateFmt.format(start); // "16 July 2026"
+  const startTime = timeFmt.format(start); // "18:30"
+  if (!Number.isFinite(durationMinutes) || durationMinutes <= 0) {
+    return `${datePart} · ${startTime} (Bucharest)`;
+  }
+  const end = new Date(start.getTime() + durationMinutes * 60_000);
+  return `${datePart} · ${startTime}–${timeFmt.format(end)} (Bucharest)`;
+}
+
+/**
  * Merge live schedule + registry fallback into a single resolved view.
  * Pure/total — never throws, always returns a valid state.
  *
@@ -164,17 +203,21 @@ export function resolveSchedule(
         : "unscheduled";
   }
 
-  // `unscheduled` means nothing is on the calendar — return null so each caller
-  // applies its own empty label (card "New date soon", detail "New date being
-  // scheduled"). Returning a date here would leak a STALE registry date once a
-  // live occurrence closes/passes (state flips to unscheduled while the registry
-  // still holds the old date) — reintroducing the lifecycle bug this feature
-  // removes. A date is only meaningful for `scheduled` (upcoming) and `ended`
-  // ("Held on {date}").
+  // Date string priority (most→least authoritative): (1) backend's preformatted
+  // `displayDate` once Academy ships it; (2) site-formatted from the LIVE
+  // `startsAtUtc` (so the date comes from Academy automatically, no registry
+  // edit); (3) the registry `displayDate` as an outage / build-time fallback.
+  // `unscheduled` → null so each caller shows its own empty label (card "New
+  // date soon", detail "New date being scheduled"); returning a date there would
+  // leak a STALE date once an occurrence closes/passes. A date is only
+  // meaningful for `scheduled` (upcoming) and `ended` ("Held on {date}").
+  const liveFormatted = live?.startsAtUtc
+    ? formatBucharestDate(live.startsAtUtc, parseInt(registryEntry.duration, 10))
+    : null;
   const displayDate =
     state === "unscheduled"
       ? null
-      : (live?.displayDate ?? registryEntry.displayDate ?? null);
+      : (live?.displayDate ?? liveFormatted ?? registryEntry.displayDate ?? null);
 
   return {
     state,
