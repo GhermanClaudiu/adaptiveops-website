@@ -4,7 +4,13 @@ import FadeUp from "@/components/shared/FadeUp";
 import NewsletterSignup from "@/components/shared/NewsletterSignup";
 import LogoWall from "@/components/home/LogoWall";
 import WorkshopCard from "@/components/resources/WorkshopCard";
-import { upcomingWorkshops, pastWorkshops } from "@/lib/content/workshops";
+import { WORKSHOPS } from "@/lib/content/workshops";
+import { getResolvedWorkshops } from "@/lib/workshopSchedule";
+
+// Re-fetch the live schedule from Academy at most once every 60s (ISR). After
+// the founder flips an occurrence in Academy, the new date appears within ~60s
+// with no rebuild. Build never fails on Academy errors → registry fallback.
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Free Online Workshops",
@@ -26,9 +32,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function WorkshopsPage() {
-  const upcoming = upcomingWorkshops();
-  const past = pastWorkshops();
+export default async function WorkshopsPage() {
+  const { upcoming, past } = await getResolvedWorkshops(WORKSHOPS);
 
   return (
     <main>
@@ -103,9 +108,9 @@ export default function WorkshopsPage() {
           </FadeUp>
 
           <div className="space-y-6">
-            {upcoming.map((workshop, i) => (
+            {upcoming.map(({ workshop, resolved }, i) => (
               <FadeUp key={workshop.slug} delay={100 + i * 80}>
-                <WorkshopCard workshop={workshop} />
+                <WorkshopCard workshop={workshop} resolved={resolved} />
               </FadeUp>
             ))}
           </div>
@@ -127,9 +132,9 @@ export default function WorkshopsPage() {
               </div>
             </FadeUp>
             <div className="space-y-6">
-              {past.map((workshop, i) => (
+              {past.map(({ workshop, resolved }, i) => (
                 <FadeUp key={workshop.slug} delay={100 + i * 80}>
-                  <WorkshopCard workshop={workshop} />
+                  <WorkshopCard workshop={workshop} resolved={resolved} />
                 </FadeUp>
               ))}
             </div>

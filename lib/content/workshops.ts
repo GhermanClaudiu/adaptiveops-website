@@ -5,11 +5,12 @@
  * segment (/resources/workshops/<slug>) and the key the post-workshop
  * testimonial form is tagged with.
  *
- * v1 architecture (meetergo-first, thin site): registration, confirmation,
- * .ics, reminders and the Zoom/Meet/Teams link are all handled by the embedded
- * meetergo scheduler. The site only renders display content + the embed. The
- * real source of truth for the date/availability is meetergo; `displayDate`
- * here is for display only and is synced manually by the founder.
+ * This registry owns the marketing CONTENT only. The live SCHEDULE (date +
+ * open/closed) now comes from the Academy backend via `lib/workshopSchedule.ts`
+ * — the founder manages occurrences in Academy and the site reflects the new
+ * date automatically (no edit here, no redeploy). The `displayDate`/`status`
+ * fields below are FALLBACK ONLY: a build-time / outage safety net the live
+ * value overrides, so the page never renders empty if Academy is slow/down.
  *
  * Keep `slug` lowercase-kebab (`^[a-z0-9-]{1,64}$`).
  */
@@ -44,10 +45,14 @@ export interface WorkshopEntry {
    */
   language: string;
   /**
-   * Human-readable date for display only (synced manually with meetergo).
+   * FALLBACK ONLY — live schedule comes from `lib/workshopSchedule.ts`.
+   * Human-readable date used until Academy returns a live one (or it's down).
    * Leave empty until a session is scheduled — the card shows "New date soon".
    */
   displayDate?: string;
+  /** FALLBACK ONLY — live open/closed comes from `lib/workshopSchedule.ts`.
+   * Set a workshop to `past` once when it is truly retired (the only manual bit
+   * left): it disambiguates a closed live occurrence into "ended" vs "new date soon". */
   status: WorkshopStatus;
   /**
    * meetergo booking page URL, embedded inline as the registration form.

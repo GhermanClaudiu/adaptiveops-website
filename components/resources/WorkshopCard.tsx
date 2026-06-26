@@ -1,18 +1,25 @@
 import Link from "next/link";
 import type { WorkshopEntry } from "@/lib/content/workshops";
+import type { ResolvedWorkshop } from "@/lib/workshopSchedule";
 
 /**
  * One workshop on the /resources/workshops listing. Server component.
  * Layout mirrors ToolCard (dark visual panel + content) for a consistent
  * Resources look. `past` flips the framing to a recap / recording entry.
+ *
+ * Content comes from the registry `workshop`; the schedule (date + ended)
+ * comes from `resolved` (live Academy schedule, registry fallback).
  */
 export default function WorkshopCard({
   workshop,
+  resolved,
 }: {
   workshop: WorkshopEntry;
+  resolved: ResolvedWorkshop;
 }) {
-  const past = workshop.status === "past";
-  const dateLabel = workshop.displayDate ?? "New date soon";
+  const past = resolved.state === "ended";
+  const dateLabel = resolved.displayDate ?? "New date soon";
+  const recordingUrl = resolved.recordingUrl;
 
   return (
     <Link
@@ -68,7 +75,7 @@ export default function WorkshopCard({
 
           <span className="mt-6 inline-flex items-center gap-1.5 text-accent font-semibold text-sm group-hover:gap-2.5 transition-all">
             {past
-              ? workshop.recordingUrl
+              ? recordingUrl
                 ? "Watch the recording"
                 : "See the recap"
               : "See details & register"}

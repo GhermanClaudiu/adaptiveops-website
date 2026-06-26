@@ -6,6 +6,12 @@ import NewsletterSignup from "@/components/shared/NewsletterSignup";
 import WorkshopRegisterForm from "@/components/resources/WorkshopRegisterForm";
 import WorkshopTestimonialForm from "@/components/resources/WorkshopTestimonialForm";
 import { WORKSHOPS, getWorkshop } from "@/lib/content/workshops";
+import { getWorkshopSchedule, resolveSchedule } from "@/lib/workshopSchedule";
+
+// Live schedule re-fetched at most once every 60s (ISR). Keep
+// generateStaticParams; do NOT force-dynamic — the registry fallback keeps the
+// page building even when Academy is unreachable.
+export const revalidate = 60;
 
 export function generateStaticParams() {
   return WORKSHOPS.map((w) => ({ slug: w.slug }));
@@ -38,7 +44,7 @@ export function generateMetadata({
   };
 }
 
-export default function WorkshopDetailPage({
+export default async function WorkshopDetailPage({
   params,
 }: {
   params: { slug: string };
@@ -46,14 +52,17 @@ export default function WorkshopDetailPage({
   const workshop = getWorkshop(params.slug);
   if (!workshop) notFound();
 
-  const past = workshop.status === "past";
-  const dateLabel = workshop.displayDate ?? "New date being scheduled";
+  // Live schedule (Academy) overrides the registry fallback. `resolveSchedule`
+  // is total and never throws — `null` live → registry behaviour (like today).
+  const resolved = resolveSchedule(await getWorkshopSchedule(params.slug), workshop);
 
-  // Registration is open only for an upcoming session that already has a date.
-  // Then the visitor should register above, not join a "runs again" waitlist —
-  // so the bottom waitlist block shows only for past sessions or upcoming ones
-  // whose date isn't set yet.
-  const registrationOpen = !past && Boolean(workshop.displayDate);
+  const past = resolved.state === "ended";
+  const dateLabel = resolved.displayDate ?? "New date being scheduled";
+
+  // Registration is open only for a scheduled session (live or registry date).
+  // Otherwise the bottom waitlist block shows (past session, or upcoming with no
+  // date yet) — the visitor leaves their email instead of registering above.
+  const registrationOpen = resolved.registrationOpen;
 
   return (
     <main className="bg-light">
@@ -142,10 +151,10 @@ export default function WorkshopDetailPage({
               </ul>
             </FadeUp>
 
-            {past && workshop.recordingUrl && (
+            {past && resolved.recordingUrl && (
               <FadeUp delay={150}>
                 <a
-                  href={workshop.recordingUrl}
+                  href={resolved.recordingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-10 inline-flex items-center gap-2 border border-accent text-accent font-semibold px-6 py-3 rounded-lg hover:bg-accent/5 transition-colors active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
@@ -179,10 +188,10 @@ export default function WorkshopDetailPage({
                       Notify me about the next one
                     </Link>
                   </div>
-                ) : workshop.displayDate ? (
+                ) : registrationOpen ? (
                   <WorkshopRegisterForm
                     workshopSlug={workshop.slug}
-                    displayDate={workshop.displayDate}
+                    displayDate={resolved.displayDate ?? undefined}
                     duration={workshop.duration}
                     language={workshop.language}
                   />
