@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ContactForm from "@/components/forms/ContactForm";
+import MeetergoEmbed from "@/components/forms/MeetergoEmbed";
 import FadeUp from "@/components/shared/FadeUp";
 import LogoWall from "@/components/home/LogoWall";
 
@@ -54,7 +55,7 @@ export default function ContactPage() {
           </FadeUp>
           <FadeUp delay={100}>
             <p className="mt-5 text-lg text-white/65 max-w-2xl leading-relaxed">
-              Send the form below or book directly. Within 24 hours, Claudiu replies personally with a calendar link. The call maps your situation against the 30% scrap / 51% efficiency benchmarks we&apos;ve documented across 8 Tier-1 plants &mdash; and you leave with a concrete next step, even if it&apos;s not us.
+              Book a slot directly below &mdash; or send the form if you&apos;d rather tell us about your situation first. Either way the call maps your situation against the 30% scrap / 51% efficiency benchmarks we&apos;ve documented across 8 Tier-1 plants, and you leave with a concrete next step, even if it&apos;s not us.
             </p>
           </FadeUp>
           <FadeUp delay={200}>
@@ -72,18 +73,45 @@ export default function ContactPage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-            {/* Form */}
-            <FadeUp className="lg:col-span-3">
-              <div>
-                <span className="inline-block text-xs font-bold tracking-widest uppercase text-accent mb-3">
-                  Send a message
-                </span>
-                <h2 className="text-2xl font-bold text-primary mb-6">
-                  Tell us about your challenge
-                </h2>
-                <ContactForm />
-              </div>
-            </FadeUp>
+            {/* Booking + form */}
+            <div className="lg:col-span-3 space-y-12">
+              {/* Primary path — book a slot directly */}
+              <FadeUp>
+                <div>
+                  <span className="inline-block text-xs font-bold tracking-widest uppercase text-accent mb-3">
+                    Book directly
+                  </span>
+                  <h2 className="text-2xl font-bold text-primary mb-6">
+                    Grab a 30-minute slot
+                  </h2>
+                  <MeetergoEmbed />
+                </div>
+              </FadeUp>
+
+              {/* Divider */}
+              <FadeUp delay={100}>
+                <div className="flex items-center gap-4" role="separator" aria-label="or send a message instead">
+                  <span className="h-px flex-1 bg-gray-200" />
+                  <span className="text-xs font-semibold tracking-widest uppercase text-mid">
+                    or tell us about your challenge first
+                  </span>
+                  <span className="h-px flex-1 bg-gray-200" />
+                </div>
+              </FadeUp>
+
+              {/* Secondary path — message form */}
+              <FadeUp delay={150}>
+                <div>
+                  <span className="inline-block text-xs font-bold tracking-widest uppercase text-accent mb-3">
+                    Send a message
+                  </span>
+                  <h2 className="text-2xl font-bold text-primary mb-6">
+                    Prefer to write first?
+                  </h2>
+                  <ContactForm />
+                </div>
+              </FadeUp>
+            </div>
 
             {/* Sidebar */}
             <FadeUp delay={150} className="lg:col-span-2">
@@ -249,15 +277,15 @@ export default function ContactPage() {
             {[
               {
                 step: "01",
-                when: "Today",
-                title: "You submit the form",
-                detail: "Or call directly. Whichever you prefer — both reach Claudiu personally.",
+                when: "Now",
+                title: "You pick how to reach us",
+                detail: "Book a slot directly, send the form, or call. Whichever you prefer — all reach Claudiu personally.",
               },
               {
                 step: "02",
-                when: "Within 24h",
-                title: "Claudiu replies personally",
-                detail: "Not an auto-responder. A real reply with a calendar link to book the call.",
+                when: "Confirmation",
+                title: "Your call is set",
+                detail: "Book directly and you get an instant confirmation and calendar invite. Write first and Claudiu replies personally to set a time.",
               },
               {
                 step: "03",
@@ -269,7 +297,7 @@ export default function ContactPage() {
                 step: "04",
                 when: "After the call",
                 title: "You get a concrete next step",
-                detail: "Written summary with our honest recommendation — even if it's to work with someone else.",
+                detail: "An honest recommendation you keep — even if it's to work with someone else.",
               },
             ].map((s, i) => (
               <FadeUp key={s.step} delay={i * 80}>
